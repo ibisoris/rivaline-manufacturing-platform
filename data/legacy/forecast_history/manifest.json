@@ -1,0 +1,18 @@
+{
+  "dataset_code": "SYN-DEMAND-24M-V1",
+  "seed": 20261004,
+  "synthetic": true,
+  "rows": 192,
+  "months": 24,
+  "period_start": "2024-10-01",
+  "period_end": "2026-09-30",
+  "products": [
+    "SYN-FG-001",
+    "SYN-FG-002",
+    "SYN-FG-003",
+    "SYN-FG-004"
+  ],
+  "sha256": "0ecfe4e1be18c40e82fdc390393ef3d841532cd44caecfa1e2ef246b30ce7cf0",
+  "target": "Archived booked demand; separate evaluation universe, not additional operational orders",
+  "formula": "base + product trend * month index + fixed mild monthly effect + seeded integer noise + documented spikes"
+}

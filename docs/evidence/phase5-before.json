@@ -1,0 +1,68 @@
+{
+  "counts": {
+    "products": 4,
+    "suppliers": 3,
+    "raw_materials": 4,
+    "customers": 3,
+    "warehouses": 2,
+    "inventory": 32,
+    "inventory_transactions": 0,
+    "bills_of_material": 4,
+    "bill_of_material_lines": 16,
+    "sales_orders": 48,
+    "sales_order_lines": 48,
+    "purchase_orders": 192,
+    "purchase_order_lines": 192,
+    "production_orders": 48,
+    "production_batches": 48,
+    "batch_material_consumption": 192,
+    "quality_inspections": 48,
+    "shipments": 48,
+    "shipment_lines": 48,
+    "demand_forecasts": 0,
+    "reorder_recommendations": 2,
+    "etl_runs": 2,
+    "data_quality_issues": 96,
+    "planning_policies": 4,
+    "planning_runs": 1
+  },
+  "sha256": "b81d0d0b958ecff3173ba80a4099063055b8901589559e206cf8d9807928913b",
+  "sales_assessment": [
+    {
+      "code": "SYN-FG-001",
+      "unit_of_measure": "kg",
+      "orders": 12,
+      "first_date": "2026-01-02",
+      "last_date": "2026-02-15",
+      "months": 2,
+      "quantity": "2700"
+    },
+    {
+      "code": "SYN-FG-002",
+      "unit_of_measure": "kg",
+      "orders": 12,
+      "first_date": "2026-01-03",
+      "last_date": "2026-02-16",
+      "months": 2,
+      "quantity": "2100"
+    },
+    {
+      "code": "SYN-FG-003",
+      "unit_of_measure": "kg",
+      "orders": 12,
+      "first_date": "2026-01-04",
+      "last_date": "2026-02-17",
+      "months": 2,
+      "quantity": "2300"
+    },
+    {
+      "code": "SYN-FG-004",
+      "unit_of_measure": "kg",
+      "orders": 12,
+      "first_date": "2026-01-05",
+      "last_date": "2026-02-18",
+      "months": 2,
+      "quantity": "2100"
+    }
+  ]
+}

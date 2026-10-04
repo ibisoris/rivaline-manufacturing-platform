@@ -1,0 +1,388 @@
+{
+  "postgresql": "17.11",
+  "migration": "0002_reporting",
+  "before": {
+    "business": {
+      "counts": {
+        "products": 4,
+        "suppliers": 3,
+        "raw_materials": 4,
+        "customers": 3,
+        "warehouses": 2,
+        "inventory": 32,
+        "inventory_transactions": 0,
+        "bills_of_material": 4,
+        "bill_of_material_lines": 16,
+        "sales_orders": 48,
+        "sales_order_lines": 48,
+        "purchase_orders": 192,
+        "purchase_order_lines": 192,
+        "production_orders": 48,
+        "production_batches": 48,
+        "batch_material_consumption": 192,
+        "quality_inspections": 48,
+        "shipments": 48,
+        "shipment_lines": 48,
+        "demand_forecasts": 0,
+        "reorder_recommendations": 0
+      },
+      "sha256": "1a99a4e86ed0b968a9e1bd20626014e1f0c7182c42146d19e2d68f95f9ba9883"
+    },
+    "all_table_counts": {
+      "products": 4,
+      "suppliers": 3,
+      "raw_materials": 4,
+      "customers": 3,
+      "warehouses": 2,
+      "inventory": 32,
+      "inventory_transactions": 0,
+      "bills_of_material": 4,
+      "bill_of_material_lines": 16,
+      "sales_orders": 48,
+      "sales_order_lines": 48,
+      "purchase_orders": 192,
+      "purchase_order_lines": 192,
+      "production_orders": 48,
+      "production_batches": 48,
+      "batch_material_consumption": 192,
+      "quality_inspections": 48,
+      "shipments": 48,
+      "shipment_lines": 48,
+      "demand_forecasts": 0,
+      "reorder_recommendations": 0,
+      "etl_runs": 2,
+      "data_quality_issues": 96
+    },
+    "all_tables_sha256": "2b71d22b48c0c0e1dcfe56226e3ba50590ec5b4389129064f9ba639d55b41ce9"
+  },
+  "after": {
+    "business": {
+      "counts": {
+        "products": 4,
+        "suppliers": 3,
+        "raw_materials": 4,
+        "customers": 3,
+        "warehouses": 2,
+        "inventory": 32,
+        "inventory_transactions": 0,
+        "bills_of_material": 4,
+        "bill_of_material_lines": 16,
+        "sales_orders": 48,
+        "sales_order_lines": 48,
+        "purchase_orders": 192,
+        "purchase_order_lines": 192,
+        "production_orders": 48,
+        "production_batches": 48,
+        "batch_material_consumption": 192,
+        "quality_inspections": 48,
+        "shipments": 48,
+        "shipment_lines": 48,
+        "demand_forecasts": 0,
+        "reorder_recommendations": 0
+      },
+      "sha256": "1a99a4e86ed0b968a9e1bd20626014e1f0c7182c42146d19e2d68f95f9ba9883"
+    },
+    "all_table_counts": {
+      "products": 4,
+      "suppliers": 3,
+      "raw_materials": 4,
+      "customers": 3,
+      "warehouses": 2,
+      "inventory": 32,
+      "inventory_transactions": 0,
+      "bills_of_material": 4,
+      "bill_of_material_lines": 16,
+      "sales_orders": 48,
+      "sales_order_lines": 48,
+      "purchase_orders": 192,
+      "purchase_order_lines": 192,
+      "production_orders": 48,
+      "production_batches": 48,
+      "batch_material_consumption": 192,
+      "quality_inspections": 48,
+      "shipments": 48,
+      "shipment_lines": 48,
+      "demand_forecasts": 0,
+      "reorder_recommendations": 0,
+      "etl_runs": 2,
+      "data_quality_issues": 96
+    },
+    "all_tables_sha256": "2b71d22b48c0c0e1dcfe56226e3ba50590ec5b4389129064f9ba639d55b41ce9"
+  },
+  "unchanged": true,
+  "view_counts": {
+    "vw_inventory_position": 32,
+    "vw_order_fulfilment": 48,
+    "vw_production_performance": 48,
+    "vw_quality_performance": 48,
+    "vw_supplier_material_flow": 192,
+    "vw_data_quality_summary": 82,
+    "vw_operations_kpis": 1,
+    "vw_operations_quantities": 10
+  },
+  "http": {
+    "GET /health": 200,
+    "GET /docs": 200,
+    "GET /openapi.json": 200,
+    "GET /api/v1/products?limit=2&offset=0": 200,
+    "GET /api/v1/raw-materials?limit=2&offset=0": 200,
+    "GET /api/v1/suppliers?limit=2&offset=0": 200,
+    "GET /api/v1/customers?limit=2&offset=0": 200,
+    "GET /api/v1/inventory?limit=2&offset=0": 200,
+    "GET /api/v1/sales-orders?limit=2&offset=0": 200,
+    "GET /api/v1/purchase-orders?limit=2&offset=0": 200,
+    "GET /api/v1/production-orders?limit=2&offset=0": 200,
+    "GET /api/v1/production-batches?limit=2&offset=0": 200,
+    "GET /api/v1/quality-inspections?limit=2&offset=0": 200,
+    "GET /api/v1/shipments?limit=2&offset=0": 200,
+    "GET /api/v1/etl-runs?limit=2&offset=0": 200,
+    "GET /api/v1/data-quality-issues?limit=2&offset=0": 200,
+    "GET /api/v1/inventory/1": 200,
+    "GET /api/v1/sales-orders/1": 200,
+    "GET /api/v1/traceability/order/1": 200,
+    "GET /api/v1/kpis/operations": 200,
+    "GET /api/v1/products?active=true&limit=1&offset=1": 200,
+    "GET /api/v1/sales-orders/999999": 404,
+    "GET /api/v1/products?limit=201": 422,
+    "POST /api/v1/products": 405
+  },
+  "health": {
+    "application": "Rivaline Manufacturing Integrated Operations Platform",
+    "environment": "development",
+    "status": "ok",
+    "database": "up"
+  },
+  "openapi_path_count": 18,
+  "list_totals": {
+    "products": 4,
+    "raw-materials": 4,
+    "suppliers": 3,
+    "customers": 3,
+    "inventory": 32,
+    "sales-orders": 48,
+    "purchase-orders": 192,
+    "production-orders": 48,
+    "production-batches": 48,
+    "quality-inspections": 48,
+    "shipments": 48,
+    "etl-runs": 2,
+    "data-quality-issues": 96
+  },
+  "trace": {
+    "id": 1,
+    "code": "SO-0001",
+    "customer_id": 1,
+    "order_date": "2026-01-02",
+    "required_date": "2026-01-09",
+    "status": "confirmed",
+    "customer": {
+      "id": 1,
+      "code": "SYN-CUS-001",
+      "name": "Synthetic Customer 1",
+      "active": true
+    },
+    "lines": [
+      {
+        "id": 1,
+        "line_number": 1,
+        "product_id": 1,
+        "quantity": "100.000000",
+        "unit_price_gbp": "12.50",
+        "product": {
+          "id": 1,
+          "code": "SYN-FG-001",
+          "name": "Industrial Primer",
+          "active": true,
+          "unit_of_measure": "kg"
+        },
+        "production_orders": [
+          {
+            "id": 1,
+            "code": "BATCH-0001",
+            "product_id": 1,
+            "bom_id": 1,
+            "sales_order_line_id": 1,
+            "planned_quantity": "100.000000",
+            "planned_start": "2026-01-03",
+            "planned_end": "2026-01-04",
+            "status": "completed",
+            "batches": [
+              {
+                "id": 1,
+                "code": "BATCH-0001",
+                "production_order_id": 1,
+                "product_id": 1,
+                "actual_quantity": "100.000000",
+                "status": "released",
+                "inspections": [
+                  {
+                    "id": 1,
+                    "production_batch_id": 1,
+                    "inspected_at": "2026-01-05T00:00:00Z",
+                    "test_code": "QC-0001",
+                    "measured_value": "69.000000",
+                    "unit_of_measure": "score",
+                    "result": "pass"
+                  }
+                ],
+                "materials": [
+                  {
+                    "id": 1,
+                    "raw_material_id": 1,
+                    "material_code": "SYN-RM-001",
+                    "unit_of_measure": "kg",
+                    "quantity": "25.000000",
+                    "supplier_lot_code": "SYN-LOT-0001-1",
+                    "purchase_order_line_id": 1,
+                    "purchase_order_id": 1,
+                    "purchase_order_code": "PO-0001-1",
+                    "supplier_id": 1,
+                    "supplier_code": "SYN-SUP-001",
+                    "source_system": "legacy_production",
+                    "source_record_id": "PROD-0001/1"
+                  },
+                  {
+                    "id": 2,
+                    "raw_material_id": 2,
+                    "material_code": "SYN-RM-002",
+                    "unit_of_measure": "kg",
+                    "quantity": "25.000000",
+                    "supplier_lot_code": "SYN-LOT-0001-2",
+                    "purchase_order_line_id": 2,
+                    "purchase_order_id": 2,
+                    "purchase_order_code": "PO-0001-2",
+                    "supplier_id": 2,
+                    "supplier_code": "SYN-SUP-002",
+                    "source_system": "legacy_production",
+                    "source_record_id": "PROD-0001/2"
+                  },
+                  {
+                    "id": 3,
+                    "raw_material_id": 3,
+                    "material_code": "SYN-RM-003",
+                    "unit_of_measure": "kg",
+                    "quantity": "25.000000",
+                    "supplier_lot_code": "SYN-LOT-0001-3",
+                    "purchase_order_line_id": 3,
+                    "purchase_order_id": 3,
+                    "purchase_order_code": "PO-0001-3",
+                    "supplier_id": 3,
+                    "supplier_code": "SYN-SUP-003",
+                    "source_system": "legacy_production",
+                    "source_record_id": "PROD-0001/3"
+                  },
+                  {
+                    "id": 4,
+                    "raw_material_id": 4,
+                    "material_code": "SYN-RM-004",
+                    "unit_of_measure": "kg",
+                    "quantity": "25.000000",
+                    "supplier_lot_code": "SYN-LOT-0001-4",
+                    "purchase_order_line_id": 4,
+                    "purchase_order_id": 4,
+                    "purchase_order_code": "PO-0001-4",
+                    "supplier_id": 1,
+                    "supplier_code": "SYN-SUP-001",
+                    "source_system": "legacy_production",
+                    "source_record_id": "PROD-0001/4"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "shipments": [
+          {
+            "id": 1,
+            "code": "SHIP-0001",
+            "warehouse_id": 2,
+            "shipped_at": "2026-01-06T00:00:00Z",
+            "status": "delivered",
+            "tracking_reference": "SHIP-0001",
+            "shipment_line_id": 1,
+            "production_batch_id": 1,
+            "quantity": "100.000000"
+          }
+        ]
+      }
+    ]
+  },
+  "kpis": {
+    "order_count": 48,
+    "shipment_count": 48,
+    "production_batch_count": 48,
+    "inspected_batch_count": 48,
+    "passed_batch_count": 48,
+    "batch_qc_pass_rate_pct": "100.000000",
+    "etl_successful_runs": 2,
+    "etl_failed_runs": 0,
+    "etl_rows_extracted": 928,
+    "etl_rows_accepted": 832,
+    "etl_rows_rejected": 96,
+    "etl_acceptance_rate_pct": "89.655172",
+    "etl_rejection_rate_pct": "10.344828",
+    "data_quality_issue_count": 96,
+    "quantities": [
+      {
+        "metric": "inventory_available",
+        "item_type": "product",
+        "unit_of_measure": "kg",
+        "quantity": "8000.000000"
+      },
+      {
+        "metric": "inventory_available",
+        "item_type": "raw_material",
+        "unit_of_measure": "kg",
+        "quantity": "8000.000000"
+      },
+      {
+        "metric": "inventory_on_hand",
+        "item_type": "product",
+        "unit_of_measure": "kg",
+        "quantity": "8000.000000"
+      },
+      {
+        "metric": "inventory_on_hand",
+        "item_type": "raw_material",
+        "unit_of_measure": "kg",
+        "quantity": "8000.000000"
+      },
+      {
+        "metric": "material_consumed",
+        "item_type": "raw_material",
+        "unit_of_measure": "kg",
+        "quantity": "9200.000000"
+      },
+      {
+        "metric": "procurement_ordered",
+        "item_type": "raw_material",
+        "unit_of_measure": "kg",
+        "quantity": "9200.000000"
+      },
+      {
+        "metric": "production_actual",
+        "item_type": "product",
+        "unit_of_measure": "kg",
+        "quantity": "9200.000000"
+      },
+      {
+        "metric": "production_planned",
+        "item_type": "product",
+        "unit_of_measure": "kg",
+        "quantity": "9200.000000"
+      },
+      {
+        "metric": "sales_ordered",
+        "item_type": "product",
+        "unit_of_measure": "kg",
+        "quantity": "9200.000000"
+      },
+      {
+        "metric": "sales_shipped",
+        "item_type": "product",
+        "unit_of_measure": "kg",
+        "quantity": "9200.000000"
+      }
+    ]
+  }
+}

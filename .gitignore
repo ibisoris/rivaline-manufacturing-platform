@@ -1,0 +1,22 @@
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+*.log
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+
+# Local ETL evidence may contain rejected raw records.
+data/quarantine/*/

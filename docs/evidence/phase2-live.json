@@ -1,0 +1,256 @@
+{
+  "postgresql": "17.11",
+  "first": {
+    "run": "ETL-0640e67c8f5d467db1e80fbe6022e1b0",
+    "status": "succeeded",
+    "sources": {
+      "sales": {
+        "file": "legacy_sales.db",
+        "sha256": "7f1969b7170319a649c628a5d95cbaa2347177f3e0b813e93c90e381c3767e75",
+        "extracted": 56,
+        "accepted": 48,
+        "rejected": 8,
+        "inserted_targets": 96
+      },
+      "purchasing": {
+        "file": "purchasing_register.xlsx",
+        "sha256": "ce8c5aecfe0e8c0e7a82c8c60dac7bd20d8210087679612aa1420526ee64d20a",
+        "extracted": 200,
+        "accepted": 192,
+        "rejected": 8,
+        "inserted_targets": 384
+      },
+      "inventory": {
+        "file": "inventory_export.csv",
+        "sha256": "2732b8138fe7997c7bad25bc264f6cc246c0d2b5d28760232f665b70d4d2b811",
+        "extracted": 40,
+        "accepted": 32,
+        "rejected": 8,
+        "inserted_targets": 32
+      },
+      "production": {
+        "file": "production_log.csv",
+        "sha256": "8413dffd448fb3bd79f51def38db1bf90110a686e4d87523f31ba9fdb22e857c",
+        "extracted": 56,
+        "accepted": 48,
+        "rejected": 8,
+        "inserted_targets": 288
+      },
+      "quality": {
+        "file": "quality_inspections.xlsx",
+        "sha256": "d5f9486315a33e712607586cd8b8fabc12bfb34bca3075c172614585b22ef9ef",
+        "extracted": 56,
+        "accepted": 48,
+        "rejected": 8,
+        "inserted_targets": 48
+      },
+      "dispatch": {
+        "file": "dispatch_history.csv",
+        "sha256": "522a6e73c4399ae2ce36b48c2c1111ee512b4dafb68ea12efed60b7cad6a3da0",
+        "extracted": 56,
+        "accepted": 48,
+        "rejected": 8,
+        "inserted_targets": 96
+      }
+    },
+    "extracted": 464,
+    "accepted": 416,
+    "rejected": 48,
+    "inserted_targets": 944
+  },
+  "second": {
+    "run": "ETL-ad53da1581b844048ad063d3dfe23e57",
+    "status": "succeeded",
+    "sources": {
+      "sales": {
+        "file": "legacy_sales.db",
+        "sha256": "7f1969b7170319a649c628a5d95cbaa2347177f3e0b813e93c90e381c3767e75",
+        "extracted": 56,
+        "accepted": 48,
+        "rejected": 8,
+        "inserted_targets": 0
+      },
+      "purchasing": {
+        "file": "purchasing_register.xlsx",
+        "sha256": "ce8c5aecfe0e8c0e7a82c8c60dac7bd20d8210087679612aa1420526ee64d20a",
+        "extracted": 200,
+        "accepted": 192,
+        "rejected": 8,
+        "inserted_targets": 0
+      },
+      "inventory": {
+        "file": "inventory_export.csv",
+        "sha256": "2732b8138fe7997c7bad25bc264f6cc246c0d2b5d28760232f665b70d4d2b811",
+        "extracted": 40,
+        "accepted": 32,
+        "rejected": 8,
+        "inserted_targets": 0
+      },
+      "production": {
+        "file": "production_log.csv",
+        "sha256": "8413dffd448fb3bd79f51def38db1bf90110a686e4d87523f31ba9fdb22e857c",
+        "extracted": 56,
+        "accepted": 48,
+        "rejected": 8,
+        "inserted_targets": 0
+      },
+      "quality": {
+        "file": "quality_inspections.xlsx",
+        "sha256": "d5f9486315a33e712607586cd8b8fabc12bfb34bca3075c172614585b22ef9ef",
+        "extracted": 56,
+        "accepted": 48,
+        "rejected": 8,
+        "inserted_targets": 0
+      },
+      "dispatch": {
+        "file": "dispatch_history.csv",
+        "sha256": "522a6e73c4399ae2ce36b48c2c1111ee512b4dafb68ea12efed60b7cad6a3da0",
+        "extracted": 56,
+        "accepted": 48,
+        "rejected": 8,
+        "inserted_targets": 0
+      }
+    },
+    "extracted": 464,
+    "accepted": 416,
+    "rejected": 48,
+    "inserted_targets": 0
+  },
+  "reconciliation": {
+    "source_totals_kg": {
+      "shipment_lines.quantity": "9200",
+      "inventory.quantity": "16000",
+      "production_orders.planned_quantity": "9200",
+      "production_batches.actual_quantity": "9200",
+      "batch_material_consumption.quantity": "9200",
+      "purchase_order_lines.quantity": "9200",
+      "sales_order_lines.quantity": "9200"
+    },
+    "source_files_verified": true,
+    "ok": true,
+    "run": "ETL-ad53da1581b844048ad063d3dfe23e57",
+    "extracted": 464,
+    "accepted": 416,
+    "rejected": 48,
+    "target_receipts": 944,
+    "failures": [],
+    "expected_totals_kg": {
+      "sales_order_lines.quantity": "9200",
+      "purchase_order_lines.quantity": "9200",
+      "inventory.quantity": "16000",
+      "production_orders.planned_quantity": "9200",
+      "production_batches.actual_quantity": "9200",
+      "batch_material_consumption.quantity": "9200",
+      "shipment_lines.quantity": "9200"
+    },
+    "actual_totals_kg": {
+      "sales_order_lines.quantity": "9200",
+      "purchase_order_lines.quantity": "9200",
+      "inventory.quantity": "16000",
+      "production_orders.planned_quantity": "9200",
+      "production_batches.actual_quantity": "9200",
+      "batch_material_consumption.quantity": "9200",
+      "shipment_lines.quantity": "9200"
+    }
+  },
+  "business_snapshot": {
+    "counts": {
+      "products": 4,
+      "suppliers": 3,
+      "raw_materials": 4,
+      "customers": 3,
+      "warehouses": 2,
+      "inventory": 32,
+      "inventory_transactions": 0,
+      "bills_of_material": 4,
+      "bill_of_material_lines": 16,
+      "sales_orders": 48,
+      "sales_order_lines": 48,
+      "purchase_orders": 192,
+      "purchase_order_lines": 192,
+      "production_orders": 48,
+      "production_batches": 48,
+      "batch_material_consumption": 192,
+      "quality_inspections": 48,
+      "shipments": 48,
+      "shipment_lines": 48,
+      "demand_forecasts": 0,
+      "reorder_recommendations": 0
+    },
+    "sha256": "1a99a4e86ed0b968a9e1bd20626014e1f0c7182c42146d19e2d68f95f9ba9883"
+  },
+  "trace": {
+    "order": "SO-0001",
+    "customer": "SYN-CUS-001",
+    "batches": [
+      {
+        "product": "SYN-FG-001",
+        "production_order": "BATCH-0001",
+        "batch": "BATCH-0001",
+        "quality": [
+          "pass"
+        ],
+        "materials": [
+          {
+            "material": "SYN-RM-001",
+            "supplier": "SYN-SUP-001",
+            "purchase_order": "PO-0001-1",
+            "supplier_lot": "SYN-LOT-0001-1",
+            "quantity_kg": "25"
+          },
+          {
+            "material": "SYN-RM-002",
+            "supplier": "SYN-SUP-002",
+            "purchase_order": "PO-0001-2",
+            "supplier_lot": "SYN-LOT-0001-2",
+            "quantity_kg": "25"
+          },
+          {
+            "material": "SYN-RM-003",
+            "supplier": "SYN-SUP-003",
+            "purchase_order": "PO-0001-3",
+            "supplier_lot": "SYN-LOT-0001-3",
+            "quantity_kg": "25"
+          },
+          {
+            "material": "SYN-RM-004",
+            "supplier": "SYN-SUP-001",
+            "purchase_order": "PO-0001-4",
+            "supplier_lot": "SYN-LOT-0001-4",
+            "quantity_kg": "25"
+          }
+        ]
+      }
+    ]
+  },
+  "audits": [
+    {
+      "code": "ETL-0640e67c8f5d467db1e80fbe6022e1b0",
+      "status": "succeeded",
+      "rows_read": 464,
+      "rows_loaded": 416,
+      "rows_rejected": 48
+    },
+    {
+      "code": "ETL-ad53da1581b844048ad063d3dfe23e57",
+      "status": "succeeded",
+      "rows_read": 464,
+      "rows_loaded": 416,
+      "rows_rejected": 48
+    }
+  ],
+  "quality_issues": 96,
+  "seed_preserved": true,
+  "seed_sha256": "3354faf92df344c16cff714adc40f17a1a847b2d5e445374fd4ffbae4fbbf713",
+  "temporary_test_schemas": 0,
+  "commands": [
+    "python -m scripts.run_etl run",
+    "python -m scripts.run_etl snapshot",
+    "python -m scripts.run_etl reconcile --run ETL-0640e67c8f5d467db1e80fbe6022e1b0",
+    "python -m scripts.run_etl run",
+    "python -m scripts.run_etl snapshot",
+    "python -m scripts.run_etl reconcile --run ETL-ad53da1581b844048ad063d3dfe23e57",
+    "python -m scripts.run_etl trace --order SO-0001",
+    "python -m scripts.run_etl summary --run ETL-ad53da1581b844048ad063d3dfe23e57"
+  ]
+}

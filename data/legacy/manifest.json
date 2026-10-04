@@ -1,0 +1,478 @@
+{
+  "synthetic": true,
+  "seed": 20261003,
+  "valid_rows": 416,
+  "rejected_rows": 48,
+  "defects": [
+    {
+      "source": "sales",
+      "position": 49,
+      "record_id": "SALE-0001",
+      "business_key": "SO-0001",
+      "rule": "DUPLICATE_RECORD",
+      "field": null,
+      "value": null
+    },
+    {
+      "source": "sales",
+      "position": 50,
+      "record_id": "BAD-SALES-2",
+      "business_key": "SO-0001",
+      "rule": "DUPLICATE_BUSINESS_KEY",
+      "field": "business_key",
+      "value": "SO-0001"
+    },
+    {
+      "source": "sales",
+      "position": 51,
+      "record_id": "",
+      "business_key": "BAD-SALES-3",
+      "rule": "MISSING_FIELD",
+      "field": "record_id",
+      "value": ""
+    },
+    {
+      "source": "sales",
+      "position": 52,
+      "record_id": "BAD-SALES-4",
+      "business_key": "BAD-SALES-4",
+      "rule": "MISSING_FIELD",
+      "field": "customer",
+      "value": ""
+    },
+    {
+      "source": "sales",
+      "position": 53,
+      "record_id": "BAD-SALES-5",
+      "business_key": "BAD-SALES-5",
+      "rule": "INVALID_REFERENCE",
+      "field": "product",
+      "value": "FG-999"
+    },
+    {
+      "source": "sales",
+      "position": 54,
+      "record_id": "BAD-SALES-6",
+      "business_key": "BAD-SALES-6",
+      "rule": "INVALID_DATE",
+      "field": "order_date",
+      "value": "2026-02-30"
+    },
+    {
+      "source": "sales",
+      "position": 55,
+      "record_id": "BAD-SALES-7",
+      "business_key": "BAD-SALES-7",
+      "rule": "INVALID_QUANTITY",
+      "field": "quantity",
+      "value": "0"
+    },
+    {
+      "source": "sales",
+      "position": 56,
+      "record_id": "BAD-SALES-8",
+      "business_key": "BAD-SALES-8",
+      "rule": "INVALID_STATUS",
+      "field": "status",
+      "value": "lost"
+    },
+    {
+      "source": "purchasing",
+      "position": 193,
+      "record_id": "PO-0001-1",
+      "business_key": "PO-0001-1",
+      "rule": "DUPLICATE_RECORD",
+      "field": null,
+      "value": null
+    },
+    {
+      "source": "purchasing",
+      "position": 194,
+      "record_id": "BAD-PURCHASING-2",
+      "business_key": "PO-0001-1",
+      "rule": "DUPLICATE_BUSINESS_KEY",
+      "field": "business_key",
+      "value": "PO-0001-1"
+    },
+    {
+      "source": "purchasing",
+      "position": 195,
+      "record_id": "",
+      "business_key": "BAD-PURCHASING-3",
+      "rule": "MISSING_FIELD",
+      "field": "record_id",
+      "value": ""
+    },
+    {
+      "source": "purchasing",
+      "position": 196,
+      "record_id": "BAD-PURCHASING-4",
+      "business_key": "BAD-PURCHASING-4",
+      "rule": "MISSING_FIELD",
+      "field": "supplier",
+      "value": ""
+    },
+    {
+      "source": "purchasing",
+      "position": 197,
+      "record_id": "BAD-PURCHASING-5",
+      "business_key": "BAD-PURCHASING-5",
+      "rule": "INVALID_REFERENCE",
+      "field": "material",
+      "value": "RM-999"
+    },
+    {
+      "source": "purchasing",
+      "position": 198,
+      "record_id": "BAD-PURCHASING-6",
+      "business_key": "BAD-PURCHASING-6",
+      "rule": "INVALID_QUANTITY",
+      "field": "quantity",
+      "value": "-1"
+    },
+    {
+      "source": "purchasing",
+      "position": 199,
+      "record_id": "BAD-PURCHASING-7",
+      "business_key": "BAD-PURCHASING-7",
+      "rule": "DATE_ORDER",
+      "field": "due_date",
+      "value": "2025-01-01"
+    },
+    {
+      "source": "purchasing",
+      "position": 200,
+      "record_id": "BAD-PURCHASING-8",
+      "business_key": "BAD-PURCHASING-8",
+      "rule": "INVALID_UNIT",
+      "field": "unit",
+      "value": "litres"
+    },
+    {
+      "source": "inventory",
+      "position": 33,
+      "record_id": "STOCK-0001",
+      "business_key": "LOT-0001",
+      "rule": "DUPLICATE_RECORD",
+      "field": null,
+      "value": null
+    },
+    {
+      "source": "inventory",
+      "position": 34,
+      "record_id": "BAD-INVENTORY-2",
+      "business_key": "LOT-0001",
+      "rule": "DUPLICATE_BUSINESS_KEY",
+      "field": "business_key",
+      "value": "LOT-0001"
+    },
+    {
+      "source": "inventory",
+      "position": 35,
+      "record_id": "",
+      "business_key": "BAD-INVENTORY-3",
+      "rule": "MISSING_FIELD",
+      "field": "record_id",
+      "value": ""
+    },
+    {
+      "source": "inventory",
+      "position": 36,
+      "record_id": "BAD-INVENTORY-4",
+      "business_key": "BAD-INVENTORY-4",
+      "rule": "MISSING_FIELD",
+      "field": "warehouse",
+      "value": ""
+    },
+    {
+      "source": "inventory",
+      "position": 37,
+      "record_id": "BAD-INVENTORY-5",
+      "business_key": "BAD-INVENTORY-5",
+      "rule": "INVALID_REFERENCE",
+      "field": "item",
+      "value": "RM-999"
+    },
+    {
+      "source": "inventory",
+      "position": 38,
+      "record_id": "BAD-INVENTORY-6",
+      "business_key": "BAD-INVENTORY-6",
+      "rule": "INVALID_QUANTITY",
+      "field": "quantity",
+      "value": "-1"
+    },
+    {
+      "source": "inventory",
+      "position": 39,
+      "record_id": "BAD-INVENTORY-7",
+      "business_key": "BAD-INVENTORY-7",
+      "rule": "INVALID_UNIT",
+      "field": "unit",
+      "value": "litres"
+    },
+    {
+      "source": "inventory",
+      "position": 40,
+      "record_id": "BAD-INVENTORY-8",
+      "business_key": "BAD-INVENTORY-8",
+      "rule": "INVALID_QUANTITY",
+      "field": "quantity",
+      "value": "NaN"
+    },
+    {
+      "source": "production",
+      "position": 49,
+      "record_id": "PROD-0001",
+      "business_key": "BATCH-0001",
+      "rule": "DUPLICATE_RECORD",
+      "field": null,
+      "value": null
+    },
+    {
+      "source": "production",
+      "position": 50,
+      "record_id": "BAD-PRODUCTION-2",
+      "business_key": "BATCH-0001",
+      "rule": "DUPLICATE_BUSINESS_KEY",
+      "field": "business_key",
+      "value": "BATCH-0001"
+    },
+    {
+      "source": "production",
+      "position": 51,
+      "record_id": "",
+      "business_key": "BAD-PRODUCTION-3",
+      "rule": "MISSING_FIELD",
+      "field": "record_id",
+      "value": ""
+    },
+    {
+      "source": "production",
+      "position": 52,
+      "record_id": "BAD-PRODUCTION-4",
+      "business_key": "BAD-PRODUCTION-4",
+      "rule": "INVALID_REFERENCE",
+      "field": "sales_key",
+      "value": "SO-9999"
+    },
+    {
+      "source": "production",
+      "position": 53,
+      "record_id": "BAD-PRODUCTION-5",
+      "business_key": "BAD-PRODUCTION-5",
+      "rule": "INVALID_REFERENCE",
+      "field": "bom",
+      "value": "BOM-999"
+    },
+    {
+      "source": "production",
+      "position": 54,
+      "record_id": "BAD-PRODUCTION-6",
+      "business_key": "BAD-PRODUCTION-6",
+      "rule": "INVALID_QUANTITY",
+      "field": "quantity",
+      "value": "0"
+    },
+    {
+      "source": "production",
+      "position": 55,
+      "record_id": "BAD-PRODUCTION-7",
+      "business_key": "BAD-PRODUCTION-7",
+      "rule": "DATE_ORDER",
+      "field": "end_date",
+      "value": "2025-01-01"
+    },
+    {
+      "source": "production",
+      "position": 56,
+      "record_id": "BAD-PRODUCTION-8",
+      "business_key": "BAD-PRODUCTION-8",
+      "rule": "INVALID_STATUS",
+      "field": "status",
+      "value": "lost"
+    },
+    {
+      "source": "quality",
+      "position": 49,
+      "record_id": "QC-0001",
+      "business_key": "QC-0001",
+      "rule": "DUPLICATE_RECORD",
+      "field": null,
+      "value": null
+    },
+    {
+      "source": "quality",
+      "position": 50,
+      "record_id": "BAD-QUALITY-2",
+      "business_key": "QC-0001",
+      "rule": "DUPLICATE_BUSINESS_KEY",
+      "field": "business_key",
+      "value": "QC-0001"
+    },
+    {
+      "source": "quality",
+      "position": 51,
+      "record_id": "",
+      "business_key": "BAD-QUALITY-3",
+      "rule": "MISSING_FIELD",
+      "field": "record_id",
+      "value": ""
+    },
+    {
+      "source": "quality",
+      "position": 52,
+      "record_id": "BAD-QUALITY-4",
+      "business_key": "BAD-QUALITY-4",
+      "rule": "INVALID_REFERENCE",
+      "field": "batch_key",
+      "value": "BATCH-9999"
+    },
+    {
+      "source": "quality",
+      "position": 53,
+      "record_id": "BAD-QUALITY-5",
+      "business_key": "BAD-QUALITY-5",
+      "rule": "INVALID_DATE",
+      "field": "inspection_date",
+      "value": "yesterday"
+    },
+    {
+      "source": "quality",
+      "position": 54,
+      "record_id": "BAD-QUALITY-6",
+      "business_key": "BAD-QUALITY-6",
+      "rule": "INVALID_UNIT",
+      "field": "unit",
+      "value": "litres"
+    },
+    {
+      "source": "quality",
+      "position": 55,
+      "record_id": "BAD-QUALITY-7",
+      "business_key": "BAD-QUALITY-7",
+      "rule": "INVALID_STATUS",
+      "field": "status",
+      "value": "maybe"
+    },
+    {
+      "source": "quality",
+      "position": 56,
+      "record_id": "BAD-QUALITY-8",
+      "business_key": "BAD-QUALITY-8",
+      "rule": "MISSING_FIELD",
+      "field": "value",
+      "value": ""
+    },
+    {
+      "source": "dispatch",
+      "position": 49,
+      "record_id": "SHIP-0001",
+      "business_key": "SHIP-0001",
+      "rule": "DUPLICATE_RECORD",
+      "field": null,
+      "value": null
+    },
+    {
+      "source": "dispatch",
+      "position": 50,
+      "record_id": "BAD-DISPATCH-2",
+      "business_key": "SHIP-0001",
+      "rule": "DUPLICATE_BUSINESS_KEY",
+      "field": "business_key",
+      "value": "SHIP-0001"
+    },
+    {
+      "source": "dispatch",
+      "position": 51,
+      "record_id": "",
+      "business_key": "BAD-DISPATCH-3",
+      "rule": "MISSING_FIELD",
+      "field": "record_id",
+      "value": ""
+    },
+    {
+      "source": "dispatch",
+      "position": 52,
+      "record_id": "BAD-DISPATCH-4",
+      "business_key": "BAD-DISPATCH-4",
+      "rule": "INVALID_REFERENCE",
+      "field": "sales_key",
+      "value": "SO-9999"
+    },
+    {
+      "source": "dispatch",
+      "position": 53,
+      "record_id": "BAD-DISPATCH-5",
+      "business_key": "BAD-DISPATCH-5",
+      "rule": "INVALID_REFERENCE",
+      "field": "batch_key",
+      "value": "BATCH-9999"
+    },
+    {
+      "source": "dispatch",
+      "position": 54,
+      "record_id": "BAD-DISPATCH-6",
+      "business_key": "BAD-DISPATCH-6",
+      "rule": "DATE_ORDER",
+      "field": "ship_date",
+      "value": "2025-01-01"
+    },
+    {
+      "source": "dispatch",
+      "position": 55,
+      "record_id": "BAD-DISPATCH-7",
+      "business_key": "BAD-DISPATCH-7",
+      "rule": "INVALID_QUANTITY",
+      "field": "quantity",
+      "value": "0"
+    },
+    {
+      "source": "dispatch",
+      "position": 56,
+      "record_id": "BAD-DISPATCH-8",
+      "business_key": "BAD-DISPATCH-8",
+      "rule": "INVALID_STATUS",
+      "field": "status",
+      "value": "lost"
+    }
+  ],
+  "sources": {
+    "sales": {
+      "file": "legacy_sales.db",
+      "rows": 56,
+      "valid": 48,
+      "sha256": "7f1969b7170319a649c628a5d95cbaa2347177f3e0b813e93c90e381c3767e75"
+    },
+    "purchasing": {
+      "file": "purchasing_register.xlsx",
+      "rows": 200,
+      "valid": 192,
+      "sha256": "ce8c5aecfe0e8c0e7a82c8c60dac7bd20d8210087679612aa1420526ee64d20a"
+    },
+    "inventory": {
+      "file": "inventory_export.csv",
+      "rows": 40,
+      "valid": 32,
+      "sha256": "2732b8138fe7997c7bad25bc264f6cc246c0d2b5d28760232f665b70d4d2b811"
+    },
+    "production": {
+      "file": "production_log.csv",
+      "rows": 56,
+      "valid": 48,
+      "sha256": "8413dffd448fb3bd79f51def38db1bf90110a686e4d87523f31ba9fdb22e857c"
+    },
+    "quality": {
+      "file": "quality_inspections.xlsx",
+      "rows": 56,
+      "valid": 48,
+      "sha256": "d5f9486315a33e712607586cd8b8fabc12bfb34bca3075c172614585b22ef9ef"
+    },
+    "dispatch": {
+      "file": "dispatch_history.csv",
+      "rows": 56,
+      "valid": 48,
+      "sha256": "522a6e73c4399ae2ce36b48c2c1111ee512b4dafb68ea12efed60b7cad6a3da0"
+    }
+  }
+}
