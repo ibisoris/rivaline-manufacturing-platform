@@ -1,0 +1,1896 @@
+{
+  "server_version": "17.11",
+  "revision": "0006_production",
+  "before": {
+    "counts": {
+      "products": 4,
+      "suppliers": 3,
+      "raw_materials": 4,
+      "customers": 3,
+      "warehouses": 2,
+      "inventory": 32,
+      "inventory_transactions": 0,
+      "bills_of_material": 4,
+      "bill_of_material_lines": 16,
+      "sales_orders": 48,
+      "sales_order_lines": 48,
+      "purchase_orders": 192,
+      "purchase_order_lines": 192,
+      "production_orders": 48,
+      "production_batches": 48,
+      "batch_material_consumption": 192,
+      "quality_inspections": 48,
+      "shipments": 48,
+      "shipment_lines": 48,
+      "demand_forecasts": 12,
+      "reorder_recommendations": 2,
+      "etl_runs": 2,
+      "data_quality_issues": 96,
+      "planning_policies": 4,
+      "planning_runs": 1,
+      "demand_observations": 192,
+      "forecast_runs": 1,
+      "forecast_metrics": 30,
+      "forecast_backtests": 144
+    },
+    "sha256": "f8031cd35b26b041082aab74e464de1f5dc97d3807e23a046f815410a2b971f1"
+  },
+  "after": {
+    "counts": {
+      "products": 4,
+      "suppliers": 3,
+      "raw_materials": 4,
+      "customers": 3,
+      "warehouses": 2,
+      "inventory": 32,
+      "inventory_transactions": 0,
+      "bills_of_material": 4,
+      "bill_of_material_lines": 16,
+      "sales_orders": 48,
+      "sales_order_lines": 48,
+      "purchase_orders": 192,
+      "purchase_order_lines": 192,
+      "production_orders": 48,
+      "production_batches": 48,
+      "batch_material_consumption": 192,
+      "quality_inspections": 48,
+      "shipments": 48,
+      "shipment_lines": 48,
+      "demand_forecasts": 12,
+      "reorder_recommendations": 2,
+      "etl_runs": 2,
+      "data_quality_issues": 96,
+      "planning_policies": 4,
+      "planning_runs": 1,
+      "demand_observations": 192,
+      "forecast_runs": 1,
+      "forecast_metrics": 30,
+      "forecast_backtests": 144
+    },
+    "sha256": "f8031cd35b26b041082aab74e464de1f5dc97d3807e23a046f815410a2b971f1"
+  },
+  "seeded": {
+    "inserted": 0
+  },
+  "first_run": {
+    "plan_run_code": "3ecf5b0a02aec4c3b39893468a2177d0730566849d67dfae82ec784fcee5828c",
+    "created": false,
+    "generated_at": "2026-10-04T22:14:15.925356+00:00",
+    "report": {
+      "calculation_code": "3ecf5b0a02aec4c3b39893468a2177d0730566849d67dfae82ec784fcee5828c",
+      "algorithm_version": "production-plan-v1",
+      "demand_mode": "forecast",
+      "forecast_run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+      "persisted": false,
+      "lines": [
+        {
+          "product_id": 1,
+          "product_code": "SYN-FG-001",
+          "period_start": "2026-10-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 1,
+          "allocation_rank": 1,
+          "bom_id": null,
+          "gross_demand": "777.333333",
+          "inventory_offset": "777.333333",
+          "surplus_offset": "0.000000",
+          "net_requirement": "0.000000",
+          "proposed_quantity": "0",
+          "allocated_quantity": "0",
+          "unmet_quantity": "0.000000",
+          "batch_count": 0,
+          "batches": [],
+          "materials": [],
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-10 SYN-FG-001: gross 777.333333, stock offset 777.333333, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        },
+        {
+          "product_id": 2,
+          "product_code": "SYN-FG-002",
+          "period_start": "2026-10-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 2,
+          "allocation_rank": 2,
+          "bom_id": null,
+          "gross_demand": "948.000000",
+          "inventory_offset": "948.000000",
+          "surplus_offset": "0.000000",
+          "net_requirement": "0.000000",
+          "proposed_quantity": "0",
+          "allocated_quantity": "0",
+          "unmet_quantity": "0.000000",
+          "batch_count": 0,
+          "batches": [],
+          "materials": [],
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-10 SYN-FG-002: gross 948.000000, stock offset 948.000000, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 2 (period, priority 2, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        },
+        {
+          "product_id": 3,
+          "product_code": "SYN-FG-003",
+          "period_start": "2026-10-01",
+          "unit_of_measure": "kg",
+          "resource_id": 2,
+          "resource_code": "SYN-FILL",
+          "priority": 3,
+          "allocation_rank": 3,
+          "bom_id": null,
+          "gross_demand": "466.000000",
+          "inventory_offset": "466.000000",
+          "surplus_offset": "0.000000",
+          "net_requirement": "0.000000",
+          "proposed_quantity": "0",
+          "allocated_quantity": "0",
+          "unmet_quantity": "0.000000",
+          "batch_count": 0,
+          "batches": [],
+          "materials": [],
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-10 SYN-FG-003: gross 466.000000, stock offset 466.000000, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 3 (period, priority 3, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        },
+        {
+          "product_id": 4,
+          "product_code": "SYN-FG-004",
+          "period_start": "2026-10-01",
+          "unit_of_measure": "kg",
+          "resource_id": 2,
+          "resource_code": "SYN-FILL",
+          "priority": 4,
+          "allocation_rank": 4,
+          "bom_id": null,
+          "gross_demand": "653.666667",
+          "inventory_offset": "653.666667",
+          "surplus_offset": "0.000000",
+          "net_requirement": "0.000000",
+          "proposed_quantity": "0",
+          "allocated_quantity": "0",
+          "unmet_quantity": "0.000000",
+          "batch_count": 0,
+          "batches": [],
+          "materials": [],
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-10 SYN-FG-004: gross 653.666667, stock offset 653.666667, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 4 (period, priority 4, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        },
+        {
+          "product_id": 1,
+          "product_code": "SYN-FG-001",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 1,
+          "allocation_rank": 5,
+          "bom_id": null,
+          "gross_demand": "777.333333",
+          "inventory_offset": "777.333333",
+          "surplus_offset": "0.000000",
+          "net_requirement": "0.000000",
+          "proposed_quantity": "0",
+          "allocated_quantity": "0",
+          "unmet_quantity": "0.000000",
+          "batch_count": 0,
+          "batches": [],
+          "materials": [],
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-11 SYN-FG-001: gross 777.333333, stock offset 777.333333, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 5 (period, priority 1, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        },
+        {
+          "product_id": 2,
+          "product_code": "SYN-FG-002",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 2,
+          "allocation_rank": 6,
+          "bom_id": null,
+          "gross_demand": "948.000000",
+          "inventory_offset": "948.000000",
+          "surplus_offset": "0.000000",
+          "net_requirement": "0.000000",
+          "proposed_quantity": "0",
+          "allocated_quantity": "0",
+          "unmet_quantity": "0.000000",
+          "batch_count": 0,
+          "batches": [],
+          "materials": [],
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-11 SYN-FG-002: gross 948.000000, stock offset 948.000000, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 6 (period, priority 2, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        },
+        {
+          "product_id": 3,
+          "product_code": "SYN-FG-003",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 2,
+          "resource_code": "SYN-FILL",
+          "priority": 3,
+          "allocation_rank": 7,
+          "bom_id": null,
+          "gross_demand": "466.000000",
+          "inventory_offset": "466.000000",
+          "surplus_offset": "0.000000",
+          "net_requirement": "0.000000",
+          "proposed_quantity": "0",
+          "allocated_quantity": "0",
+          "unmet_quantity": "0.000000",
+          "batch_count": 0,
+          "batches": [],
+          "materials": [],
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-11 SYN-FG-003: gross 466.000000, stock offset 466.000000, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 7 (period, priority 3, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        },
+        {
+          "product_id": 4,
+          "product_code": "SYN-FG-004",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 2,
+          "resource_code": "SYN-FILL",
+          "priority": 4,
+          "allocation_rank": 8,
+          "bom_id": null,
+          "gross_demand": "653.666667",
+          "inventory_offset": "653.666667",
+          "surplus_offset": "0.000000",
+          "net_requirement": "0.000000",
+          "proposed_quantity": "0",
+          "allocated_quantity": "0",
+          "unmet_quantity": "0.000000",
+          "batch_count": 0,
+          "batches": [],
+          "materials": [],
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-11 SYN-FG-004: gross 653.666667, stock offset 653.666667, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 8 (period, priority 4, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        },
+        {
+          "product_id": 1,
+          "product_code": "SYN-FG-001",
+          "period_start": "2026-12-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 1,
+          "allocation_rank": 9,
+          "bom_id": 1,
+          "gross_demand": "777.333333",
+          "inventory_offset": "445.333334",
+          "surplus_offset": "0.000000",
+          "net_requirement": "331.999999",
+          "proposed_quantity": "331.999999",
+          "allocated_quantity": "331.999999",
+          "unmet_quantity": "0.000000",
+          "batch_count": 1,
+          "batches": [
+            {
+              "sequence": 1,
+              "quantity": "331.999999",
+              "hours": "3.320000",
+              "allocated": true,
+              "explanation": "Allocated whole batch"
+            }
+          ],
+          "materials": [
+            {
+              "raw_material_id": 1,
+              "material_code": "SYN-RM-001",
+              "unit_of_measure": "kg",
+              "required_quantity": "83.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "83.000000",
+              "remaining_quantity": "1917.000000"
+            },
+            {
+              "raw_material_id": 2,
+              "material_code": "SYN-RM-002",
+              "unit_of_measure": "kg",
+              "required_quantity": "83.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "83.000000",
+              "remaining_quantity": "1917.000000"
+            },
+            {
+              "raw_material_id": 3,
+              "material_code": "SYN-RM-003",
+              "unit_of_measure": "kg",
+              "required_quantity": "83.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "83.000000",
+              "remaining_quantity": "1917.000000"
+            },
+            {
+              "raw_material_id": 4,
+              "material_code": "SYN-RM-004",
+              "unit_of_measure": "kg",
+              "required_quantity": "83.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "83.000000",
+              "remaining_quantity": "1917.000000"
+            }
+          ],
+          "required_hours": "3.320000",
+          "available_hours": "10.000000",
+          "allocated_hours": "3.320000",
+          "overload_hours": "0",
+          "utilisation_pct": "33.20",
+          "status": "FEASIBLE",
+          "explanation": "2026-12 SYN-FG-001: gross 777.333333, stock offset 445.333334, carried surplus 0.000000, net 331.999999 kg; 1 proposed batches, 3.320000 hours, 10.000000 hours remaining at rank 9 (period, priority 1, product code). Allocated 331.999999; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        },
+        {
+          "product_id": 2,
+          "product_code": "SYN-FG-002",
+          "period_start": "2026-12-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 2,
+          "allocation_rank": 10,
+          "bom_id": 2,
+          "gross_demand": "948.000000",
+          "inventory_offset": "104.000000",
+          "surplus_offset": "0.000000",
+          "net_requirement": "844.000000",
+          "proposed_quantity": "844.000000",
+          "allocated_quantity": "0",
+          "unmet_quantity": "844.000000",
+          "batch_count": 1,
+          "batches": [
+            {
+              "sequence": 1,
+              "quantity": "844.000000",
+              "hours": "8.440000",
+              "allocated": false,
+              "explanation": "Unallocated: insufficient residual capacity"
+            }
+          ],
+          "materials": [
+            {
+              "raw_material_id": 1,
+              "material_code": "SYN-RM-001",
+              "unit_of_measure": "kg",
+              "required_quantity": "211.000000",
+              "available_quantity": "1917.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "0",
+              "remaining_quantity": "1917.000000"
+            },
+            {
+              "raw_material_id": 2,
+              "material_code": "SYN-RM-002",
+              "unit_of_measure": "kg",
+              "required_quantity": "211.000000",
+              "available_quantity": "1917.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "0",
+              "remaining_quantity": "1917.000000"
+            },
+            {
+              "raw_material_id": 3,
+              "material_code": "SYN-RM-003",
+              "unit_of_measure": "kg",
+              "required_quantity": "211.000000",
+              "available_quantity": "1917.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "0",
+              "remaining_quantity": "1917.000000"
+            },
+            {
+              "raw_material_id": 4,
+              "material_code": "SYN-RM-004",
+              "unit_of_measure": "kg",
+              "required_quantity": "211.000000",
+              "available_quantity": "1917.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "0",
+              "remaining_quantity": "1917.000000"
+            }
+          ],
+          "required_hours": "8.440000",
+          "available_hours": "6.680000",
+          "allocated_hours": "0",
+          "overload_hours": "1.760000",
+          "utilisation_pct": "126.35",
+          "status": "CAPACITY_CONSTRAINED",
+          "explanation": "2026-12 SYN-FG-002: gross 948.000000, stock offset 104.000000, carried surplus 0.000000, net 844.000000 kg; 1 proposed batches, 8.440000 hours, 6.680000 hours remaining at rank 10 (period, priority 2, product code). Allocated 0; unmet 844.000000. CAPACITY_CONSTRAINED. Materials sufficient. Capacity short 1.760000 hours."
+        },
+        {
+          "product_id": 3,
+          "product_code": "SYN-FG-003",
+          "period_start": "2026-12-01",
+          "unit_of_measure": "kg",
+          "resource_id": 2,
+          "resource_code": "SYN-FILL",
+          "priority": 3,
+          "allocation_rank": 11,
+          "bom_id": null,
+          "gross_demand": "466.000000",
+          "inventory_offset": "466.000000",
+          "surplus_offset": "0.000000",
+          "net_requirement": "0.000000",
+          "proposed_quantity": "0",
+          "allocated_quantity": "0",
+          "unmet_quantity": "0.000000",
+          "batch_count": 0,
+          "batches": [],
+          "materials": [],
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-12 SYN-FG-003: gross 466.000000, stock offset 466.000000, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 11 (period, priority 3, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        },
+        {
+          "product_id": 4,
+          "product_code": "SYN-FG-004",
+          "period_start": "2026-12-01",
+          "unit_of_measure": "kg",
+          "resource_id": 2,
+          "resource_code": "SYN-FILL",
+          "priority": 4,
+          "allocation_rank": 12,
+          "bom_id": null,
+          "gross_demand": "653.666667",
+          "inventory_offset": "653.666667",
+          "surplus_offset": "0.000000",
+          "net_requirement": "0.000000",
+          "proposed_quantity": "0",
+          "allocated_quantity": "0",
+          "unmet_quantity": "0.000000",
+          "batch_count": 0,
+          "batches": [],
+          "materials": [],
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-12 SYN-FG-004: gross 653.666667, stock offset 653.666667, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 12 (period, priority 4, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        }
+      ],
+      "capacity": [
+        {
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "period_start": "2026-10-01",
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "feasible": true
+        },
+        {
+          "resource_id": 2,
+          "resource_code": "SYN-FILL",
+          "period_start": "2026-10-01",
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "feasible": true
+        },
+        {
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "period_start": "2026-11-01",
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "feasible": true
+        },
+        {
+          "resource_id": 2,
+          "resource_code": "SYN-FILL",
+          "period_start": "2026-11-01",
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "feasible": true
+        },
+        {
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "period_start": "2026-12-01",
+          "required_hours": "11.760000",
+          "available_hours": "10.000000",
+          "allocated_hours": "3.320000",
+          "overload_hours": "1.760000",
+          "utilisation_pct": "117.60",
+          "feasible": false
+        },
+        {
+          "resource_id": 2,
+          "resource_code": "SYN-FILL",
+          "period_start": "2026-12-01",
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "feasible": true
+        }
+      ],
+      "explanations": [
+        "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+        "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+        "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+        "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+        "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+        "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+      ]
+    }
+  },
+  "replay_created": false,
+  "what_if": {
+    "calculation_code": "60b3615286e3be81e4c086246de5b876f0011c508dfdf11e1295bc5995a7eed3",
+    "algorithm_version": "production-plan-v1",
+    "demand_mode": "manual",
+    "forecast_run_code": null,
+    "persisted": false,
+    "lines": [
+      {
+        "product_id": 1,
+        "product_code": "SYN-FG-001",
+        "period_start": "2026-11-01",
+        "unit_of_measure": "kg",
+        "resource_id": 1,
+        "resource_code": "SYN-MIX",
+        "priority": 1,
+        "allocation_rank": 1,
+        "bom_id": 1,
+        "gross_demand": "5000",
+        "inventory_offset": "2000.000000",
+        "surplus_offset": "0",
+        "net_requirement": "3000.000000",
+        "proposed_quantity": "3000.000000",
+        "allocated_quantity": "1000.000000",
+        "unmet_quantity": "2000.000000",
+        "batch_count": 3,
+        "batches": [
+          {
+            "sequence": 1,
+            "quantity": "1000.000000",
+            "hours": "10.000000",
+            "allocated": true,
+            "explanation": "Allocated whole batch"
+          },
+          {
+            "sequence": 2,
+            "quantity": "1000.000000",
+            "hours": "10.000000",
+            "allocated": false,
+            "explanation": "Unallocated: insufficient residual capacity"
+          },
+          {
+            "sequence": 3,
+            "quantity": "1000.000000",
+            "hours": "10.000000",
+            "allocated": false,
+            "explanation": "Unallocated: insufficient residual capacity"
+          }
+        ],
+        "materials": [
+          {
+            "raw_material_id": 1,
+            "material_code": "SYN-RM-001",
+            "unit_of_measure": "kg",
+            "required_quantity": "750.000000",
+            "available_quantity": "2000.000000",
+            "shortage_quantity": "0",
+            "allocated_quantity": "250.000000",
+            "remaining_quantity": "1750.000000"
+          },
+          {
+            "raw_material_id": 2,
+            "material_code": "SYN-RM-002",
+            "unit_of_measure": "kg",
+            "required_quantity": "750.000000",
+            "available_quantity": "2000.000000",
+            "shortage_quantity": "0",
+            "allocated_quantity": "250.000000",
+            "remaining_quantity": "1750.000000"
+          },
+          {
+            "raw_material_id": 3,
+            "material_code": "SYN-RM-003",
+            "unit_of_measure": "kg",
+            "required_quantity": "750.000000",
+            "available_quantity": "2000.000000",
+            "shortage_quantity": "0",
+            "allocated_quantity": "250.000000",
+            "remaining_quantity": "1750.000000"
+          },
+          {
+            "raw_material_id": 4,
+            "material_code": "SYN-RM-004",
+            "unit_of_measure": "kg",
+            "required_quantity": "750.000000",
+            "available_quantity": "2000.000000",
+            "shortage_quantity": "0",
+            "allocated_quantity": "250.000000",
+            "remaining_quantity": "1750.000000"
+          }
+        ],
+        "required_hours": "30.000000",
+        "available_hours": "10.000000",
+        "allocated_hours": "10.000000",
+        "overload_hours": "20.000000",
+        "utilisation_pct": "300.00",
+        "status": "CAPACITY_CONSTRAINED",
+        "explanation": "2026-11 SYN-FG-001: gross 5000, stock offset 2000.000000, carried surplus 0, net 3000.000000 kg; 3 proposed batches, 30.000000 hours, 10.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 1000.000000; unmet 2000.000000. CAPACITY_CONSTRAINED. Materials sufficient. Capacity short 20.000000 hours."
+      }
+    ],
+    "capacity": [
+      {
+        "resource_id": 1,
+        "resource_code": "SYN-MIX",
+        "period_start": "2026-11-01",
+        "required_hours": "30.000000",
+        "available_hours": "10.000000",
+        "allocated_hours": "10.000000",
+        "overload_hours": "20.000000",
+        "utilisation_pct": "300.00",
+        "feasible": false
+      }
+    ],
+    "explanations": [
+      "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+      "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+      "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+      "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+      "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+      "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+    ]
+  },
+  "evaluation_scenarios": {
+    "stock_covered": {
+      "calculation_code": "7865e48ceea2a9beeb7b7943455a9a3651d8b91d6215f37715041d5cedc951a9",
+      "algorithm_version": "production-plan-v1",
+      "demand_mode": "manual",
+      "forecast_run_code": null,
+      "persisted": false,
+      "lines": [
+        {
+          "product_id": 1,
+          "product_code": "SYN-FG-001",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 1,
+          "allocation_rank": 1,
+          "bom_id": null,
+          "gross_demand": "1000",
+          "inventory_offset": "1000",
+          "surplus_offset": "0",
+          "net_requirement": "0",
+          "proposed_quantity": "0",
+          "allocated_quantity": "0",
+          "unmet_quantity": "0",
+          "batch_count": 0,
+          "batches": [],
+          "materials": [],
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-11 SYN-FG-001: gross 1000, stock offset 1000, carried surplus 0, net 0 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 0; unmet 0. FEASIBLE. Materials sufficient. Capacity sufficient."
+        }
+      ],
+      "capacity": [
+        {
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "period_start": "2026-11-01",
+          "required_hours": "0",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0",
+          "utilisation_pct": "0.00",
+          "feasible": true
+        }
+      ],
+      "explanations": [
+        "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+        "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+        "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+        "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+        "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+        "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+      ]
+    },
+    "production_feasible": {
+      "calculation_code": "8a5d32627f6c196f3945f4b4e20691785df4beb5da011f85aaafb80d9d3e75c9",
+      "algorithm_version": "production-plan-v1",
+      "demand_mode": "manual",
+      "forecast_run_code": null,
+      "persisted": false,
+      "lines": [
+        {
+          "product_id": 1,
+          "product_code": "SYN-FG-001",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 1,
+          "allocation_rank": 1,
+          "bom_id": 1,
+          "gross_demand": "2500",
+          "inventory_offset": "2000.000000",
+          "surplus_offset": "0",
+          "net_requirement": "500.000000",
+          "proposed_quantity": "500.000000",
+          "allocated_quantity": "500.000000",
+          "unmet_quantity": "0.000000",
+          "batch_count": 1,
+          "batches": [
+            {
+              "sequence": 1,
+              "quantity": "500.000000",
+              "hours": "5.000000",
+              "allocated": true,
+              "explanation": "Allocated whole batch"
+            }
+          ],
+          "materials": [
+            {
+              "raw_material_id": 1,
+              "material_code": "SYN-RM-001",
+              "unit_of_measure": "kg",
+              "required_quantity": "125.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "125.000000",
+              "remaining_quantity": "1875.000000"
+            },
+            {
+              "raw_material_id": 2,
+              "material_code": "SYN-RM-002",
+              "unit_of_measure": "kg",
+              "required_quantity": "125.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "125.000000",
+              "remaining_quantity": "1875.000000"
+            },
+            {
+              "raw_material_id": 3,
+              "material_code": "SYN-RM-003",
+              "unit_of_measure": "kg",
+              "required_quantity": "125.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "125.000000",
+              "remaining_quantity": "1875.000000"
+            },
+            {
+              "raw_material_id": 4,
+              "material_code": "SYN-RM-004",
+              "unit_of_measure": "kg",
+              "required_quantity": "125.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "125.000000",
+              "remaining_quantity": "1875.000000"
+            }
+          ],
+          "required_hours": "5.000000",
+          "available_hours": "10.000000",
+          "allocated_hours": "5.000000",
+          "overload_hours": "0",
+          "utilisation_pct": "50.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-11 SYN-FG-001: gross 2500, stock offset 2000.000000, carried surplus 0, net 500.000000 kg; 1 proposed batches, 5.000000 hours, 10.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 500.000000; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        }
+      ],
+      "capacity": [
+        {
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "period_start": "2026-11-01",
+          "required_hours": "5.000000",
+          "available_hours": "10.000000",
+          "allocated_hours": "5.000000",
+          "overload_hours": "0",
+          "utilisation_pct": "50.00",
+          "feasible": true
+        }
+      ],
+      "explanations": [
+        "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+        "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+        "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+        "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+        "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+        "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+      ]
+    },
+    "material_only": {
+      "calculation_code": "79bb9957a000f598dec18f3f93a2c153ff7abb95d383fecaff5d135eebb68e35",
+      "algorithm_version": "production-plan-v1",
+      "demand_mode": "manual",
+      "forecast_run_code": null,
+      "persisted": false,
+      "lines": [
+        {
+          "product_id": 1,
+          "product_code": "SYN-FG-001",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 1,
+          "allocation_rank": 1,
+          "bom_id": 1,
+          "gross_demand": "3000",
+          "inventory_offset": "2000.000000",
+          "surplus_offset": "0",
+          "net_requirement": "1000.000000",
+          "proposed_quantity": "1000.000000",
+          "allocated_quantity": "0",
+          "unmet_quantity": "1000.000000",
+          "batch_count": 1,
+          "batches": [
+            {
+              "sequence": 1,
+              "quantity": "1000.000000",
+              "hours": "10.000000",
+              "allocated": false,
+              "explanation": "Unallocated: insufficient shared material"
+            }
+          ],
+          "materials": [
+            {
+              "raw_material_id": 1,
+              "material_code": "SYN-RM-001",
+              "unit_of_measure": "kg",
+              "required_quantity": "250.000000",
+              "available_quantity": "100.000000",
+              "shortage_quantity": "150.000000",
+              "allocated_quantity": "0",
+              "remaining_quantity": "100.000000"
+            },
+            {
+              "raw_material_id": 2,
+              "material_code": "SYN-RM-002",
+              "unit_of_measure": "kg",
+              "required_quantity": "250.000000",
+              "available_quantity": "100.000000",
+              "shortage_quantity": "150.000000",
+              "allocated_quantity": "0",
+              "remaining_quantity": "100.000000"
+            },
+            {
+              "raw_material_id": 3,
+              "material_code": "SYN-RM-003",
+              "unit_of_measure": "kg",
+              "required_quantity": "250.000000",
+              "available_quantity": "100.000000",
+              "shortage_quantity": "150.000000",
+              "allocated_quantity": "0",
+              "remaining_quantity": "100.000000"
+            },
+            {
+              "raw_material_id": 4,
+              "material_code": "SYN-RM-004",
+              "unit_of_measure": "kg",
+              "required_quantity": "250.000000",
+              "available_quantity": "100.000000",
+              "shortage_quantity": "150.000000",
+              "allocated_quantity": "0",
+              "remaining_quantity": "100.000000"
+            }
+          ],
+          "required_hours": "10.000000",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0.000000",
+          "utilisation_pct": "100.00",
+          "status": "MATERIAL_CONSTRAINED",
+          "explanation": "2026-11 SYN-FG-001: gross 3000, stock offset 2000.000000, carried surplus 0, net 1000.000000 kg; 1 proposed batches, 10.000000 hours, 10.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 0; unmet 1000.000000. MATERIAL_CONSTRAINED. SYN-RM-001 short 150.000000 kg; SYN-RM-002 short 150.000000 kg; SYN-RM-003 short 150.000000 kg; SYN-RM-004 short 150.000000 kg Capacity sufficient."
+        }
+      ],
+      "capacity": [
+        {
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "period_start": "2026-11-01",
+          "required_hours": "10.000000",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "0.000000",
+          "utilisation_pct": "100.00",
+          "feasible": true
+        }
+      ],
+      "explanations": [
+        "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+        "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+        "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+        "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+        "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+        "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+      ]
+    },
+    "capacity_only": {
+      "calculation_code": "d953e3f19aac2fb1fcc2ce8b5fa52fec308162a07a14bbaa2e3489c35ddad9f0",
+      "algorithm_version": "production-plan-v1",
+      "demand_mode": "manual",
+      "forecast_run_code": null,
+      "persisted": false,
+      "lines": [
+        {
+          "product_id": 1,
+          "product_code": "SYN-FG-001",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 1,
+          "allocation_rank": 1,
+          "bom_id": 1,
+          "gross_demand": "3500",
+          "inventory_offset": "2000.000000",
+          "surplus_offset": "0",
+          "net_requirement": "1500.000000",
+          "proposed_quantity": "1500.000000",
+          "allocated_quantity": "1000.000000",
+          "unmet_quantity": "500.000000",
+          "batch_count": 2,
+          "batches": [
+            {
+              "sequence": 1,
+              "quantity": "1000.000000",
+              "hours": "10.000000",
+              "allocated": true,
+              "explanation": "Allocated whole batch"
+            },
+            {
+              "sequence": 2,
+              "quantity": "500.000000",
+              "hours": "5.000000",
+              "allocated": false,
+              "explanation": "Unallocated: insufficient residual capacity"
+            }
+          ],
+          "materials": [
+            {
+              "raw_material_id": 1,
+              "material_code": "SYN-RM-001",
+              "unit_of_measure": "kg",
+              "required_quantity": "375.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "250.000000",
+              "remaining_quantity": "1750.000000"
+            },
+            {
+              "raw_material_id": 2,
+              "material_code": "SYN-RM-002",
+              "unit_of_measure": "kg",
+              "required_quantity": "375.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "250.000000",
+              "remaining_quantity": "1750.000000"
+            },
+            {
+              "raw_material_id": 3,
+              "material_code": "SYN-RM-003",
+              "unit_of_measure": "kg",
+              "required_quantity": "375.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "250.000000",
+              "remaining_quantity": "1750.000000"
+            },
+            {
+              "raw_material_id": 4,
+              "material_code": "SYN-RM-004",
+              "unit_of_measure": "kg",
+              "required_quantity": "375.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "250.000000",
+              "remaining_quantity": "1750.000000"
+            }
+          ],
+          "required_hours": "15.000000",
+          "available_hours": "10.000000",
+          "allocated_hours": "10.000000",
+          "overload_hours": "5.000000",
+          "utilisation_pct": "150.00",
+          "status": "CAPACITY_CONSTRAINED",
+          "explanation": "2026-11 SYN-FG-001: gross 3500, stock offset 2000.000000, carried surplus 0, net 1500.000000 kg; 2 proposed batches, 15.000000 hours, 10.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 1000.000000; unmet 500.000000. CAPACITY_CONSTRAINED. Materials sufficient. Capacity short 5.000000 hours."
+        }
+      ],
+      "capacity": [
+        {
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "period_start": "2026-11-01",
+          "required_hours": "15.000000",
+          "available_hours": "10.000000",
+          "allocated_hours": "10.000000",
+          "overload_hours": "5.000000",
+          "utilisation_pct": "150.00",
+          "feasible": false
+        }
+      ],
+      "explanations": [
+        "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+        "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+        "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+        "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+        "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+        "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+      ]
+    },
+    "combined": {
+      "calculation_code": "58cb2ec4418d93f218e6396fb27acb1b51a37cfd3767fead6b7c2c71dba84d96",
+      "algorithm_version": "production-plan-v1",
+      "demand_mode": "manual",
+      "forecast_run_code": null,
+      "persisted": false,
+      "lines": [
+        {
+          "product_id": 1,
+          "product_code": "SYN-FG-001",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 1,
+          "allocation_rank": 1,
+          "bom_id": 1,
+          "gross_demand": "3500",
+          "inventory_offset": "2000.000000",
+          "surplus_offset": "0",
+          "net_requirement": "1500.000000",
+          "proposed_quantity": "1500.000000",
+          "allocated_quantity": "0",
+          "unmet_quantity": "1500.000000",
+          "batch_count": 2,
+          "batches": [
+            {
+              "sequence": 1,
+              "quantity": "1000.000000",
+              "hours": "10.000000",
+              "allocated": false,
+              "explanation": "Unallocated: insufficient shared material"
+            },
+            {
+              "sequence": 2,
+              "quantity": "500.000000",
+              "hours": "5.000000",
+              "allocated": false,
+              "explanation": "Unallocated: insufficient shared material"
+            }
+          ],
+          "materials": [
+            {
+              "raw_material_id": 1,
+              "material_code": "SYN-RM-001",
+              "unit_of_measure": "kg",
+              "required_quantity": "375.000000",
+              "available_quantity": "100.000000",
+              "shortage_quantity": "275.000000",
+              "allocated_quantity": "0",
+              "remaining_quantity": "100.000000"
+            },
+            {
+              "raw_material_id": 2,
+              "material_code": "SYN-RM-002",
+              "unit_of_measure": "kg",
+              "required_quantity": "375.000000",
+              "available_quantity": "100.000000",
+              "shortage_quantity": "275.000000",
+              "allocated_quantity": "0",
+              "remaining_quantity": "100.000000"
+            },
+            {
+              "raw_material_id": 3,
+              "material_code": "SYN-RM-003",
+              "unit_of_measure": "kg",
+              "required_quantity": "375.000000",
+              "available_quantity": "100.000000",
+              "shortage_quantity": "275.000000",
+              "allocated_quantity": "0",
+              "remaining_quantity": "100.000000"
+            },
+            {
+              "raw_material_id": 4,
+              "material_code": "SYN-RM-004",
+              "unit_of_measure": "kg",
+              "required_quantity": "375.000000",
+              "available_quantity": "100.000000",
+              "shortage_quantity": "275.000000",
+              "allocated_quantity": "0",
+              "remaining_quantity": "100.000000"
+            }
+          ],
+          "required_hours": "15.000000",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "5.000000",
+          "utilisation_pct": "150.00",
+          "status": "MATERIAL_AND_CAPACITY_CONSTRAINED",
+          "explanation": "2026-11 SYN-FG-001: gross 3500, stock offset 2000.000000, carried surplus 0, net 1500.000000 kg; 2 proposed batches, 15.000000 hours, 10.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 0; unmet 1500.000000. MATERIAL_AND_CAPACITY_CONSTRAINED. SYN-RM-001 short 275.000000 kg; SYN-RM-002 short 275.000000 kg; SYN-RM-003 short 275.000000 kg; SYN-RM-004 short 275.000000 kg Capacity short 5.000000 hours."
+        }
+      ],
+      "capacity": [
+        {
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "period_start": "2026-11-01",
+          "required_hours": "15.000000",
+          "available_hours": "10.000000",
+          "allocated_hours": "0",
+          "overload_hours": "5.000000",
+          "utilisation_pct": "150.00",
+          "feasible": false
+        }
+      ],
+      "explanations": [
+        "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+        "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+        "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+        "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+        "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+        "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+      ]
+    },
+    "partial_batch": {
+      "calculation_code": "5882117662c02057365e97272c62ac82c1c486082cd0a1d2d263cd7c208bbd9c",
+      "algorithm_version": "production-plan-v1",
+      "demand_mode": "manual",
+      "forecast_run_code": null,
+      "persisted": false,
+      "lines": [
+        {
+          "product_id": 1,
+          "product_code": "SYN-FG-001",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 1,
+          "allocation_rank": 1,
+          "bom_id": 1,
+          "gross_demand": "4300",
+          "inventory_offset": "2000.000000",
+          "surplus_offset": "0",
+          "net_requirement": "2300.000000",
+          "proposed_quantity": "2300.000000",
+          "allocated_quantity": "2300.000000",
+          "unmet_quantity": "0.000000",
+          "batch_count": 3,
+          "batches": [
+            {
+              "sequence": 1,
+              "quantity": "1000.000000",
+              "hours": "10.000000",
+              "allocated": true,
+              "explanation": "Allocated whole batch"
+            },
+            {
+              "sequence": 2,
+              "quantity": "1000.000000",
+              "hours": "10.000000",
+              "allocated": true,
+              "explanation": "Allocated whole batch"
+            },
+            {
+              "sequence": 3,
+              "quantity": "300.000000",
+              "hours": "3.000000",
+              "allocated": true,
+              "explanation": "Allocated whole batch"
+            }
+          ],
+          "materials": [
+            {
+              "raw_material_id": 1,
+              "material_code": "SYN-RM-001",
+              "unit_of_measure": "kg",
+              "required_quantity": "575.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "575.000000",
+              "remaining_quantity": "1425.000000"
+            },
+            {
+              "raw_material_id": 2,
+              "material_code": "SYN-RM-002",
+              "unit_of_measure": "kg",
+              "required_quantity": "575.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "575.000000",
+              "remaining_quantity": "1425.000000"
+            },
+            {
+              "raw_material_id": 3,
+              "material_code": "SYN-RM-003",
+              "unit_of_measure": "kg",
+              "required_quantity": "575.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "575.000000",
+              "remaining_quantity": "1425.000000"
+            },
+            {
+              "raw_material_id": 4,
+              "material_code": "SYN-RM-004",
+              "unit_of_measure": "kg",
+              "required_quantity": "575.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "575.000000",
+              "remaining_quantity": "1425.000000"
+            }
+          ],
+          "required_hours": "23.000000",
+          "available_hours": "30.000000",
+          "allocated_hours": "23.000000",
+          "overload_hours": "0",
+          "utilisation_pct": "76.67",
+          "status": "FEASIBLE",
+          "explanation": "2026-11 SYN-FG-001: gross 4300, stock offset 2000.000000, carried surplus 0, net 2300.000000 kg; 3 proposed batches, 23.000000 hours, 30.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 2300.000000; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        }
+      ],
+      "capacity": [
+        {
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "period_start": "2026-11-01",
+          "required_hours": "23.000000",
+          "available_hours": "30.000000",
+          "allocated_hours": "23.000000",
+          "overload_hours": "0",
+          "utilisation_pct": "76.67",
+          "feasible": true
+        }
+      ],
+      "explanations": [
+        "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+        "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+        "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+        "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+        "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+        "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+      ]
+    },
+    "minimum_adjustment": {
+      "calculation_code": "8e49806a3b1c2ed5a0a67e78cb232f1800dd45524460675f37c6a5d35451811d",
+      "algorithm_version": "production-plan-v1",
+      "demand_mode": "manual",
+      "forecast_run_code": null,
+      "persisted": false,
+      "lines": [
+        {
+          "product_id": 1,
+          "product_code": "SYN-FG-001",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 1,
+          "allocation_rank": 1,
+          "bom_id": 1,
+          "gross_demand": "4100",
+          "inventory_offset": "2000.000000",
+          "surplus_offset": "0",
+          "net_requirement": "2100.000000",
+          "proposed_quantity": "2200.000000",
+          "allocated_quantity": "2200.000000",
+          "unmet_quantity": "0",
+          "batch_count": 3,
+          "batches": [
+            {
+              "sequence": 1,
+              "quantity": "1000.000000",
+              "hours": "10.000000",
+              "allocated": true,
+              "explanation": "Allocated whole batch"
+            },
+            {
+              "sequence": 2,
+              "quantity": "1000.000000",
+              "hours": "10.000000",
+              "allocated": true,
+              "explanation": "Allocated whole batch"
+            },
+            {
+              "sequence": 3,
+              "quantity": "200.000000",
+              "hours": "2.000000",
+              "allocated": true,
+              "explanation": "Allocated whole batch"
+            }
+          ],
+          "materials": [
+            {
+              "raw_material_id": 1,
+              "material_code": "SYN-RM-001",
+              "unit_of_measure": "kg",
+              "required_quantity": "550.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "550.000000",
+              "remaining_quantity": "1450.000000"
+            },
+            {
+              "raw_material_id": 2,
+              "material_code": "SYN-RM-002",
+              "unit_of_measure": "kg",
+              "required_quantity": "550.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "550.000000",
+              "remaining_quantity": "1450.000000"
+            },
+            {
+              "raw_material_id": 3,
+              "material_code": "SYN-RM-003",
+              "unit_of_measure": "kg",
+              "required_quantity": "550.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "550.000000",
+              "remaining_quantity": "1450.000000"
+            },
+            {
+              "raw_material_id": 4,
+              "material_code": "SYN-RM-004",
+              "unit_of_measure": "kg",
+              "required_quantity": "550.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "550.000000",
+              "remaining_quantity": "1450.000000"
+            }
+          ],
+          "required_hours": "22.000000",
+          "available_hours": "30.000000",
+          "allocated_hours": "22.000000",
+          "overload_hours": "0",
+          "utilisation_pct": "73.33",
+          "status": "FEASIBLE",
+          "explanation": "2026-11 SYN-FG-001: gross 4100, stock offset 2000.000000, carried surplus 0, net 2100.000000 kg; 3 proposed batches, 22.000000 hours, 30.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 2200.000000; unmet 0. FEASIBLE. Materials sufficient. Capacity sufficient."
+        }
+      ],
+      "capacity": [
+        {
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "period_start": "2026-11-01",
+          "required_hours": "22.000000",
+          "available_hours": "30.000000",
+          "allocated_hours": "22.000000",
+          "overload_hours": "0",
+          "utilisation_pct": "73.33",
+          "feasible": true
+        }
+      ],
+      "explanations": [
+        "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+        "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+        "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+        "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+        "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+        "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+      ]
+    },
+    "what_if_new_constraint": {
+      "calculation_code": "e88feb711c30badbf490e3d9702153e8f8015efb39b96e27b1c4c21547161ad3",
+      "algorithm_version": "production-plan-v1",
+      "demand_mode": "manual",
+      "forecast_run_code": null,
+      "persisted": false,
+      "lines": [
+        {
+          "product_id": 1,
+          "product_code": "SYN-FG-001",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 1,
+          "allocation_rank": 1,
+          "bom_id": 1,
+          "gross_demand": "5000",
+          "inventory_offset": "2000.000000",
+          "surplus_offset": "0",
+          "net_requirement": "3000.000000",
+          "proposed_quantity": "3000.000000",
+          "allocated_quantity": "1000.000000",
+          "unmet_quantity": "2000.000000",
+          "batch_count": 3,
+          "batches": [
+            {
+              "sequence": 1,
+              "quantity": "1000.000000",
+              "hours": "10.000000",
+              "allocated": true,
+              "explanation": "Allocated whole batch"
+            },
+            {
+              "sequence": 2,
+              "quantity": "1000.000000",
+              "hours": "10.000000",
+              "allocated": false,
+              "explanation": "Unallocated: insufficient residual capacity"
+            },
+            {
+              "sequence": 3,
+              "quantity": "1000.000000",
+              "hours": "10.000000",
+              "allocated": false,
+              "explanation": "Unallocated: insufficient residual capacity"
+            }
+          ],
+          "materials": [
+            {
+              "raw_material_id": 1,
+              "material_code": "SYN-RM-001",
+              "unit_of_measure": "kg",
+              "required_quantity": "750.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "250.000000",
+              "remaining_quantity": "1750.000000"
+            },
+            {
+              "raw_material_id": 2,
+              "material_code": "SYN-RM-002",
+              "unit_of_measure": "kg",
+              "required_quantity": "750.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "250.000000",
+              "remaining_quantity": "1750.000000"
+            },
+            {
+              "raw_material_id": 3,
+              "material_code": "SYN-RM-003",
+              "unit_of_measure": "kg",
+              "required_quantity": "750.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "250.000000",
+              "remaining_quantity": "1750.000000"
+            },
+            {
+              "raw_material_id": 4,
+              "material_code": "SYN-RM-004",
+              "unit_of_measure": "kg",
+              "required_quantity": "750.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "250.000000",
+              "remaining_quantity": "1750.000000"
+            }
+          ],
+          "required_hours": "30.000000",
+          "available_hours": "10.000000",
+          "allocated_hours": "10.000000",
+          "overload_hours": "20.000000",
+          "utilisation_pct": "300.00",
+          "status": "CAPACITY_CONSTRAINED",
+          "explanation": "2026-11 SYN-FG-001: gross 5000, stock offset 2000.000000, carried surplus 0, net 3000.000000 kg; 3 proposed batches, 30.000000 hours, 10.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 1000.000000; unmet 2000.000000. CAPACITY_CONSTRAINED. Materials sufficient. Capacity short 20.000000 hours."
+        }
+      ],
+      "capacity": [
+        {
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "period_start": "2026-11-01",
+          "required_hours": "30.000000",
+          "available_hours": "10.000000",
+          "allocated_hours": "10.000000",
+          "overload_hours": "20.000000",
+          "utilisation_pct": "300.00",
+          "feasible": false
+        }
+      ],
+      "explanations": [
+        "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+        "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+        "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+        "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+        "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+        "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+      ]
+    },
+    "competing_products": {
+      "calculation_code": "bc62751cffc91f72610bbaf96bb4748e01ea7c641c2d91a31f36e865e6f07255",
+      "algorithm_version": "production-plan-v1",
+      "demand_mode": "manual",
+      "forecast_run_code": null,
+      "persisted": false,
+      "lines": [
+        {
+          "product_id": 1,
+          "product_code": "SYN-FG-001",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 1,
+          "allocation_rank": 1,
+          "bom_id": 1,
+          "gross_demand": "2800",
+          "inventory_offset": "2000.000000",
+          "surplus_offset": "0",
+          "net_requirement": "800.000000",
+          "proposed_quantity": "800.000000",
+          "allocated_quantity": "800.000000",
+          "unmet_quantity": "0.000000",
+          "batch_count": 1,
+          "batches": [
+            {
+              "sequence": 1,
+              "quantity": "800.000000",
+              "hours": "8.000000",
+              "allocated": true,
+              "explanation": "Allocated whole batch"
+            }
+          ],
+          "materials": [
+            {
+              "raw_material_id": 1,
+              "material_code": "SYN-RM-001",
+              "unit_of_measure": "kg",
+              "required_quantity": "200.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "200.000000",
+              "remaining_quantity": "1800.000000"
+            },
+            {
+              "raw_material_id": 2,
+              "material_code": "SYN-RM-002",
+              "unit_of_measure": "kg",
+              "required_quantity": "200.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "200.000000",
+              "remaining_quantity": "1800.000000"
+            },
+            {
+              "raw_material_id": 3,
+              "material_code": "SYN-RM-003",
+              "unit_of_measure": "kg",
+              "required_quantity": "200.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "200.000000",
+              "remaining_quantity": "1800.000000"
+            },
+            {
+              "raw_material_id": 4,
+              "material_code": "SYN-RM-004",
+              "unit_of_measure": "kg",
+              "required_quantity": "200.000000",
+              "available_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "200.000000",
+              "remaining_quantity": "1800.000000"
+            }
+          ],
+          "required_hours": "8.000000",
+          "available_hours": "10.000000",
+          "allocated_hours": "8.000000",
+          "overload_hours": "0",
+          "utilisation_pct": "80.00",
+          "status": "FEASIBLE",
+          "explanation": "2026-11 SYN-FG-001: gross 2800, stock offset 2000.000000, carried surplus 0, net 800.000000 kg; 1 proposed batches, 8.000000 hours, 10.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 800.000000; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+        },
+        {
+          "product_id": 2,
+          "product_code": "SYN-FG-002",
+          "period_start": "2026-11-01",
+          "unit_of_measure": "kg",
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "priority": 2,
+          "allocation_rank": 2,
+          "bom_id": 2,
+          "gross_demand": "2800",
+          "inventory_offset": "2000.000000",
+          "surplus_offset": "0",
+          "net_requirement": "800.000000",
+          "proposed_quantity": "800.000000",
+          "allocated_quantity": "0",
+          "unmet_quantity": "800.000000",
+          "batch_count": 1,
+          "batches": [
+            {
+              "sequence": 1,
+              "quantity": "800.000000",
+              "hours": "8.000000",
+              "allocated": false,
+              "explanation": "Unallocated: insufficient residual capacity"
+            }
+          ],
+          "materials": [
+            {
+              "raw_material_id": 1,
+              "material_code": "SYN-RM-001",
+              "unit_of_measure": "kg",
+              "required_quantity": "200.000000",
+              "available_quantity": "1800.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "0",
+              "remaining_quantity": "1800.000000"
+            },
+            {
+              "raw_material_id": 2,
+              "material_code": "SYN-RM-002",
+              "unit_of_measure": "kg",
+              "required_quantity": "200.000000",
+              "available_quantity": "1800.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "0",
+              "remaining_quantity": "1800.000000"
+            },
+            {
+              "raw_material_id": 3,
+              "material_code": "SYN-RM-003",
+              "unit_of_measure": "kg",
+              "required_quantity": "200.000000",
+              "available_quantity": "1800.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "0",
+              "remaining_quantity": "1800.000000"
+            },
+            {
+              "raw_material_id": 4,
+              "material_code": "SYN-RM-004",
+              "unit_of_measure": "kg",
+              "required_quantity": "200.000000",
+              "available_quantity": "1800.000000",
+              "shortage_quantity": "0",
+              "allocated_quantity": "0",
+              "remaining_quantity": "1800.000000"
+            }
+          ],
+          "required_hours": "8.000000",
+          "available_hours": "2.000000",
+          "allocated_hours": "0",
+          "overload_hours": "6.000000",
+          "utilisation_pct": "400.00",
+          "status": "CAPACITY_CONSTRAINED",
+          "explanation": "2026-11 SYN-FG-002: gross 2800, stock offset 2000.000000, carried surplus 0, net 800.000000 kg; 1 proposed batches, 8.000000 hours, 2.000000 hours remaining at rank 2 (period, priority 2, product code). Allocated 0; unmet 800.000000. CAPACITY_CONSTRAINED. Materials sufficient. Capacity short 6.000000 hours."
+        }
+      ],
+      "capacity": [
+        {
+          "resource_id": 1,
+          "resource_code": "SYN-MIX",
+          "period_start": "2026-11-01",
+          "required_hours": "16.000000",
+          "available_hours": "10.000000",
+          "allocated_hours": "8.000000",
+          "overload_hours": "6.000000",
+          "utilisation_pct": "160.00",
+          "feasible": false
+        }
+      ],
+      "explanations": [
+        "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+        "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+        "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+        "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+        "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+        "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+      ]
+    }
+  },
+  "view_counts": {
+    "vw_inventory_position": 32,
+    "vw_order_fulfilment": 48,
+    "vw_production_performance": 48,
+    "vw_quality_performance": 48,
+    "vw_supplier_material_flow": 192,
+    "vw_data_quality_summary": 82,
+    "vw_operations_kpis": 1,
+    "vw_operations_quantities": 10,
+    "vw_demand_history": 96,
+    "vw_forecast_accuracy": 30,
+    "vw_demand_forecast": 12,
+    "vw_forecast_backtest": 144,
+    "vw_production_plan": 12,
+    "vw_capacity_utilisation": 6,
+    "vw_planning_constraints": 1,
+    "vw_forecast_to_production": 12,
+    "vw_planning_materials": 8,
+    "vw_material_requirements": 0,
+    "vw_inventory_risk": 8,
+    "vw_reorder_recommendations": 2
+  },
+  "counts": {
+    "products": 4,
+    "suppliers": 3,
+    "raw_materials": 4,
+    "customers": 3,
+    "warehouses": 2,
+    "inventory": 32,
+    "inventory_transactions": 0,
+    "bills_of_material": 4,
+    "bill_of_material_lines": 16,
+    "sales_orders": 48,
+    "sales_order_lines": 48,
+    "purchase_orders": 192,
+    "purchase_order_lines": 192,
+    "production_orders": 48,
+    "production_batches": 48,
+    "batch_material_consumption": 192,
+    "quality_inspections": 48,
+    "shipments": 48,
+    "shipment_lines": 48,
+    "demand_forecasts": 12,
+    "reorder_recommendations": 2,
+    "etl_runs": 2,
+    "data_quality_issues": 96,
+    "planning_policies": 4,
+    "planning_runs": 1,
+    "demand_observations": 192,
+    "forecast_runs": 1,
+    "forecast_metrics": 30,
+    "forecast_backtests": 144,
+    "production_resources": 2,
+    "production_policies": 4,
+    "production_plan_runs": 1,
+    "production_plan_lines": 12,
+    "production_capacity_results": 6,
+    "production_material_results": 8
+  },
+  "http_statuses": {
+    "GET /health": 200,
+    "GET /docs": 200,
+    "GET /openapi.json": 200,
+    "GET /api/v1/planning/production-plan?forecast_run_code=1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e": 200,
+    "GET /api/v1/planning/capacity?forecast_run_code=1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e": 200,
+    "GET /api/v1/planning/constraints?forecast_run_code=1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e": 200,
+    "GET /api/v1/planning/production-plan?forecast_run_code=1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e&product_id=2&period_start=2026-12-01": 200,
+    "GET /api/v1/planning/production-plan?forecast_run_code=1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e&limit=201": 422,
+    "GET /api/v1/planning/production-plan?forecast_run_code=0000000000000000000000000000000000000000000000000000000000000000": 404,
+    "POST /api/v1/planning/production-plan/what-if": 200,
+    "GET /api/v1/kpis/operations": 200,
+    "GET /api/v1/traceability/order/1": 200,
+    "GET /api/v1/inventory/positions": 200,
+    "GET /api/v1/reorder-recommendations": 200,
+    "GET /api/v1/forecasts?run_code=1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e": 200,
+    "GET /api/v1/forecasts/evaluation": 200
+  },
+  "planning_kpis": {
+    "gross_demand": "8535.000000",
+    "inventory_offset": "7359.000001",
+    "surplus_offset": "0.000000",
+    "net_requirement": "1175.999999",
+    "proposed_quantity": "1175.999999",
+    "allocated_quantity": "331.999999",
+    "unmet_quantity": "844.000000",
+    "unit_of_measure": "kg",
+    "proposed_batches": 2,
+    "product_months": 12,
+    "feasible_product_months": 11,
+    "feasible_plan_percentage": "91.67",
+    "constrained_product_count": 1,
+    "feasible_product_count": 3,
+    "capacity": {
+      "required_hours": "11.760000",
+      "available_hours": "60.000000",
+      "allocated_hours": "3.320000",
+      "overload_hours": "1.760000",
+      "horizon_utilisation_pct": "19.60"
+    },
+    "materials": {
+      "SYN-RM-001": {
+        "unit_of_measure": "kg",
+        "required_quantity": "294.000000",
+        "shortage_quantity": "0",
+        "allocated_quantity": "83.000000"
+      },
+      "SYN-RM-002": {
+        "unit_of_measure": "kg",
+        "required_quantity": "294.000000",
+        "shortage_quantity": "0",
+        "allocated_quantity": "83.000000"
+      },
+      "SYN-RM-003": {
+        "unit_of_measure": "kg",
+        "required_quantity": "294.000000",
+        "shortage_quantity": "0",
+        "allocated_quantity": "83.000000"
+      },
+      "SYN-RM-004": {
+        "unit_of_measure": "kg",
+        "required_quantity": "294.000000",
+        "shortage_quantity": "0",
+        "allocated_quantity": "83.000000"
+      }
+    }
+  }
+}

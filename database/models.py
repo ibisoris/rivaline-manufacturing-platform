@@ -483,6 +483,139 @@ class ForecastBacktest(Record, Base):
     )
 
 
+PHASE5_TABLES = frozenset(Base.metadata.tables)
+
+
+class ProductionResource(Record, Base):
+    """Synthetic residual monthly capacity, after commitments outside this plan."""
+
+    __tablename__ = "production_resources"
+    code: Mapped[str] = mapped_column(String(40), unique=True)
+    name: Mapped[str] = mapped_column(String(160))
+    monthly_hours: Mapped[Decimal]
+    __table_args__ = (CheckConstraint("monthly_hours >= 0", name="hours"),)
+
+
+class ProductionPolicy(Record, Base):
+    __tablename__ = "production_policies"
+    product_id: Mapped[int] = mapped_column(ForeignKey("products.id"), unique=True)
+    resource_id: Mapped[int] = mapped_column(ForeignKey("production_resources.id"))
+    unit_of_measure: Mapped[str] = mapped_column(String(12))
+    minimum_batch: Mapped[Decimal]
+    preferred_batch: Mapped[Decimal]
+    maximum_batch: Mapped[Decimal]
+    units_per_hour: Mapped[Decimal]
+    priority: Mapped[int]
+    __table_args__ = (
+        CheckConstraint(
+            "minimum_batch > 0 AND preferred_batch >= minimum_batch "
+            "AND maximum_batch >= preferred_batch",
+            name="batch_bounds",
+        ),
+        CheckConstraint("units_per_hour > 0 AND priority >= 1", name="rate_priority"),
+    )
+
+
+class ProductionPlanRun(Record, Base):
+    __tablename__ = "production_plan_runs"
+    code: Mapped[str] = mapped_column(String(64), unique=True)
+    algorithm_version: Mapped[str] = mapped_column(String(40))
+    forecast_run_id: Mapped[int] = mapped_column(ForeignKey("forecast_runs.id"))
+    generated_at: Mapped[datetime]
+    inputs: Mapped[dict] = mapped_column(JSON)
+    report: Mapped[dict] = mapped_column(JSON)
+
+
+class ProductionPlanLine(Record, Base):
+    __tablename__ = "production_plan_lines"
+    plan_run_id: Mapped[int] = mapped_column(ForeignKey("production_plan_runs.id"))
+    product_id: Mapped[int] = mapped_column(ForeignKey("products.id"))
+    resource_id: Mapped[int] = mapped_column(ForeignKey("production_resources.id"))
+    period_start: Mapped[date]
+    product_code: Mapped[str] = mapped_column(String(40))
+    unit_of_measure: Mapped[str] = mapped_column(String(12))
+    gross_demand: Mapped[Decimal]
+    inventory_offset: Mapped[Decimal]
+    surplus_offset: Mapped[Decimal]
+    net_requirement: Mapped[Decimal]
+    proposed_quantity: Mapped[Decimal]
+    allocated_quantity: Mapped[Decimal]
+    unmet_quantity: Mapped[Decimal]
+    batch_count: Mapped[int]
+    required_hours: Mapped[Decimal]
+    available_hours: Mapped[Decimal]
+    allocated_hours: Mapped[Decimal]
+    overload_hours: Mapped[Decimal]
+    utilisation_pct: Mapped[Decimal | None]
+    status: Mapped[str] = mapped_column(String(40))
+    explanation: Mapped[str] = mapped_column(String(2000))
+    __table_args__ = (
+        UniqueConstraint("plan_run_id", "product_id", "period_start"),
+        CheckConstraint(
+            "gross_demand >= 0 AND inventory_offset >= 0 AND surplus_offset >= 0 "
+            "AND net_requirement >= 0 AND proposed_quantity >= net_requirement "
+            "AND allocated_quantity >= 0 AND allocated_quantity <= proposed_quantity "
+            "AND unmet_quantity >= 0 AND batch_count >= 0",
+            name="quantities",
+        ),
+        CheckConstraint(
+            "required_hours >= 0 AND available_hours >= 0 AND allocated_hours >= 0 "
+            "AND allocated_hours <= available_hours AND overload_hours >= 0 "
+            "AND (utilisation_pct IS NULL OR utilisation_pct >= 0)",
+            name="hours",
+        ),
+        CheckConstraint(
+            "status IN ('FEASIBLE', 'MATERIAL_CONSTRAINED', 'CAPACITY_CONSTRAINED', "
+            "'MATERIAL_AND_CAPACITY_CONSTRAINED')",
+            name="status",
+        ),
+    )
+
+
+class ProductionCapacityResult(Record, Base):
+    __tablename__ = "production_capacity_results"
+    plan_run_id: Mapped[int] = mapped_column(ForeignKey("production_plan_runs.id"))
+    resource_id: Mapped[int] = mapped_column(ForeignKey("production_resources.id"))
+    resource_code: Mapped[str] = mapped_column(String(40))
+    period_start: Mapped[date]
+    required_hours: Mapped[Decimal]
+    available_hours: Mapped[Decimal]
+    allocated_hours: Mapped[Decimal]
+    overload_hours: Mapped[Decimal]
+    utilisation_pct: Mapped[Decimal | None]
+    __table_args__ = (
+        UniqueConstraint("plan_run_id", "resource_id", "period_start"),
+        CheckConstraint(
+            "required_hours >= 0 AND available_hours >= 0 AND allocated_hours >= 0 "
+            "AND allocated_hours <= available_hours AND overload_hours >= 0 "
+            "AND (utilisation_pct IS NULL OR utilisation_pct >= 0)",
+            name="hours",
+        ),
+    )
+
+
+class ProductionMaterialResult(Record, Base):
+    __tablename__ = "production_material_results"
+    plan_line_id: Mapped[int] = mapped_column(ForeignKey("production_plan_lines.id"))
+    raw_material_id: Mapped[int] = mapped_column(ForeignKey("raw_materials.id"))
+    material_code: Mapped[str] = mapped_column(String(40))
+    unit_of_measure: Mapped[str] = mapped_column(String(12))
+    required_quantity: Mapped[Decimal]
+    available_quantity: Mapped[Decimal]
+    shortage_quantity: Mapped[Decimal]
+    allocated_quantity: Mapped[Decimal]
+    remaining_quantity: Mapped[Decimal]
+    __table_args__ = (
+        UniqueConstraint("plan_line_id", "raw_material_id"),
+        CheckConstraint(
+            "required_quantity >= 0 AND available_quantity >= 0 "
+            "AND shortage_quantity >= 0 AND allocated_quantity >= 0 "
+            "AND allocated_quantity <= required_quantity AND remaining_quantity >= 0",
+            name="quantities",
+        ),
+    )
+
+
 # Every source record is unique within its entity when an external key is supplied.
 for table in Base.metadata.tables.values():
     table.append_constraint(UniqueConstraint("source_system", "source_record_id"))

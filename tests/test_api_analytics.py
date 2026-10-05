@@ -401,11 +401,12 @@ def test_openapi_and_sanitized_unavailability(monkeypatch):
         response = client.get("/openapi.json")
         assert response.status_code == 200
         schema = response.json()
-        assert len(schema["paths"]) == 27
-        assert schema["info"]["version"] == "0.5.0"
-        for operations in schema["paths"].values():
-            assert set(operations) == {"get"}
-            assert operations["get"]["summary"] and operations["get"]["responses"]["200"]
+        assert len(schema["paths"]) == 31
+        assert schema["info"]["version"] == "0.6.0"
+        for path, operations in schema["paths"].items():
+            method = "post" if path == "/api/v1/planning/production-plan/what-if" else "get"
+            assert set(operations) == {method}
+            assert operations[method]["summary"] and operations[method]["responses"]["200"]
         failed = client.get("/api/v1/products")
         assert failed.status_code == 503
         assert "private" not in failed.text and "sensitive" not in failed.text

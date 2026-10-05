@@ -27,7 +27,10 @@ proposals, immutable calculation snapshots and read-only what-if analysis.
 **IMPLEMENTED - Phase 5:** deterministic archived demand, monthly baseline/candidate forecasts,
 chronological evaluation, immutable forecast evidence and read-only reporting APIs.
 
-**PLANNED:** production planning, Power BI reports and authentication. No frontend, distributed
+**IMPLEMENTED - Phase 6:** demand netting, batch sizing, shared material/capacity allocation,
+computational what-if APIs and reproducible proposed production snapshots.
+
+**PLANNED:** Power BI reports and authentication. No frontend, distributed
 infrastructure or cloud deployment is in scope. This is a focused two-day prototype.
 
 ## Target architecture
@@ -56,7 +59,7 @@ forecasting models use transparent Decimal arithmetic. Phase 2 additionally uses
 | `data/legacy/` | Six generated synthetic sources and exact defect manifest |
 | `etl/` | Extraction, validation, loading, audit and reconciliation |
 | `analytics/` | Shared reporting-view KPI queries |
-| `planning/` | Inventory rules, BOM what-if, policy fixtures and recommendation snapshots |
+| `planning/` | Inventory, forecasting, production planning and auditable decision-support snapshots |
 | `powerbi/` | Future reporting assets |
 | `scripts/` | Schema creation, seeding and API entry points |
 | `tests/` | Fast service-independent validation |
@@ -177,7 +180,8 @@ See [data architecture](docs/06-data-architecture.md) for relationships and limi
 3. Phase 3: read APIs, traceability, reporting views and descriptive KPIs.
 4. Phase 4: inventory intelligence and reorder decision support.
 5. Phase 5: monthly demand forecasting and chronological evaluation.
-6. Phase 6 requires separate approval; scheduling and automatic order creation have not started.
+6. Phase 6: monthly production proposals and capacity decision support; no automatic order release.
+7. Phase 7 Power BI requires separate approval.
 
 ## Phase 2 demo
 
@@ -222,7 +226,7 @@ curl.exe http://127.0.0.1:8000/api/v1/kpis/operations
 ```
 
 Use the actual integer order ID from the list (the standard fixture starts with SO-0001).
-Open `/docs` or `/openapi.json` for filters and response contracts. All business routes are GET-only;
+Open `/docs` or `/openapi.json` for filters and response contracts. The Phase 3 business routes are GET-only;
 list pages contain items/total/limit/offset. Decimal quantities are strings. No authentication is
 implemented; this remains a local synthetic-data prototype.
 
@@ -291,3 +295,36 @@ months and conflicting replay. Model selection uses validation MAE; every candid
 results are retained. Forecasts do not create orders or reorder proposals. Read the
 [forecast contract](docs/24-demand-forecasting.md) and [Phase 5 validation](docs/25-phase-5-validation.md)
 for measured synthetic results and limitations. No calibrated prediction intervals are claimed.
+
+## Phase 6 demo
+
+Use the preserved Phase 5 run code. Forecast and additional manual demand are separate scenarios;
+these are proposed plans, not approved schedules. The explicit save command writes reporting
+snapshots only. What-if and all HTTP routes create no records.
+
+```powershell
+.venv\Scripts\python.exe -m scripts.migrate_db
+.venv\Scripts\python.exe -m scripts.run_production seed-policies
+$forecastRun = "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e"
+.venv\Scripts\python.exe -m scripts.run_production forecast --forecast-run-code $forecastRun
+.venv\Scripts\python.exe -m scripts.run_production save-forecast --forecast-run-code $forecastRun
+.venv\Scripts\python.exe -m scripts.run_production what-if --product-id 1 --period 2026-11-01 --quantity 5000 --unit kg
+.venv\Scripts\python.exe -m scripts.run_api
+```
+
+In another terminal, use the same forecast run code:
+
+```powershell
+$forecastRun = "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e"
+curl.exe "http://127.0.0.1:8000/api/v1/planning/production-plan?forecast_run_code=$forecastRun"
+curl.exe "http://127.0.0.1:8000/api/v1/planning/capacity?forecast_run_code=$forecastRun"
+$scenario = @{demands=@(@{product_id=1; period_start="2026-11-01"; quantity="5000"; unit_of_measure="kg"})} | ConvertTo-Json -Depth 3
+Invoke-RestMethod -Method Post -Uri "http://127.0.0.1:8000/api/v1/planning/production-plan/what-if" -ContentType "application/json" -Body $scenario
+```
+
+The synthetic October-December plan nets existing stock once across the horizon. December needs
+331.999999 kg of FG-001 and 844 kg of FG-002; together they require 11.76 mixing hours against 10.
+Priority allocates FG-001's whole batch first; FG-002's batch remains capacity-constrained.
+See [planning contract](docs/26-production-planning.md) and [validation report](docs/27-phase-6-validation.md)
+for assumptions, scenarios, preservation evidence and measured synthetic KPIs. No Phase 7 dashboard
+or automatic purchasing/production release has been implemented.

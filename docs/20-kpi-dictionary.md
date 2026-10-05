@@ -61,3 +61,25 @@ separately for validation and final holdout. Overall WAPE is not an average of p
 Naive is the required baseline. Selection uses validation MAE with deterministic simplicity ties.
 The [forecast contract](24-demand-forecasting.md) defines windows, units, grains and limitations;
 these are synthetic evaluation measures, not measured business improvements. Phase 3 KPIs are unchanged.
+
+## Phase 6 production planning measures
+
+Scope is one explicit proposed plan run, not approved execution and not multiple forecast vintages.
+
+| Measure | Formula and grain | Unit / caution |
+|---|---|---|
+| gross_demand | Input demand per product/month | Canonical product unit; forecast or manual, never both |
+| inventory_offset / surplus_offset | Existing stock / allocated earlier batch surplus used once | Product unit; separate original stock from hypothetical supply |
+| net_requirement | gross - inventory_offset - surplus_offset | Product/month |
+| proposed_quantity / batch_count | Sum proposed batch quantities / count | Includes minimum-batch surplus, may be constrained |
+| allocated_quantity / unmet_quantity | Whole feasible batches / max(net-allocated,0) | Allocation is a recommendation, not a release |
+| required material / shortage | Sum per-batch BOM explosion / max(required-remaining,0) | Plan line/material/unit; never sum successive availability |
+| required / available / allocated hours | Proposed work / residual monthly capacity / accepted batch hours | Resource/month; use capacity view to avoid double-counting |
+| utilisation_pct | 100 * required / available, two decimals | Null with zero capacity; proposed workload, not measured OEE |
+| overload_hours | max(required-available,0) | Resource/month |
+| feasible/constrained product count | Product feasible only if all its requested months are feasible | One plan run |
+| feasible_plan_percentage | 100 * feasible product-month lines / all product-month lines | Null with no lines; explicitly label product-month grain |
+
+The [Phase 6 contract](26-production-planning.md) defines material/capacity assumptions and
+[validation report](27-phase-6-validation.md) gives actual synthetic results. No business-impact
+percentage, planning-time saving or production-performance improvement has been measured.

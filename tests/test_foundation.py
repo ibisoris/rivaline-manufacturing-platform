@@ -126,6 +126,12 @@ def test_schema_contract_and_postgres_compilation():
         "forecast_runs",
         "forecast_metrics",
         "forecast_backtests",
+        "production_resources",
+        "production_policies",
+        "production_plan_runs",
+        "production_plan_lines",
+        "production_capacity_results",
+        "production_material_results",
     }
     for table in Base.metadata.sorted_tables:
         names = [constraint.name for constraint in table.constraints]

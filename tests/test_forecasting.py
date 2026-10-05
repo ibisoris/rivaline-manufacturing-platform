@@ -14,7 +14,7 @@ from alembic.autogenerate import compare_metadata
 from alembic.config import Config
 from alembic.migration import MigrationContext
 from fastapi.testclient import TestClient
-from sqlalchemy import func, inspect, select, text
+from sqlalchemy import MetaData, func, inspect, select, text
 from sqlalchemy.orm import Session
 from sqlalchemy.schema import CreateSchema
 from test_api_analytics import reporting_session  # noqa: F401
@@ -237,7 +237,7 @@ def test_forecast_persistence_api_and_bom(forecast_session, tmp_path):
         ):
             assert client.get("/api/v1/forecasts" + query).status_code == 422
         assert client.post("/api/v1/forecasts").status_code == 405
-        assert len(client.get("/openapi.json").json()["paths"]) == 27
+        assert len(client.get("/openapi.json").json()["paths"]) == 31
     assert business_snapshot(session) == before
     # Appending a future observation cannot alter a run at the fixed earlier cutoff.
     session.add(
@@ -279,13 +279,16 @@ def test_phase5_migration(request):
                 seed_master_data(session)
                 session.commit()
                 before = business_snapshot(session)
-                command.upgrade(config, "head")
+                command.upgrade(config, "0005_forecasting")
                 assert business_snapshot(session) == before
                 assert len(inspect(connection).get_view_names(schema=schema)) == 15
-                assert not compare_metadata(MigrationContext.configure(connection), m.Base.metadata)
+                baseline = MetaData(naming_convention=m.Base.metadata.naming_convention)
+                for name in m.PHASE5_TABLES:
+                    m.Base.metadata.tables[name].to_metadata(baseline)
+                assert not compare_metadata(MigrationContext.configure(connection), baseline)
                 command.downgrade(config, "0004_fractional_bom")
                 assert business_snapshot(session) == before
-                command.upgrade(config, "head")
+                command.upgrade(config, "0005_forecasting")
                 assert len(inspect(connection).get_table_names(schema=schema)) == 30
         finally:
             transaction.rollback()

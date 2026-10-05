@@ -7,6 +7,7 @@ from api.routers.forecasting import router as forecast_router
 from api.routers.health import router
 from api.routers.operations import router as operational_router
 from api.routers.planning import router as planning_router
+from api.routers.production import router as production_router
 from database.config import get_settings
 from database.session import get_engine
 from planning.inventory import PlanningError
@@ -23,7 +24,7 @@ async def lifespan(app: FastAPI):
 def create_app() -> FastAPI:
     application = FastAPI(
         title=get_settings().app_name,
-        version="0.5.0",
+        version="0.6.0",
         lifespan=lifespan,
         description="Read-only local portfolio API for a fictional coatings manufacturer. "
         "All organisations, products, formulations and records are synthetic. "
@@ -41,6 +42,7 @@ def create_app() -> FastAPI:
         return JSONResponse(status_code=409, content={"detail": str(error)})
 
     application.include_router(router)
+    application.include_router(production_router)
     application.include_router(forecast_router)
     application.include_router(planning_router)
     application.include_router(operational_router)

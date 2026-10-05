@@ -1,1 +1,1 @@
-"""Explainable synthetic inventory and reorder decision support; no forecasting."""
+"""Explainable synthetic inventory, forecasting and production decision support."""

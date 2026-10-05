@@ -280,7 +280,7 @@ def test_planning_api(planning_session):
         for suffix in ("?limit=201", "?warehouse_id=1", "?item_id=0"):
             assert client.get("/api/v1/inventory/positions" + suffix).status_code == 422
         assert client.post("/api/v1/planning/material-availability").status_code == 405
-        assert len(client.get("/openapi.json").json()["paths"]) == 27
+        assert len(client.get("/openapi.json").json()["paths"]) == 31
     assert business_snapshot(session) == before
 
 
