@@ -1,0 +1,74 @@
+/// One operational production order
+table Production
+	lineageTag: 5742b7c3-2be8-4711-986d-4b87641a519b
+
+	column production_order_id
+		dataType: int64
+		isHidden
+		lineageTag: d16f3f45-771d-46e7-9074-77ccb616d3b5
+		summarizeBy: none
+		sourceColumn: production_order_id
+
+	column product_id
+		dataType: int64
+		isHidden
+		lineageTag: 9fe52ade-ef46-4b3f-afc6-c806b070356b
+		summarizeBy: none
+		sourceColumn: product_id
+
+	column unit_of_measure
+		dataType: string
+		lineageTag: 28899111-f3fd-4331-bda3-c76b68a707f3
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+	column planned_start
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 0db0dd53-2f11-4311-b55d-d3f4f6d54beb
+		summarizeBy: none
+		sourceColumn: planned_start
+
+	column planned_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 1447f771-0f59-4304-b34b-a9a481b453c4
+		summarizeBy: none
+		sourceColumn: planned_quantity
+
+	column actual_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 3cc71a13-6430-41cb-b6d6-1ebbd8d82fcc
+		summarizeBy: none
+		sourceColumn: actual_quantity
+
+	column inspected_batches
+		dataType: int64
+		lineageTag: 8c6ab8d9-e8ef-4666-8532-29d80f9d31dd
+		summarizeBy: none
+		sourceColumn: inspected_batches
+
+	column passed_batches
+		dataType: int64
+		lineageTag: aca817cb-8a84-4bc6-b86f-ed944e876b1a
+		summarizeBy: none
+		sourceColumn: passed_batches
+
+	column order_status
+		dataType: string
+		lineageTag: 407eb999-54cf-4e22-9701-7bd7a3f131af
+		summarizeBy: none
+		sourceColumn: order_status
+
+	partition Production = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_production_performance"]}[Data],
+				    Filtered = Source,
+				    Selected = Table.SelectColumns(Filtered, {"production_order_id", "product_id", "unit_of_measure", "planned_start", "planned_quantity", "actual_quantity", "inspected_batches", "passed_batches", "order_status"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"production_order_id", Int64.Type}, {"product_id", Int64.Type}, {"unit_of_measure", type text}, {"planned_start", type datetime}, {"planned_quantity", type number}, {"actual_quantity", type number}, {"inspected_batches", Int64.Type}, {"passed_batches", Int64.Type}, {"order_status", type text}}),
+				    Result = Typed
+				in
+				    Result

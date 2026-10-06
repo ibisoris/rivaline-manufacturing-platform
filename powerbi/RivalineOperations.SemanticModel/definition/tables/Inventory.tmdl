@@ -1,0 +1,89 @@
+/// One pooled raw material
+table Inventory
+	lineageTag: 82fe9be6-c38a-4704-a706-4f3e90635f40
+
+	column item_id
+		dataType: int64
+		isHidden
+		lineageTag: 4c90060e-707c-4df6-8ec8-5f4e2f9c940c
+		summarizeBy: none
+		sourceColumn: item_id
+
+	column item_code
+		dataType: string
+		lineageTag: cc5c1b22-5729-4f97-b075-2da97d3a3b2b
+		summarizeBy: none
+		sourceColumn: item_code
+
+	column unit_of_measure
+		dataType: string
+		lineageTag: af6fc31c-0a89-4842-8d2f-4fc42c848fd4
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+	column on_hand_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: a4156f0c-0398-47dc-920b-704ffc13d082
+		summarizeBy: none
+		sourceColumn: on_hand_quantity
+
+	column reserved_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: ddd42d1f-c9c3-43ee-add3-3b662c0d8769
+		summarizeBy: none
+		sourceColumn: reserved_quantity
+
+	column incoming_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 660fa2f1-eb1c-40d0-ba22-15fec7b18eab
+		summarizeBy: none
+		sourceColumn: incoming_quantity
+
+	column required_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 47dd3584-5ff6-45ab-bd5f-e41835788081
+		summarizeBy: none
+		sourceColumn: required_quantity
+
+	column projected_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 7f5a23d8-aecd-4a77-88c4-41f173897dcc
+		summarizeBy: none
+		sourceColumn: projected_quantity
+
+	column shortage_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: ff0680cc-dbb9-4d6d-873f-75542d027d4f
+		summarizeBy: none
+		sourceColumn: shortage_quantity
+
+	column recommended_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 21431ff5-c953-42b4-ad9b-b17016833f16
+		summarizeBy: none
+		sourceColumn: recommended_quantity
+
+	column risk_status
+		dataType: string
+		lineageTag: f15e4d49-bb18-4115-aa03-90de2d7b7c9f
+		summarizeBy: none
+		sourceColumn: risk_status
+
+	partition Inventory = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_inventory_risk"]}[Data],
+				    Filtered = Table.SelectRows(Source, each [item_type] = "raw_material"),
+				    Selected = Table.SelectColumns(Filtered, {"item_id", "item_code", "unit_of_measure", "on_hand_quantity", "reserved_quantity", "incoming_quantity", "required_quantity", "projected_quantity", "shortage_quantity", "recommended_quantity", "risk_status"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"item_id", Int64.Type}, {"item_code", type text}, {"unit_of_measure", type text}, {"on_hand_quantity", type number}, {"reserved_quantity", type number}, {"incoming_quantity", type number}, {"required_quantity", type number}, {"projected_quantity", type number}, {"shortage_quantity", type number}, {"recommended_quantity", type number}, {"risk_status", type text}}),
+				    Result = Typed
+				in
+				    Result

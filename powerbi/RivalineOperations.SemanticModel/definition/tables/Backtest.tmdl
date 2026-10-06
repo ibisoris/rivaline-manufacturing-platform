@@ -1,0 +1,84 @@
+/// One selected-model product/holdout month; selected model joined without repeating horizon
+table Backtest
+	lineageTag: 046dd685-2d01-40cd-92c8-bf20da84b8f8
+
+	column id
+		dataType: int64
+		isHidden
+		lineageTag: 1a8adc1b-9f8a-41b7-b08d-535ffc8688dd
+		summarizeBy: none
+		sourceColumn: id
+
+	column product_id
+		dataType: int64
+		isHidden
+		lineageTag: 7451f865-6197-4297-8fe4-eed064d7d2ec
+		summarizeBy: none
+		sourceColumn: product_id
+
+	column period_start
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 345ecf11-d75d-4e62-aba9-4619cef7d153
+		summarizeBy: none
+		sourceColumn: period_start
+
+	column model_name
+		dataType: string
+		lineageTag: 30cb9e43-67f1-4596-9340-301a6c3f9be3
+		summarizeBy: none
+		sourceColumn: model_name
+
+	column evaluation_split
+		dataType: string
+		lineageTag: a291bc79-6082-417a-815d-d46a8d80afeb
+		summarizeBy: none
+		sourceColumn: evaluation_split
+
+	column actual_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: efb3d19d-e428-4d73-b4d5-e2c4bfa5cbd4
+		summarizeBy: none
+		sourceColumn: actual_quantity
+
+	column predicted_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 966e9080-48a5-42d2-a225-986c9bf60a97
+		summarizeBy: none
+		sourceColumn: predicted_quantity
+
+	column signed_error
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 54785f8a-17ad-4455-9292-87ea049e4428
+		summarizeBy: none
+		sourceColumn: signed_error
+
+	column run_code
+		dataType: string
+		lineageTag: 2793c002-a22c-465e-946b-961a7edc0774
+		summarizeBy: none
+		sourceColumn: run_code
+
+	column unit_of_measure
+		dataType: string
+		lineageTag: d7701169-1050-441d-87b6-0bc4b11d7cea
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+	partition Backtest = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_forecast_backtest"]}[Data],
+				    Filtered = Table.SelectRows(Source, each [run_code] = ForecastRunCode and [evaluation_split] = "test"),
+				    Selected = Table.SelectColumns(Filtered, {"id", "product_id", "period_start", "model_name", "evaluation_split", "actual_quantity", "predicted_quantity", "signed_error", "run_code", "unit_of_measure"}),
+				    Models = Table.Distinct(Table.SelectColumns(Forecast, {"product_id", "selected_model"})),
+				    Matched = Table.NestedJoin(Selected, {"product_id", "model_name"}, Models, {"product_id", "selected_model"}, "SelectedModel", JoinKind.Inner),
+				    SelectedOnly = Table.RemoveColumns(Matched, {"SelectedModel"}),
+				    Typed = Table.TransformColumnTypes(SelectedOnly, {{"id", Int64.Type}, {"product_id", Int64.Type}, {"period_start", type datetime}, {"model_name", type text}, {"evaluation_split", type text}, {"actual_quantity", type number}, {"predicted_quantity", type number}, {"signed_error", type number}, {"run_code", type text}, {"unit_of_measure", type text}}),
+				    Result = if Table.IsEmpty(Typed) then error "Selected reporting data is empty or incompatible" else Typed
+				in
+				    Result

@@ -1,0 +1,38 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBI_QueryOrder = ["Product","Material","Supplier","Customer","Resource","Operations","Inventory","Reorders","Orders","Production","Quality","Procurement","Data Quality","Demand History","Forecast","Backtest","Production Plan","Capacity","Planning Materials","Calendar","Server","Database","ForecastRunCode","ReorderRunCode","PlanRunCode","DatasetCode","ReportingSource"]
+
+ref table Product
+ref table Material
+ref table Supplier
+ref table Customer
+ref table Resource
+ref table Operations
+ref table Inventory
+ref table Reorders
+ref table Orders
+ref table Production
+ref table Quality
+ref table Procurement
+ref table 'Data Quality'
+ref table 'Demand History'
+ref table Forecast
+ref table Backtest
+ref table 'Production Plan'
+ref table Capacity
+ref table 'Planning Materials'
+ref table Calendar
+ref table Metrics
+
+ref cultureInfo en-US

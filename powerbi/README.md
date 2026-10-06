@@ -1,26 +1,45 @@
-# Power BI consumption plan (later phase)
+# Rivaline Power BI management intelligence
 
-No dashboard or PBIX file is implemented. Phase 3 provides eight PostgreSQL reporting views;
-see docs/19-api-and-analytics.md for grains and docs/20-kpi-dictionary.md for measures.
+Open **RivalineOperations.pbip** in Power BI Desktop for the Phase 7 report. The original
+RivalineOperations.pbix is retained unchanged locally and ignored; it does not contain the
+newly authored Phase 7 definitions.
 
-A future report should connect to PostgreSQL using an externally configured read-only reporting
-role. Use integer keys for relationships and preserve view grain: sales line, production order,
-inspection, purchase line and inventory lot. Pre-aggregated views avoid repeated header quantities.
-Consume vw_operations_kpis/vw_operations_quantities for the same all-time definitions as the API.
-Keep quantities separated by metric, item type and unit. Do not sum rates or issue counts across
-joins that repeat rows. Define refresh cadence, date dimensions and any period-specific measures
-before building reports. Authentication, role grants and credentials belong in secure local/host
-configuration; no credentials are embedded in report assets.
+Status: **verified by code and against PostgreSQL; manual Desktop refresh/render validation passed**.
+There are six PBIR report pages, 62 generated visuals, 21 model tables, 25 single-direction
+relationships and 39 measures. No new PostgreSQL views or migrations were needed.
 
+- [Connection, architecture, refresh and interview walkthrough](../docs/28-powerbi-management-intelligence.md)
+- [Phase 7 validation report](../docs/29-phase-7-validation.md)
+- [Entity grains, relationships and full DAX catalogue](model-and-measures.md)
+- [Exact page/visual bindings and manual build/acceptance checklist](page-build-specification.md)
 
-Phase 4 adds vw_inventory_risk, vw_material_requirements and vw_reorder_recommendations.
-Use the documented pooled-stock assumptions; do not sum historical recommendation runs together.
-The run code identifies a calculation snapshot. See docs/22-inventory-and-reorder.md for grains
-and limitations. No Power BI file or client connection has been implemented or validated.
+## First manual refresh
 
+1. Open the PBIP, not the original PBIX. Verify the six nonsecret parameters in Power Query.
+2. Connect to localhost:5432 / rivaline. Enter credentials only in Desktop's database
+   authentication dialog. Python's .env is ignored and is not copied into Power BI.
+3. Refresh all, check model relationships/measure evaluation, and inspect every page.
+4. Confirm the reference values in the validation report before treating visuals as verified.
+5. Save the project and review changes. Do not commit/push until explicitly authorised.
 
-Phase 5 adds vw_demand_history, vw_demand_forecast, vw_forecast_accuracy and vw_forecast_backtest.
-Keep dataset, product, unit and forecast run/origin in joins. Backtests expose actual/predicted values;
-metric rows separate validation from holdout and product from overall-unit scope. Do not sum
-historical forecast vintages or add the archived evaluation universe to operational sales totals.
-No Power BI artifact or client connection is included. See docs/24-demand-forecasting.md.
+## Source control
+
+Keep the PBIP, Report/SemanticModel textual definitions, .platform identities and required theme.
+Ignore all .pbi local folders, binary PBIX exports and .phase7-backup. The original textual
+project was backed up locally; the original PBIX hash is recorded in preservation evidence.
+The schemas folder contains pinned Microsoft JSON schemas for offline validation.
+
+## Reproduction and checks
+
+```powershell
+.venv\Scripts\python.exe -m scripts.build_powerbi
+.venv\Scripts\python.exe -m scripts.validate_powerbi
+.venv\Scripts\python.exe -m scripts.verify_phase7
+.venv\Scripts\python.exe -m pytest -q tests/test_powerbi.py --postgres
+```
+
+Run from the repository root. Build is deterministic/offline but overwrites generated report/model
+files; preserve or port Desktop edits before rebuilding. Validation uses the jsonschema dev
+dependency. The live verifier is READ ONLY and does not create forecasts/plans, reload ETL,
+change data or start Power BI. JSON validation does not prove TMDL parsing, DAX execution,
+connector refresh, native visual-role behavior, tooltip rendering or page navigation in Desktop.

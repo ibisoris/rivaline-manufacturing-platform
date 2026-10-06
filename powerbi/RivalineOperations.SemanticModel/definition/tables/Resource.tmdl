@@ -1,0 +1,34 @@
+/// One production resource
+table Resource
+	lineageTag: e3494d66-320d-4bda-b6da-733c47f5b157
+
+	column id
+		dataType: int64
+		isHidden
+		lineageTag: 08f96098-bb4a-458f-8167-fee7df7ebb2e
+		summarizeBy: none
+		sourceColumn: id
+
+	column code
+		dataType: string
+		lineageTag: fac33e2a-335d-4ef8-8f72-795bfa483541
+		summarizeBy: none
+		sourceColumn: code
+
+	column name
+		dataType: string
+		lineageTag: 3176da4d-ffa9-44b0-b8f5-65e1d4b08844
+		summarizeBy: none
+		sourceColumn: name
+
+	partition Resource = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="production_resources"]}[Data],
+				    Filtered = Source,
+				    Selected = Table.SelectColumns(Filtered, {"id", "code", "name"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"id", Int64.Type}, {"code", type text}, {"name", type text}}),
+				    Result = Typed
+				in
+				    Result

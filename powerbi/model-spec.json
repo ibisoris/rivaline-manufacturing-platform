@@ -1,0 +1,1206 @@
+{
+  "parameters": {
+    "Server": "localhost:5432",
+    "Database": "rivaline",
+    "ForecastRunCode": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+    "ReorderRunCode": "1c3d3c88cf4748221f07242d42a5599b4638fc96dad4ad223c37551f1de71e65",
+    "PlanRunCode": "3ecf5b0a02aec4c3b39893468a2177d0730566849d67dfae82ec784fcee5828c",
+    "DatasetCode": "SYN-DEMAND-24M-V1"
+  },
+  "tables": [
+    {
+      "name": "Product",
+      "source": "products",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int64"
+        },
+        {
+          "name": "code",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "unit_of_measure",
+          "type": "string"
+        }
+      ],
+      "grain": "One product",
+      "filters": []
+    },
+    {
+      "name": "Material",
+      "source": "raw_materials",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int64"
+        },
+        {
+          "name": "code",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "unit_of_measure",
+          "type": "string"
+        }
+      ],
+      "grain": "One material",
+      "filters": []
+    },
+    {
+      "name": "Supplier",
+      "source": "suppliers",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int64"
+        },
+        {
+          "name": "code",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "grain": "One supplier",
+      "filters": []
+    },
+    {
+      "name": "Customer",
+      "source": "customers",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int64"
+        },
+        {
+          "name": "code",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "grain": "One customer",
+      "filters": []
+    },
+    {
+      "name": "Resource",
+      "source": "production_resources",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int64"
+        },
+        {
+          "name": "code",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "grain": "One production resource",
+      "filters": []
+    },
+    {
+      "name": "Operations",
+      "source": "vw_operations_kpis",
+      "columns": [
+        {
+          "name": "order_count",
+          "type": "int64"
+        },
+        {
+          "name": "shipment_count",
+          "type": "int64"
+        },
+        {
+          "name": "production_batch_count",
+          "type": "double"
+        },
+        {
+          "name": "inspected_batch_count",
+          "type": "double"
+        },
+        {
+          "name": "passed_batch_count",
+          "type": "double"
+        },
+        {
+          "name": "etl_rows_extracted",
+          "type": "int64"
+        },
+        {
+          "name": "etl_rows_accepted",
+          "type": "int64"
+        },
+        {
+          "name": "etl_rows_rejected",
+          "type": "int64"
+        },
+        {
+          "name": "data_quality_issue_count",
+          "type": "int64"
+        },
+        {
+          "name": "etl_successful_runs",
+          "type": "int64"
+        }
+      ],
+      "grain": "Singleton all-time trusted operational summary",
+      "filters": []
+    },
+    {
+      "name": "Inventory",
+      "source": "vw_inventory_risk",
+      "columns": [
+        {
+          "name": "item_id",
+          "type": "int64"
+        },
+        {
+          "name": "item_code",
+          "type": "string"
+        },
+        {
+          "name": "unit_of_measure",
+          "type": "string"
+        },
+        {
+          "name": "on_hand_quantity",
+          "type": "double"
+        },
+        {
+          "name": "reserved_quantity",
+          "type": "double"
+        },
+        {
+          "name": "incoming_quantity",
+          "type": "double"
+        },
+        {
+          "name": "required_quantity",
+          "type": "double"
+        },
+        {
+          "name": "projected_quantity",
+          "type": "double"
+        },
+        {
+          "name": "shortage_quantity",
+          "type": "double"
+        },
+        {
+          "name": "recommended_quantity",
+          "type": "double"
+        },
+        {
+          "name": "risk_status",
+          "type": "string"
+        }
+      ],
+      "grain": "One pooled raw material",
+      "filters": [
+        [
+          "item_type",
+          "literal",
+          "raw_material"
+        ]
+      ]
+    },
+    {
+      "name": "Reorders",
+      "source": "vw_reorder_recommendations",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int64"
+        },
+        {
+          "name": "raw_material_id",
+          "type": "int64"
+        },
+        {
+          "name": "quantity",
+          "type": "double"
+        },
+        {
+          "name": "status",
+          "type": "string"
+        },
+        {
+          "name": "reason",
+          "type": "string"
+        },
+        {
+          "name": "run_code",
+          "type": "string"
+        },
+        {
+          "name": "generated_at",
+          "type": "dateTime"
+        }
+      ],
+      "grain": "One recommendation in the selected reorder run",
+      "filters": [
+        [
+          "run_code",
+          "parameter",
+          "ReorderRunCode"
+        ]
+      ]
+    },
+    {
+      "name": "Orders",
+      "source": "vw_order_fulfilment",
+      "columns": [
+        {
+          "name": "sales_order_line_id",
+          "type": "int64"
+        },
+        {
+          "name": "sales_order_id",
+          "type": "int64"
+        },
+        {
+          "name": "order_code",
+          "type": "string"
+        },
+        {
+          "name": "customer_id",
+          "type": "int64"
+        },
+        {
+          "name": "product_id",
+          "type": "int64"
+        },
+        {
+          "name": "unit_of_measure",
+          "type": "string"
+        },
+        {
+          "name": "order_date",
+          "type": "dateTime"
+        },
+        {
+          "name": "ordered_quantity",
+          "type": "double"
+        },
+        {
+          "name": "shipped_quantity",
+          "type": "double"
+        },
+        {
+          "name": "outstanding_quantity",
+          "type": "double"
+        },
+        {
+          "name": "order_status",
+          "type": "string"
+        }
+      ],
+      "grain": "One sales order line",
+      "filters": []
+    },
+    {
+      "name": "Production",
+      "source": "vw_production_performance",
+      "columns": [
+        {
+          "name": "production_order_id",
+          "type": "int64"
+        },
+        {
+          "name": "product_id",
+          "type": "int64"
+        },
+        {
+          "name": "unit_of_measure",
+          "type": "string"
+        },
+        {
+          "name": "planned_start",
+          "type": "dateTime"
+        },
+        {
+          "name": "planned_quantity",
+          "type": "double"
+        },
+        {
+          "name": "actual_quantity",
+          "type": "double"
+        },
+        {
+          "name": "inspected_batches",
+          "type": "int64"
+        },
+        {
+          "name": "passed_batches",
+          "type": "int64"
+        },
+        {
+          "name": "order_status",
+          "type": "string"
+        }
+      ],
+      "grain": "One operational production order",
+      "filters": []
+    },
+    {
+      "name": "Quality",
+      "source": "vw_quality_performance",
+      "columns": [
+        {
+          "name": "inspection_id",
+          "type": "int64"
+        },
+        {
+          "name": "production_batch_id",
+          "type": "int64"
+        },
+        {
+          "name": "product_id",
+          "type": "int64"
+        },
+        {
+          "name": "test_code",
+          "type": "string"
+        },
+        {
+          "name": "inspected_at",
+          "type": "dateTime"
+        },
+        {
+          "name": "result",
+          "type": "string"
+        },
+        {
+          "name": "pass_indicator",
+          "type": "int64"
+        },
+        {
+          "name": "fail_indicator",
+          "type": "int64"
+        },
+        {
+          "name": "pending_indicator",
+          "type": "int64"
+        }
+      ],
+      "grain": "One inspection; inspection rates differ from batch pass rate",
+      "filters": []
+    },
+    {
+      "name": "Procurement",
+      "source": "vw_supplier_material_flow",
+      "columns": [
+        {
+          "name": "purchase_order_line_id",
+          "type": "int64"
+        },
+        {
+          "name": "supplier_id",
+          "type": "int64"
+        },
+        {
+          "name": "raw_material_id",
+          "type": "int64"
+        },
+        {
+          "name": "unit_of_measure",
+          "type": "string"
+        },
+        {
+          "name": "order_date",
+          "type": "dateTime"
+        },
+        {
+          "name": "ordered_quantity",
+          "type": "double"
+        },
+        {
+          "name": "consumed_quantity",
+          "type": "double"
+        },
+        {
+          "name": "order_status",
+          "type": "string"
+        }
+      ],
+      "grain": "One purchase order line; orders are not measured receipts",
+      "filters": []
+    },
+    {
+      "name": "Data Quality",
+      "source": "vw_data_quality_summary",
+      "columns": [
+        {
+          "name": "etl_run_id",
+          "type": "int64"
+        },
+        {
+          "name": "run_code",
+          "type": "string"
+        },
+        {
+          "name": "source_system",
+          "type": "string"
+        },
+        {
+          "name": "entity_name",
+          "type": "string"
+        },
+        {
+          "name": "rule_code",
+          "type": "string"
+        },
+        {
+          "name": "severity",
+          "type": "string"
+        },
+        {
+          "name": "issue_count",
+          "type": "int64"
+        }
+      ],
+      "grain": "One ETL run/source/entity/rule/severity aggregate",
+      "filters": []
+    },
+    {
+      "name": "Demand History",
+      "source": "vw_demand_history",
+      "columns": [
+        {
+          "name": "product_id",
+          "type": "int64"
+        },
+        {
+          "name": "period_start",
+          "type": "dateTime"
+        },
+        {
+          "name": "unit_of_measure",
+          "type": "string"
+        },
+        {
+          "name": "quantity",
+          "type": "double"
+        },
+        {
+          "name": "source_rows",
+          "type": "int64"
+        },
+        {
+          "name": "dataset_code",
+          "type": "string"
+        }
+      ],
+      "grain": "One archived dataset/product/month",
+      "filters": [
+        [
+          "dataset_code",
+          "parameter",
+          "DatasetCode"
+        ]
+      ]
+    },
+    {
+      "name": "Forecast",
+      "source": "vw_demand_forecast",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int64"
+        },
+        {
+          "name": "product_id",
+          "type": "int64"
+        },
+        {
+          "name": "period_start",
+          "type": "dateTime"
+        },
+        {
+          "name": "period_end",
+          "type": "dateTime"
+        },
+        {
+          "name": "quantity",
+          "type": "double"
+        },
+        {
+          "name": "selected_model",
+          "type": "string"
+        },
+        {
+          "name": "validation_mae",
+          "type": "double"
+        },
+        {
+          "name": "validation_rmse",
+          "type": "double"
+        },
+        {
+          "name": "run_code",
+          "type": "string"
+        },
+        {
+          "name": "unit_of_measure",
+          "type": "string"
+        },
+        {
+          "name": "dataset_code",
+          "type": "string"
+        }
+      ],
+      "grain": "One selected forecast run/product/month",
+      "filters": [
+        [
+          "run_code",
+          "parameter",
+          "ForecastRunCode"
+        ]
+      ]
+    },
+    {
+      "name": "Backtest",
+      "source": "vw_forecast_backtest",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int64"
+        },
+        {
+          "name": "product_id",
+          "type": "int64"
+        },
+        {
+          "name": "period_start",
+          "type": "dateTime"
+        },
+        {
+          "name": "model_name",
+          "type": "string"
+        },
+        {
+          "name": "evaluation_split",
+          "type": "string"
+        },
+        {
+          "name": "actual_quantity",
+          "type": "double"
+        },
+        {
+          "name": "predicted_quantity",
+          "type": "double"
+        },
+        {
+          "name": "signed_error",
+          "type": "double"
+        },
+        {
+          "name": "run_code",
+          "type": "string"
+        },
+        {
+          "name": "unit_of_measure",
+          "type": "string"
+        }
+      ],
+      "grain": "One selected-model product/holdout month; selected model joined without repeating horizon",
+      "filters": [
+        [
+          "run_code",
+          "parameter",
+          "ForecastRunCode"
+        ],
+        [
+          "evaluation_split",
+          "literal",
+          "test"
+        ]
+      ]
+    },
+    {
+      "name": "Production Plan",
+      "source": "vw_production_plan",
+      "columns": [
+        {
+          "name": "product_id",
+          "type": "int64"
+        },
+        {
+          "name": "resource_id",
+          "type": "int64"
+        },
+        {
+          "name": "period_start",
+          "type": "dateTime"
+        },
+        {
+          "name": "unit_of_measure",
+          "type": "string"
+        },
+        {
+          "name": "gross_demand",
+          "type": "double"
+        },
+        {
+          "name": "inventory_offset",
+          "type": "double"
+        },
+        {
+          "name": "net_requirement",
+          "type": "double"
+        },
+        {
+          "name": "proposed_quantity",
+          "type": "double"
+        },
+        {
+          "name": "allocated_quantity",
+          "type": "double"
+        },
+        {
+          "name": "unmet_quantity",
+          "type": "double"
+        },
+        {
+          "name": "batch_count",
+          "type": "int64"
+        },
+        {
+          "name": "status",
+          "type": "string"
+        },
+        {
+          "name": "explanation",
+          "type": "string"
+        },
+        {
+          "name": "plan_run_code",
+          "type": "string"
+        },
+        {
+          "name": "forecast_run_code",
+          "type": "string"
+        }
+      ],
+      "grain": "One plan run/product/month",
+      "filters": [
+        [
+          "plan_run_code",
+          "parameter",
+          "PlanRunCode"
+        ],
+        [
+          "forecast_run_code",
+          "parameter",
+          "ForecastRunCode"
+        ]
+      ]
+    },
+    {
+      "name": "Capacity",
+      "source": "vw_capacity_utilisation",
+      "columns": [
+        {
+          "name": "resource_id",
+          "type": "int64"
+        },
+        {
+          "name": "resource_code",
+          "type": "string"
+        },
+        {
+          "name": "period_start",
+          "type": "dateTime"
+        },
+        {
+          "name": "required_hours",
+          "type": "double"
+        },
+        {
+          "name": "available_hours",
+          "type": "double"
+        },
+        {
+          "name": "allocated_hours",
+          "type": "double"
+        },
+        {
+          "name": "overload_hours",
+          "type": "double"
+        },
+        {
+          "name": "plan_run_code",
+          "type": "string"
+        }
+      ],
+      "grain": "One plan run/resource/month; capacity never taken from product lines",
+      "filters": [
+        [
+          "plan_run_code",
+          "parameter",
+          "PlanRunCode"
+        ]
+      ]
+    },
+    {
+      "name": "Planning Materials",
+      "source": "vw_planning_materials",
+      "columns": [
+        {
+          "name": "product_id",
+          "type": "int64"
+        },
+        {
+          "name": "raw_material_id",
+          "type": "int64"
+        },
+        {
+          "name": "period_start",
+          "type": "dateTime"
+        },
+        {
+          "name": "unit_of_measure",
+          "type": "string"
+        },
+        {
+          "name": "required_quantity",
+          "type": "double"
+        },
+        {
+          "name": "available_quantity",
+          "type": "double"
+        },
+        {
+          "name": "shortage_quantity",
+          "type": "double"
+        },
+        {
+          "name": "allocated_quantity",
+          "type": "double"
+        },
+        {
+          "name": "remaining_quantity",
+          "type": "double"
+        },
+        {
+          "name": "plan_run_code",
+          "type": "string"
+        }
+      ],
+      "grain": "One plan run/product/month/material; availability is non-additive",
+      "filters": [
+        [
+          "plan_run_code",
+          "parameter",
+          "PlanRunCode"
+        ]
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "fact": "Inventory",
+      "column": "item_id",
+      "dimension": "Material",
+      "key": "id"
+    },
+    {
+      "fact": "Reorders",
+      "column": "raw_material_id",
+      "dimension": "Material",
+      "key": "id"
+    },
+    {
+      "fact": "Orders",
+      "column": "product_id",
+      "dimension": "Product",
+      "key": "id"
+    },
+    {
+      "fact": "Orders",
+      "column": "customer_id",
+      "dimension": "Customer",
+      "key": "id"
+    },
+    {
+      "fact": "Orders",
+      "column": "order_date",
+      "dimension": "Calendar",
+      "key": "Date"
+    },
+    {
+      "fact": "Production",
+      "column": "product_id",
+      "dimension": "Product",
+      "key": "id"
+    },
+    {
+      "fact": "Production",
+      "column": "planned_start",
+      "dimension": "Calendar",
+      "key": "Date"
+    },
+    {
+      "fact": "Quality",
+      "column": "product_id",
+      "dimension": "Product",
+      "key": "id"
+    },
+    {
+      "fact": "Procurement",
+      "column": "raw_material_id",
+      "dimension": "Material",
+      "key": "id"
+    },
+    {
+      "fact": "Procurement",
+      "column": "supplier_id",
+      "dimension": "Supplier",
+      "key": "id"
+    },
+    {
+      "fact": "Procurement",
+      "column": "order_date",
+      "dimension": "Calendar",
+      "key": "Date"
+    },
+    {
+      "fact": "Demand History",
+      "column": "product_id",
+      "dimension": "Product",
+      "key": "id"
+    },
+    {
+      "fact": "Demand History",
+      "column": "period_start",
+      "dimension": "Calendar",
+      "key": "Date"
+    },
+    {
+      "fact": "Forecast",
+      "column": "product_id",
+      "dimension": "Product",
+      "key": "id"
+    },
+    {
+      "fact": "Forecast",
+      "column": "period_start",
+      "dimension": "Calendar",
+      "key": "Date"
+    },
+    {
+      "fact": "Backtest",
+      "column": "product_id",
+      "dimension": "Product",
+      "key": "id"
+    },
+    {
+      "fact": "Backtest",
+      "column": "period_start",
+      "dimension": "Calendar",
+      "key": "Date"
+    },
+    {
+      "fact": "Production Plan",
+      "column": "product_id",
+      "dimension": "Product",
+      "key": "id"
+    },
+    {
+      "fact": "Production Plan",
+      "column": "resource_id",
+      "dimension": "Resource",
+      "key": "id"
+    },
+    {
+      "fact": "Production Plan",
+      "column": "period_start",
+      "dimension": "Calendar",
+      "key": "Date"
+    },
+    {
+      "fact": "Capacity",
+      "column": "resource_id",
+      "dimension": "Resource",
+      "key": "id"
+    },
+    {
+      "fact": "Capacity",
+      "column": "period_start",
+      "dimension": "Calendar",
+      "key": "Date"
+    },
+    {
+      "fact": "Planning Materials",
+      "column": "product_id",
+      "dimension": "Product",
+      "key": "id"
+    },
+    {
+      "fact": "Planning Materials",
+      "column": "raw_material_id",
+      "dimension": "Material",
+      "key": "id"
+    },
+    {
+      "fact": "Planning Materials",
+      "column": "period_start",
+      "dimension": "Calendar",
+      "key": "Date"
+    }
+  ],
+  "measures": [
+    {
+      "name": "Orders",
+      "expression": "MAX(Operations[order_count])",
+      "format": "#,0",
+      "description": "All-time noncancelled orders; unaffected by product/month filters."
+    },
+    {
+      "name": "Sales Quantity kg",
+      "expression": "CALCULATE(SUM(Orders[ordered_quantity]), Orders[order_status] <> \"cancelled\", Orders[unit_of_measure] = \"kg\")",
+      "format": "#,0.00",
+      "description": "Operational booked quantity, separate from the archived evaluation universe."
+    },
+    {
+      "name": "Material On Hand kg",
+      "expression": "CALCULATE(SUM(Inventory[on_hand_quantity]), Inventory[unit_of_measure] = \"kg\")",
+      "format": "#,0.00",
+      "description": "Pooled raw-material stock only; do not add finished goods."
+    },
+    {
+      "name": "Projected Material kg",
+      "expression": "CALCULATE(SUM(Inventory[projected_quantity]), Inventory[unit_of_measure] = \"kg\")",
+      "format": "#,0.00",
+      "description": "Phase 4 available plus assumed incoming less current requirements."
+    },
+    {
+      "name": "Materials At Risk",
+      "expression": "COUNTROWS(FILTER(Inventory, Inventory[risk_status] IN {\"shortage\", \"below_safety\", \"below_reorder\", \"invalid_policy\", \"incomplete_bom\"}))",
+      "format": "#,0",
+      "description": "Excludes at_reorder: equality does not trigger replenishment."
+    },
+    {
+      "name": "Recommended Reorder kg",
+      "expression": "CALCULATE(SUM(Reorders[quantity]), Material[unit_of_measure] = \"kg\", Reorders[status] = \"proposed\")",
+      "format": "#,0.00",
+      "description": "Selected immutable reorder run, proposed status; not open supply."
+    },
+    {
+      "name": "Procurement Ordered kg",
+      "expression": "CALCULATE(SUM(Procurement[ordered_quantity]), Procurement[unit_of_measure] = \"kg\", Procurement[order_status] <> \"cancelled\")",
+      "format": "#,0.00",
+      "description": "Ordered quantity, not measured receipts or on-time delivery."
+    },
+    {
+      "name": "Archived Demand kg",
+      "expression": "CALCULATE(SUM('Demand History'[quantity]), 'Demand History'[unit_of_measure] = \"kg\")",
+      "format": "#,0.00",
+      "description": "Alternative synthetic history; never add to operational sales."
+    },
+    {
+      "name": "Forecast Demand kg",
+      "expression": "CALCULATE(SUM(Forecast[quantity]), Forecast[unit_of_measure] = \"kg\")",
+      "format": "#,0.000000",
+      "description": "One selected forecast vintage, monthly future demand."
+    },
+    {
+      "name": "Holdout Actual kg",
+      "expression": "SUM(Backtest[actual_quantity])",
+      "format": "#,0.000000",
+      "description": "Actual demand on selected-model holdout months only."
+    },
+    {
+      "name": "Holdout Prediction kg",
+      "expression": "SUM(Backtest[predicted_quantity])",
+      "format": "#,0.000000",
+      "description": "Selected model prediction on holdout months only."
+    },
+    {
+      "name": "Holdout Variance kg",
+      "expression": "SUMX(Backtest, Backtest[predicted_quantity] - Backtest[actual_quantity])",
+      "format": "#,0.000000",
+      "description": "Signed holdout error; never future forecast minus missing future actual."
+    },
+    {
+      "name": "Selected Policy MAE kg",
+      "expression": "AVERAGEX(Backtest, ABS(Backtest[predicted_quantity] - Backtest[actual_quantity]))",
+      "format": "#,0.000000",
+      "description": "Mean absolute error across selected-model test observations, not mean candidate MAEs."
+    },
+    {
+      "name": "Selected Policy RMSE kg",
+      "expression": "SQRT(AVERAGEX(Backtest, POWER(Backtest[predicted_quantity] - Backtest[actual_quantity], 2)))",
+      "format": "#,0.000000",
+      "description": "Root of pooled squared selected-model test errors."
+    },
+    {
+      "name": "Selected Model",
+      "expression": "SELECTEDVALUE(Forecast[selected_model], \"Multiple selected models\")",
+      "format": null,
+      "description": "Shows a single selected model only when filter context supports one."
+    },
+    {
+      "name": "Production Requirement kg",
+      "expression": "CALCULATE(SUM('Production Plan'[net_requirement]), 'Production Plan'[unit_of_measure] = \"kg\")",
+      "format": "#,0.000000",
+      "description": "Forecast netted against original finished stock once across the horizon."
+    },
+    {
+      "name": "Inventory Offset kg",
+      "expression": "SUM('Production Plan'[inventory_offset])",
+      "format": "#,0.000000",
+      "description": "Stock offset within one selected plan; not new supply."
+    },
+    {
+      "name": "Proposed Production kg",
+      "expression": "SUM('Production Plan'[proposed_quantity])",
+      "format": "#,0.000000",
+      "description": "Includes any minimum-batch surplus; not approved execution."
+    },
+    {
+      "name": "Allocated Production kg",
+      "expression": "SUM('Production Plan'[allocated_quantity])",
+      "format": "#,0.000000",
+      "description": "Whole batches that fit both materials and residual capacity."
+    },
+    {
+      "name": "Constrained Production kg",
+      "expression": "CALCULATE(SUM('Production Plan'[unmet_quantity]), 'Production Plan'[status] <> \"FEASIBLE\")",
+      "format": "#,0.000000",
+      "description": "Unmet net demand, not the whole proposed quantity of a partly allocated line."
+    },
+    {
+      "name": "Proposed Batches",
+      "expression": "SUM('Production Plan'[batch_count])",
+      "format": "#,0",
+      "description": "Proposed computational batches; no execution records."
+    },
+    {
+      "name": "Material Requirement kg",
+      "expression": "CALCULATE(SUM('Planning Materials'[required_quantity]), 'Planning Materials'[unit_of_measure] = \"kg\")",
+      "format": "#,0.00",
+      "description": "Component needs at plan/product/month/material grain."
+    },
+    {
+      "name": "Material Shortage kg",
+      "expression": "CALCULATE(SUM('Planning Materials'[shortage_quantity]), 'Planning Materials'[unit_of_measure] = \"kg\")",
+      "format": "#,0.00",
+      "description": "Incremental shortages at the allocation turn, not a purchase instruction."
+    },
+    {
+      "name": "Capacity Required Hours",
+      "expression": "SUM(Capacity[required_hours])",
+      "format": "#,0.00",
+      "description": "Resource-month proposed workload; intentionally unaffected by product slicers."
+    },
+    {
+      "name": "Capacity Available Hours",
+      "expression": "SUM(Capacity[available_hours])",
+      "format": "#,0.00",
+      "description": "Shared residual capacity counted once per resource/month."
+    },
+    {
+      "name": "Capacity Allocated Hours",
+      "expression": "SUM(Capacity[allocated_hours])",
+      "format": "#,0.00",
+      "description": "Whole-batch allocated workload."
+    },
+    {
+      "name": "Capacity Utilisation %",
+      "expression": "DIVIDE([Capacity Required Hours], [Capacity Available Hours])",
+      "format": "0.00%",
+      "description": "Ratio of aggregate hours, not an average of row percentages; null if zero capacity."
+    },
+    {
+      "name": "Capacity Shortfall Hours",
+      "expression": "SUM(Capacity[overload_hours])",
+      "format": "#,0.00",
+      "description": "Sum positive resource-month overload; spare capacity elsewhere cannot cancel it."
+    },
+    {
+      "name": "December Mixing Required Hours",
+      "expression": "CALCULATE([Capacity Required Hours], REMOVEFILTERS('Calendar'), REMOVEFILTERS(Resource), 'Calendar'[Month] = \"2026-12\", Resource[code] = \"SYN-MIX\")",
+      "format": "0.00",
+      "description": "Explicit verified example; other cards show current page context."
+    },
+    {
+      "name": "December Mixing Available Hours",
+      "expression": "CALCULATE([Capacity Available Hours], REMOVEFILTERS('Calendar'), REMOVEFILTERS(Resource), 'Calendar'[Month] = \"2026-12\", Resource[code] = \"SYN-MIX\")",
+      "format": "0.00",
+      "description": "Explicit December resource capacity, not horizon sum."
+    },
+    {
+      "name": "Batch QC Pass Rate %",
+      "expression": "DIVIDE(MAX(Operations[passed_batch_count]), MAX(Operations[inspected_batch_count]))",
+      "format": "0.00%",
+      "description": "Phase 3 all-time eligible batch definition; not inspection pass rate."
+    },
+    {
+      "name": "QC Inspections",
+      "expression": "COUNTROWS(Quality)",
+      "format": "#,0",
+      "description": "Inspection-grain count, including repeats."
+    },
+    {
+      "name": "QC Passed Inspections",
+      "expression": "SUM(Quality[pass_indicator])",
+      "format": "#,0",
+      "description": "Passed inspection records; not released batches."
+    },
+    {
+      "name": "ETL Accepted Rows",
+      "expression": "MAX(Operations[etl_rows_accepted])",
+      "format": "#,0",
+      "description": "Successful execution events, including repeated accepted rows on replay."
+    },
+    {
+      "name": "ETL Rejected Rows",
+      "expression": "MAX(Operations[etl_rows_rejected])",
+      "format": "#,0",
+      "description": "Successful execution rejected events, including replay."
+    },
+    {
+      "name": "ETL Acceptance Rate %",
+      "expression": "DIVIDE([ETL Accepted Rows], MAX(Operations[etl_rows_extracted]))",
+      "format": "0.00%",
+      "description": "Weighted accepted/extracted across successful runs."
+    },
+    {
+      "name": "ETL Rejection Rate %",
+      "expression": "DIVIDE([ETL Rejected Rows], MAX(Operations[etl_rows_extracted]))",
+      "format": "0.00%",
+      "description": "Weighted rejected/extracted across successful runs."
+    },
+    {
+      "name": "Data Quality Issues",
+      "expression": "SUM('Data Quality'[issue_count])",
+      "format": "#,0",
+      "description": "Issue observations at ETL/run/source/rule grain; not distinct source records."
+    },
+    {
+      "name": "ETL Successful Runs",
+      "expression": "MAX(Operations[etl_successful_runs])",
+      "format": "#,0",
+      "description": "Audited successful ETL executions."
+    }
+  ]
+}

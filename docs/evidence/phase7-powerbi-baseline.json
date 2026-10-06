@@ -1,0 +1,58 @@
+{
+  "RivalineOperations.pbip": {
+    "bytes": 297,
+    "sha256": "671a3b5c169e660d1d2d2559130a6ef117b469a893947ce693d955b494b9b974"
+  },
+  "RivalineOperations.pbix": {
+    "bytes": 16391,
+    "sha256": "eda2fda90acaa7209a950b940f8436f6e665f5a7018f9516666d2709894b31e7"
+  },
+  "RivalineOperations.Report/.platform": {
+    "bytes": 312,
+    "sha256": "1e16b8785f5a25119c83c8963614396a8fdf05b29de413d6d4497f859532a961"
+  },
+  "RivalineOperations.Report/definition.pbir": {
+    "bytes": 252,
+    "sha256": "da6e2fd1f965ab8186fc78c5407aefe8991782fe3ff65ded8844b60e26cef189"
+  },
+  "RivalineOperations.SemanticModel/.platform": {
+    "bytes": 319,
+    "sha256": "eaf485698eac1f7a3f499531901749dc90083579c4a98a0648270811e5098a77"
+  },
+  "RivalineOperations.SemanticModel/definition.pbism": {
+    "bytes": 170,
+    "sha256": "73a1ae4c89d7488f553788adc772a04c805d1c9e0d7333e2b2b5476aad8e5a5f"
+  },
+  "RivalineOperations.Report/definition/report.json": {
+    "bytes": 1195,
+    "sha256": "e6557ff452b09d332580911ba81fe6881ef6f05c44d1641a41655d54f72d488c"
+  },
+  "RivalineOperations.Report/definition/version.json": {
+    "bytes": 152,
+    "sha256": "c8bdd966a85f1eaab4312d2096b6d7b508243e4d7bc5a4d25af3cfcb1056a4e7"
+  },
+  "RivalineOperations.Report/definition/pages/pages.json": {
+    "bytes": 224,
+    "sha256": "7e297d411acbc3d7b62dfc2090523620226e1c0ced0fd16a74ff5e1822a15e6d"
+  },
+  "RivalineOperations.Report/definition/pages/aae74f90d08cb53226af/page.json": {
+    "bytes": 251,
+    "sha256": "3d1dff937b7ec843f4bc070366077536e74d3196008e1f10a05356a0596a28a7"
+  },
+  "RivalineOperations.Report/StaticResources/SharedResources/BaseThemes/Fluent2-CY26SU09.json": {
+    "bytes": 99684,
+    "sha256": "eb556359c12fe93c43047b494aa086e6f832a6bac211e6375b742c35ee784c78"
+  },
+  "RivalineOperations.SemanticModel/definition/database.tmdl": {
+    "bytes": 39,
+    "sha256": "822c914b643bca32bb20abd8a762df8204a1b9ef02acc2bc7348727f6699cb96"
+  },
+  "RivalineOperations.SemanticModel/definition/model.tmdl": {
+    "bytes": 323,
+    "sha256": "29a1967c0578f59c8467a569944d743b05ff3ecd33c40ddd3a5535c43cda98a4"
+  },
+  "RivalineOperations.SemanticModel/definition/cultures/en-US.tmdl": {
+    "bytes": 21,
+    "sha256": "1109e38ebc2a662c6ac3926717b17f040c1ee6812d0a3de88d781cdfac626d19"
+  }
+}

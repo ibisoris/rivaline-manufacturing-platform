@@ -1,0 +1,56 @@
+/// One archived dataset/product/month
+table 'Demand History'
+	lineageTag: cebf7484-2f6b-4a6a-822c-3f6e76c85058
+
+	column product_id
+		dataType: int64
+		isHidden
+		lineageTag: 86146e99-fd8a-4953-8823-5ccdac13c362
+		summarizeBy: none
+		sourceColumn: product_id
+
+	column period_start
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: fb60020a-56d8-4074-87ff-8c9559ac1d3d
+		summarizeBy: none
+		sourceColumn: period_start
+
+	column unit_of_measure
+		dataType: string
+		lineageTag: 6f9eabaa-7af4-46ce-bd14-a4703e3354d2
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+	column quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: a10e2203-6d52-415f-b826-848f48ef1df5
+		summarizeBy: none
+		sourceColumn: quantity
+
+	column source_rows
+		dataType: int64
+		lineageTag: 5e3c5bc5-5114-4ea6-88a4-0987e9db83e2
+		summarizeBy: none
+		sourceColumn: source_rows
+
+	column dataset_code
+		dataType: string
+		lineageTag: b1704ef4-7c24-47d1-aeb3-774ed2270c19
+		summarizeBy: none
+		sourceColumn: dataset_code
+
+	partition 'Demand History' = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_demand_history"]}[Data],
+				    Filtered = Table.SelectRows(Source, each [dataset_code] = DatasetCode),
+				    Selected = Table.SelectColumns(Filtered, {"product_id", "period_start", "unit_of_measure", "quantity", "source_rows", "dataset_code"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"product_id", Int64.Type}, {"period_start", type datetime}, {"unit_of_measure", type text}, {"quantity", type number}, {"source_rows", Int64.Type}, {"dataset_code", type text}}),
+				    Result = if Table.IsEmpty(Typed) then error "Selected reporting data is empty or incompatible" else Typed
+				in
+				    Result
+
+	annotation PBI_ResultType = Table

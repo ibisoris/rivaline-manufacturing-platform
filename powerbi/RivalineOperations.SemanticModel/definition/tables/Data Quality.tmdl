@@ -1,0 +1,58 @@
+/// One ETL run/source/entity/rule/severity aggregate
+table 'Data Quality'
+	lineageTag: 01d57f89-3044-4ae4-97e1-f4a7c56521bb
+
+	column etl_run_id
+		dataType: int64
+		isHidden
+		lineageTag: ca8cca39-6294-4398-8a5c-9410fa59e2d4
+		summarizeBy: none
+		sourceColumn: etl_run_id
+
+	column run_code
+		dataType: string
+		lineageTag: 2dfb1a9c-ce49-4b73-b946-87db48a3a48b
+		summarizeBy: none
+		sourceColumn: run_code
+
+	column source_system
+		dataType: string
+		lineageTag: 7a55864a-1ba5-4bfe-a8fd-e4637a60afdb
+		summarizeBy: none
+		sourceColumn: source_system
+
+	column entity_name
+		dataType: string
+		lineageTag: fd217ace-249d-4ffd-a0ad-b928143f75e5
+		summarizeBy: none
+		sourceColumn: entity_name
+
+	column rule_code
+		dataType: string
+		lineageTag: ca3f4fc3-bb8a-4a06-b1da-07b027544244
+		summarizeBy: none
+		sourceColumn: rule_code
+
+	column severity
+		dataType: string
+		lineageTag: 2ed511ca-54f5-4722-a1ad-ad68d697bf0c
+		summarizeBy: none
+		sourceColumn: severity
+
+	column issue_count
+		dataType: int64
+		lineageTag: dbdf6d59-6c12-438a-9926-1acfc634d5d5
+		summarizeBy: none
+		sourceColumn: issue_count
+
+	partition 'Data Quality' = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_data_quality_summary"]}[Data],
+				    Filtered = Source,
+				    Selected = Table.SelectColumns(Filtered, {"etl_run_id", "run_code", "source_system", "entity_name", "rule_code", "severity", "issue_count"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"etl_run_id", Int64.Type}, {"run_code", type text}, {"source_system", type text}, {"entity_name", type text}, {"rule_code", type text}, {"severity", type text}, {"issue_count", Int64.Type}}),
+				    Result = Typed
+				in
+				    Result

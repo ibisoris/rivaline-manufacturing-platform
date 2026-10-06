@@ -1,0 +1,69 @@
+/// One plan run/resource/month; capacity never taken from product lines
+table Capacity
+	lineageTag: 937223f5-22d5-4eed-a58a-e129f8b732c1
+
+	column resource_id
+		dataType: int64
+		isHidden
+		lineageTag: a8adde81-0192-4761-b827-a43b7233ef4d
+		summarizeBy: none
+		sourceColumn: resource_id
+
+	column resource_code
+		dataType: string
+		lineageTag: 1bce9375-d90a-43ae-9f33-3e6da16ed011
+		summarizeBy: none
+		sourceColumn: resource_code
+
+	column period_start
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 1d7bb263-43bb-41b6-9f8a-6a7ffcd4d2ec
+		summarizeBy: none
+		sourceColumn: period_start
+
+	column required_hours
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 8fc15f59-3551-4498-951b-0290d80f43d8
+		summarizeBy: none
+		sourceColumn: required_hours
+
+	column available_hours
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 4ec6bf0b-ddfc-49a5-8884-5dfb011f9fd3
+		summarizeBy: none
+		sourceColumn: available_hours
+
+	column allocated_hours
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: ed181986-a3c2-4081-8093-46fe45c4b2e3
+		summarizeBy: none
+		sourceColumn: allocated_hours
+
+	column overload_hours
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 4dfa66f2-29dd-4b1a-8b6a-3a6357179308
+		summarizeBy: none
+		sourceColumn: overload_hours
+
+	column plan_run_code
+		dataType: string
+		lineageTag: 7284e209-083f-4e8e-9448-fa8d3d6c3a5b
+		summarizeBy: none
+		sourceColumn: plan_run_code
+
+	partition Capacity = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_capacity_utilisation"]}[Data],
+				    Filtered = Table.SelectRows(Source, each [plan_run_code] = PlanRunCode),
+				    Selected = Table.SelectColumns(Filtered, {"resource_id", "resource_code", "period_start", "required_hours", "available_hours", "allocated_hours", "overload_hours", "plan_run_code"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"resource_id", Int64.Type}, {"resource_code", type text}, {"period_start", type datetime}, {"required_hours", type number}, {"available_hours", type number}, {"allocated_hours", type number}, {"overload_hours", type number}, {"plan_run_code", type text}}),
+				    Result = if Table.IsEmpty(#"Production Plan") then error "Select a matching plan and forecast" else Typed
+				in
+				    Result

@@ -1,0 +1,40 @@
+/// One material
+table Material
+	lineageTag: 77b8bebd-b49e-4128-9a9e-75c21ef90907
+
+	column id
+		dataType: int64
+		isHidden
+		lineageTag: 4d645a06-6745-4ade-814e-baa71478a1d6
+		summarizeBy: none
+		sourceColumn: id
+
+	column code
+		dataType: string
+		lineageTag: 1c006f19-ccd2-415c-a7f8-c026c46013b7
+		summarizeBy: none
+		sourceColumn: code
+
+	column name
+		dataType: string
+		lineageTag: 52432fc6-efb1-46a2-b342-e33f7c10afe3
+		summarizeBy: none
+		sourceColumn: name
+
+	column unit_of_measure
+		dataType: string
+		lineageTag: 080e6a66-cbad-4fdf-92ef-1c4f083505bb
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+	partition Material = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="raw_materials"]}[Data],
+				    Filtered = Source,
+				    Selected = Table.SelectColumns(Filtered, {"id", "code", "name", "unit_of_measure"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"id", Int64.Type}, {"code", type text}, {"name", type text}, {"unit_of_measure", type text}}),
+				    Result = Typed
+				in
+				    Result

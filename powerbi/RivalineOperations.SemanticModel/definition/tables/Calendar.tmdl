@@ -1,0 +1,39 @@
+table Calendar
+	lineageTag: d1469d03-99b7-417d-bfbf-d044c316b9ac
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: yyyy-MM-dd
+		lineageTag: 8d67b53c-9b9e-44a1-8f7b-bdf8f3578904
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Month
+		dataType: string
+		lineageTag: d5352f0d-6c21-4082-9d08-ebdcaecbd0d3
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: MonthIndex
+
+	column MonthIndex
+		dataType: int64
+		isHidden
+		lineageTag: c88f7e89-747b-45ba-8164-b49e1e296ad8
+		summarizeBy: none
+		sourceColumn: MonthIndex
+
+	partition Calendar = m
+		mode: import
+		source =
+				let
+				    Start = Date.From(List.Min(#"Demand History"[period_start])),
+				    End = Date.From(List.Max(Forecast[period_end])),
+				    Dates = Table.FromList(List.Dates(Start, Duration.Days(End-Start)+1, #duration(1,0,0,0)), Splitter.SplitByNothing(), {"Date"}),
+				    Typed = Table.TransformColumnTypes(Dates, {{"Date", type date}}),
+				    Months = Table.AddColumn(Typed, "Month", each Date.ToText([Date], "yyyy-MM"), type text),
+				    Result = Table.AddColumn(Months, "MonthIndex", each Date.Year([Date])*100+Date.Month([Date]), Int64.Type)
+				in
+				    Result

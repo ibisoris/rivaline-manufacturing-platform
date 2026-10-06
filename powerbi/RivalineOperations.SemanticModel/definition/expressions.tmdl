@@ -1,0 +1,32 @@
+expression Server = "localhost:5432" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 135fb9df-56dd-4cec-bf5d-0bb391af3192
+
+	annotation PBI_ResultType = Text
+
+expression Database = "rivaline" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 95029a56-09e3-4ef4-b529-34bc94ed126a
+
+	annotation PBI_ResultType = Text
+
+expression ForecastRunCode = "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 11132858-1ff6-4267-aa2a-1d0b339196f9
+
+	annotation PBI_ResultType = Text
+
+expression ReorderRunCode = "1c3d3c88cf4748221f07242d42a5599b4638fc96dad4ad223c37551f1de71e65" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 180c8ad7-8f20-4ee4-8cc5-a72284420bab
+
+	annotation PBI_ResultType = Exception
+
+expression PlanRunCode = "3ecf5b0a02aec4c3b39893468a2177d0730566849d67dfae82ec784fcee5828c" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 71dcf5b1-d84e-4b85-9b1d-23af181a79bd
+
+	annotation PBI_ResultType = Text
+
+expression DatasetCode = "SYN-DEMAND-24M-V1" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 5d79c0fe-892a-4129-a0a7-a25a7a1561ea
+
+	annotation PBI_ResultType = Text
+
+expression ReportingSource = PostgreSQL.Database(Server, Database, [CreateNavigationProperties=false])
+	lineageTag: c38e2bf9-195f-4840-aaa2-fb2e2193de48

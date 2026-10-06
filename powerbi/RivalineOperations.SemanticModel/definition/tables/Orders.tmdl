@@ -1,0 +1,89 @@
+/// One sales order line
+table Orders
+	lineageTag: 50076e36-add8-4682-94c3-a504b97f78de
+
+	column sales_order_line_id
+		dataType: int64
+		isHidden
+		lineageTag: 78e6ed49-67af-49c4-83d2-5be4ce13459f
+		summarizeBy: none
+		sourceColumn: sales_order_line_id
+
+	column sales_order_id
+		dataType: int64
+		isHidden
+		lineageTag: fe777ac4-442d-4b66-8a60-4772631a8dff
+		summarizeBy: none
+		sourceColumn: sales_order_id
+
+	column order_code
+		dataType: string
+		lineageTag: d0454cc6-cc0f-4ee5-836f-f80eb0a073d0
+		summarizeBy: none
+		sourceColumn: order_code
+
+	column customer_id
+		dataType: int64
+		isHidden
+		lineageTag: 1e45f550-06ba-4664-8ac2-8089ab6ad852
+		summarizeBy: none
+		sourceColumn: customer_id
+
+	column product_id
+		dataType: int64
+		isHidden
+		lineageTag: 66b11c94-3470-40dd-8452-d318a12fa380
+		summarizeBy: none
+		sourceColumn: product_id
+
+	column unit_of_measure
+		dataType: string
+		lineageTag: e020ae66-cda0-4086-b23b-dec6a64a15d0
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+	column order_date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 229933f1-c8d3-4da7-91a0-cfc5d21d13f4
+		summarizeBy: none
+		sourceColumn: order_date
+
+	column ordered_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: b1b481d6-7dd4-4f29-91cc-d559f0658c77
+		summarizeBy: none
+		sourceColumn: ordered_quantity
+
+	column shipped_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 9ec3473b-ad55-4b16-97df-aab1096dfbfc
+		summarizeBy: none
+		sourceColumn: shipped_quantity
+
+	column outstanding_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 0c9866bf-342e-4d5d-85cd-e3efed8871e4
+		summarizeBy: none
+		sourceColumn: outstanding_quantity
+
+	column order_status
+		dataType: string
+		lineageTag: c363e5b9-5665-4b83-ad34-e8023bedf27e
+		summarizeBy: none
+		sourceColumn: order_status
+
+	partition Orders = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_order_fulfilment"]}[Data],
+				    Filtered = Source,
+				    Selected = Table.SelectColumns(Filtered, {"sales_order_line_id", "sales_order_id", "order_code", "customer_id", "product_id", "unit_of_measure", "order_date", "ordered_quantity", "shipped_quantity", "outstanding_quantity", "order_status"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"sales_order_line_id", Int64.Type}, {"sales_order_id", Int64.Type}, {"order_code", type text}, {"customer_id", Int64.Type}, {"product_id", Int64.Type}, {"unit_of_measure", type text}, {"order_date", type datetime}, {"ordered_quantity", type number}, {"shipped_quantity", type number}, {"outstanding_quantity", type number}, {"order_status", type text}}),
+				    Result = Typed
+				in
+				    Result

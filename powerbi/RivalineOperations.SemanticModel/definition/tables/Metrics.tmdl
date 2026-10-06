@@ -1,0 +1,206 @@
+table Metrics
+	lineageTag: 9ea225ce-197a-4e9e-af43-30d8f078a07d
+
+	/// All-time noncancelled orders; unaffected by product/month filters.
+	measure Orders = MAX(Operations[order_count])
+		formatString: #,0
+		lineageTag: 9d504070-9bd7-43dc-83f1-0349066a2df1
+
+	/// Operational booked quantity, separate from the archived evaluation universe.
+	measure 'Sales Quantity kg' = CALCULATE(SUM(Orders[ordered_quantity]), Orders[order_status] <> "cancelled", Orders[unit_of_measure] = "kg")
+		formatString: #,0.00
+		lineageTag: bf5dbf10-fbb1-455b-9f9b-e6e4d878bf40
+
+	/// Pooled raw-material stock only; do not add finished goods.
+	measure 'Material On Hand kg' = CALCULATE(SUM(Inventory[on_hand_quantity]), Inventory[unit_of_measure] = "kg")
+		formatString: #,0.00
+		lineageTag: da1d88cb-c88b-457f-b41d-af93bcb24a63
+
+	/// Phase 4 available plus assumed incoming less current requirements.
+	measure 'Projected Material kg' = CALCULATE(SUM(Inventory[projected_quantity]), Inventory[unit_of_measure] = "kg")
+		formatString: #,0.00
+		lineageTag: 22bea3b1-8d79-4664-9049-2fc208df9981
+
+	/// Excludes at_reorder: equality does not trigger replenishment.
+	measure 'Materials At Risk' = COUNTROWS(FILTER(Inventory, Inventory[risk_status] IN {"shortage", "below_safety", "below_reorder", "invalid_policy", "incomplete_bom"}))
+		formatString: #,0
+		lineageTag: 37af2912-12ea-4549-90a5-f1ded9a1edbe
+
+	/// Selected immutable reorder run, proposed status; not open supply.
+	measure 'Recommended Reorder kg' = CALCULATE(SUM(Reorders[quantity]), Material[unit_of_measure] = "kg", Reorders[status] = "proposed")
+		formatString: #,0.00
+		lineageTag: f6f1e0cd-a9eb-4074-93ee-beda00d97b08
+
+	/// Ordered quantity, not measured receipts or on-time delivery.
+	measure 'Procurement Ordered kg' = CALCULATE(SUM(Procurement[ordered_quantity]), Procurement[unit_of_measure] = "kg", Procurement[order_status] <> "cancelled")
+		formatString: #,0.00
+		lineageTag: 134f6961-4021-4511-a4ca-e909d396945d
+
+	/// Alternative synthetic history; never add to operational sales.
+	measure 'Archived Demand kg' = CALCULATE(SUM('Demand History'[quantity]), 'Demand History'[unit_of_measure] = "kg")
+		formatString: #,0.00
+		lineageTag: 97a9d5e1-e38d-45b3-bc55-7aa5fdc3db5a
+
+	/// One selected forecast vintage, monthly future demand.
+	measure 'Forecast Demand kg' = CALCULATE(SUM(Forecast[quantity]), Forecast[unit_of_measure] = "kg")
+		formatString: #,0.000000
+		lineageTag: f416c060-ecd8-4682-abca-47b63742229a
+
+	/// Actual demand on selected-model holdout months only.
+	measure 'Holdout Actual kg' = SUM(Backtest[actual_quantity])
+		formatString: #,0.000000
+		lineageTag: 0e8155e8-7589-45d3-9c69-d5009a5af79e
+
+	/// Selected model prediction on holdout months only.
+	measure 'Holdout Prediction kg' = SUM(Backtest[predicted_quantity])
+		formatString: #,0.000000
+		lineageTag: 296b93ad-7b45-4c94-a0b5-35a17bde697e
+
+	/// Signed holdout error; never future forecast minus missing future actual.
+	measure 'Holdout Variance kg' = SUMX(Backtest, Backtest[predicted_quantity] - Backtest[actual_quantity])
+		formatString: #,0.000000
+		lineageTag: 3b3c9560-3079-44e0-8fdf-f336e071085b
+
+	/// Mean absolute error across selected-model test observations, not mean candidate MAEs.
+	measure 'Selected Policy MAE kg' = AVERAGEX(Backtest, ABS(Backtest[predicted_quantity] - Backtest[actual_quantity]))
+		formatString: #,0.000000
+		lineageTag: 679d8443-e015-4c9d-9ce2-e97ec6cb5791
+
+	/// Root of pooled squared selected-model test errors.
+	measure 'Selected Policy RMSE kg' = SQRT(AVERAGEX(Backtest, POWER(Backtest[predicted_quantity] - Backtest[actual_quantity], 2)))
+		formatString: #,0.000000
+		lineageTag: 2b118d6b-7d78-4a7f-be27-5e084dd0669e
+
+	/// Shows a single selected model only when filter context supports one.
+	measure 'Selected Model' = SELECTEDVALUE(Forecast[selected_model], "Multiple selected models")
+		lineageTag: ba46d72e-5ebb-492a-8d6f-5dccde72b4c9
+
+	/// Forecast netted against original finished stock once across the horizon.
+	measure 'Production Requirement kg' = CALCULATE(SUM('Production Plan'[net_requirement]), 'Production Plan'[unit_of_measure] = "kg")
+		formatString: #,0.000000
+		lineageTag: 8698efa2-ddd2-4d91-b557-dd9e2cf40764
+
+	/// Stock offset within one selected plan; not new supply.
+	measure 'Inventory Offset kg' = SUM('Production Plan'[inventory_offset])
+		formatString: #,0.000000
+		lineageTag: 0986d993-cfb3-45ce-80d3-0563b825fec3
+
+	/// Includes any minimum-batch surplus; not approved execution.
+	measure 'Proposed Production kg' = SUM('Production Plan'[proposed_quantity])
+		formatString: #,0.000000
+		lineageTag: 0ad2073b-f0d7-4eec-814e-44325db2db11
+
+	/// Whole batches that fit both materials and residual capacity.
+	measure 'Allocated Production kg' = SUM('Production Plan'[allocated_quantity])
+		formatString: #,0.000000
+		lineageTag: a052daf3-44f5-4c90-b865-cd25de0da2d2
+
+	/// Unmet net demand, not the whole proposed quantity of a partly allocated line.
+	measure 'Constrained Production kg' = CALCULATE(SUM('Production Plan'[unmet_quantity]), 'Production Plan'[status] <> "FEASIBLE")
+		formatString: #,0.000000
+		lineageTag: ae8f8c9d-eef2-493d-9b61-1948a2e93f49
+
+	/// Proposed computational batches; no execution records.
+	measure 'Proposed Batches' = SUM('Production Plan'[batch_count])
+		formatString: #,0
+		lineageTag: a53e6774-d8f0-4db1-8d0c-55e9aaa1829c
+
+	/// Component needs at plan/product/month/material grain.
+	measure 'Material Requirement kg' = CALCULATE(SUM('Planning Materials'[required_quantity]), 'Planning Materials'[unit_of_measure] = "kg")
+		formatString: #,0.00
+		lineageTag: 472ad4e4-266a-43dc-be7a-3755a7a2c9d2
+
+	/// Incremental shortages at the allocation turn, not a purchase instruction.
+	measure 'Material Shortage kg' = CALCULATE(SUM('Planning Materials'[shortage_quantity]), 'Planning Materials'[unit_of_measure] = "kg")
+		formatString: #,0.00
+		lineageTag: 7939e9c6-a5b6-4396-8e75-fe3f06f5af9a
+
+	/// Resource-month proposed workload; intentionally unaffected by product slicers.
+	measure 'Capacity Required Hours' = SUM(Capacity[required_hours])
+		formatString: #,0.00
+		lineageTag: 96ebc86f-835e-41f2-87ab-5ca7e582c49a
+
+	/// Shared residual capacity counted once per resource/month.
+	measure 'Capacity Available Hours' = SUM(Capacity[available_hours])
+		formatString: #,0.00
+		lineageTag: b649b2c0-98fb-4990-884e-3568306c6d3a
+
+	/// Whole-batch allocated workload.
+	measure 'Capacity Allocated Hours' = SUM(Capacity[allocated_hours])
+		formatString: #,0.00
+		lineageTag: 8ae7d7a8-21ff-4f66-a291-c180b8bd4df1
+
+	/// Ratio of aggregate hours, not an average of row percentages; null if zero capacity.
+	measure 'Capacity Utilisation %' = DIVIDE([Capacity Required Hours], [Capacity Available Hours])
+		formatString: 0.00%
+		lineageTag: d21f5cad-2a3f-479b-8e8a-32ce5d5a4053
+
+	/// Sum positive resource-month overload; spare capacity elsewhere cannot cancel it.
+	measure 'Capacity Shortfall Hours' = SUM(Capacity[overload_hours])
+		formatString: #,0.00
+		lineageTag: c6da949b-46d5-4352-a5df-dcbb96e21641
+
+	/// Explicit verified example; other cards show current page context.
+	measure 'December Mixing Required Hours' = CALCULATE([Capacity Required Hours], REMOVEFILTERS('Calendar'), REMOVEFILTERS(Resource), 'Calendar'[Month] = "2026-12", Resource[code] = "SYN-MIX")
+		formatString: 0.00
+		lineageTag: a91b21f9-63d4-4921-84d1-18f4d2388e88
+
+	/// Explicit December resource capacity, not horizon sum.
+	measure 'December Mixing Available Hours' = CALCULATE([Capacity Available Hours], REMOVEFILTERS('Calendar'), REMOVEFILTERS(Resource), 'Calendar'[Month] = "2026-12", Resource[code] = "SYN-MIX")
+		formatString: 0.00
+		lineageTag: 30f9710e-c0c5-49b4-897c-7674b0f027a7
+
+	/// Phase 3 all-time eligible batch definition; not inspection pass rate.
+	measure 'Batch QC Pass Rate %' = DIVIDE(MAX(Operations[passed_batch_count]), MAX(Operations[inspected_batch_count]))
+		formatString: 0.00%
+		lineageTag: 0f95d669-d5b6-4e29-b4d0-38799ff3146e
+
+	/// Inspection-grain count, including repeats.
+	measure 'QC Inspections' = COUNTROWS(Quality)
+		formatString: #,0
+		lineageTag: b5fc5512-5b84-47df-8b78-0189d53c9650
+
+	/// Passed inspection records; not released batches.
+	measure 'QC Passed Inspections' = SUM(Quality[pass_indicator])
+		formatString: #,0
+		lineageTag: 4038d422-6ba4-4ea4-ba3d-6390a1b3dc53
+
+	/// Successful execution events, including repeated accepted rows on replay.
+	measure 'ETL Accepted Rows' = MAX(Operations[etl_rows_accepted])
+		formatString: #,0
+		lineageTag: 90c71a61-007d-47a9-bbfb-53875a91c419
+
+	/// Successful execution rejected events, including replay.
+	measure 'ETL Rejected Rows' = MAX(Operations[etl_rows_rejected])
+		formatString: #,0
+		lineageTag: e6de03d1-2ae5-4073-ac70-48b077005a4a
+
+	/// Weighted accepted/extracted across successful runs.
+	measure 'ETL Acceptance Rate %' = DIVIDE([ETL Accepted Rows], MAX(Operations[etl_rows_extracted]))
+		formatString: 0.00%
+		lineageTag: 9a33ecd4-04d3-4b91-af90-adf45ba7a06b
+
+	/// Weighted rejected/extracted across successful runs.
+	measure 'ETL Rejection Rate %' = DIVIDE([ETL Rejected Rows], MAX(Operations[etl_rows_extracted]))
+		formatString: 0.00%
+		lineageTag: 36dd4108-40d0-4ad5-bf8a-cc600d94e4de
+
+	/// Issue observations at ETL/run/source/rule grain; not distinct source records.
+	measure 'Data Quality Issues' = SUM('Data Quality'[issue_count])
+		formatString: #,0
+		lineageTag: fe03d0f2-61b1-421a-bcfb-ff3baa8db504
+
+	/// Audited successful ETL executions.
+	measure 'ETL Successful Runs' = MAX(Operations[etl_successful_runs])
+		formatString: #,0
+		lineageTag: a76bea43-ef80-498c-b0db-49e846b2eabc
+
+	column Anchor
+		dataType: int64
+		isHidden
+		lineageTag: 377ad577-fc56-4494-86fb-57d671695a26
+		sourceColumn: [Anchor]
+
+	partition Metrics = calculated
+		mode: import
+		source = ROW("Anchor", 1)

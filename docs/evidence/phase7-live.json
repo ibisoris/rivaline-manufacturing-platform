@@ -1,0 +1,168 @@
+{
+  "before": {
+    "counts": {
+      "products": 4,
+      "suppliers": 3,
+      "raw_materials": 4,
+      "customers": 3,
+      "warehouses": 2,
+      "inventory": 32,
+      "inventory_transactions": 0,
+      "bills_of_material": 4,
+      "bill_of_material_lines": 16,
+      "sales_orders": 48,
+      "sales_order_lines": 48,
+      "purchase_orders": 192,
+      "purchase_order_lines": 192,
+      "production_orders": 48,
+      "production_batches": 48,
+      "batch_material_consumption": 192,
+      "quality_inspections": 48,
+      "shipments": 48,
+      "shipment_lines": 48,
+      "demand_forecasts": 12,
+      "reorder_recommendations": 2,
+      "etl_runs": 2,
+      "data_quality_issues": 96,
+      "planning_policies": 4,
+      "planning_runs": 1,
+      "demand_observations": 192,
+      "forecast_runs": 1,
+      "forecast_metrics": 30,
+      "forecast_backtests": 144,
+      "production_resources": 2,
+      "production_policies": 4,
+      "production_plan_runs": 1,
+      "production_plan_lines": 12,
+      "production_capacity_results": 6,
+      "production_material_results": 8
+    },
+    "sha256": "328225ecb90dcbe82555c132c7a366068d424be834a2cc8691a168ebc6c0367c"
+  },
+  "after": {
+    "counts": {
+      "products": 4,
+      "suppliers": 3,
+      "raw_materials": 4,
+      "customers": 3,
+      "warehouses": 2,
+      "inventory": 32,
+      "inventory_transactions": 0,
+      "bills_of_material": 4,
+      "bill_of_material_lines": 16,
+      "sales_orders": 48,
+      "sales_order_lines": 48,
+      "purchase_orders": 192,
+      "purchase_order_lines": 192,
+      "production_orders": 48,
+      "production_batches": 48,
+      "batch_material_consumption": 192,
+      "quality_inspections": 48,
+      "shipments": 48,
+      "shipment_lines": 48,
+      "demand_forecasts": 12,
+      "reorder_recommendations": 2,
+      "etl_runs": 2,
+      "data_quality_issues": 96,
+      "planning_policies": 4,
+      "planning_runs": 1,
+      "demand_observations": 192,
+      "forecast_runs": 1,
+      "forecast_metrics": 30,
+      "forecast_backtests": 144,
+      "production_resources": 2,
+      "production_policies": 4,
+      "production_plan_runs": 1,
+      "production_plan_lines": 12,
+      "production_capacity_results": 6,
+      "production_material_results": 8
+    },
+    "sha256": "328225ecb90dcbe82555c132c7a366068d424be834a2cc8691a168ebc6c0367c"
+  },
+  "revision": "0006_production",
+  "postgresql_results": {
+    "reorders": {
+      "SYN-RM-002": "1000.000000",
+      "SYN-RM-003": "1500.000000"
+    },
+    "forecasts": {
+      "SYN-FG-001": [
+        "777.333333",
+        "777.333333",
+        "777.333333"
+      ],
+      "SYN-FG-002": [
+        "948.000000",
+        "948.000000",
+        "948.000000"
+      ],
+      "SYN-FG-003": [
+        "466.000000",
+        "466.000000",
+        "466.000000"
+      ],
+      "SYN-FG-004": [
+        "653.666667",
+        "653.666667",
+        "653.666667"
+      ]
+    },
+    "selected_holdout_mae_kg": "18.416667",
+    "selected_holdout_rmse_kg": "23.973944",
+    "holdout_observations": 12,
+    "net_production_kg": "1175.999999",
+    "december_mixing_required_hours": "11.760000",
+    "december_mixing_available_hours": "10.000000",
+    "constrained_fg002_kg": "844.000000",
+    "december_mixing_utilisation_pct": "117.60",
+    "operations": [
+      {
+        "order_count": 48,
+        "shipment_count": 48,
+        "production_batch_count": "48",
+        "inspected_batch_count": "48",
+        "passed_batch_count": "48",
+        "etl_rows_extracted": 928,
+        "etl_rows_accepted": 832,
+        "etl_rows_rejected": 96,
+        "data_quality_issue_count": 96,
+        "etl_successful_runs": 2
+      }
+    ],
+    "imported_row_counts": {
+      "Product": 4,
+      "Material": 4,
+      "Supplier": 3,
+      "Customer": 3,
+      "Resource": 2,
+      "Operations": 1,
+      "Inventory": 4,
+      "Reorders": 2,
+      "Orders": 48,
+      "Production": 48,
+      "Quality": 48,
+      "Procurement": 192,
+      "Data Quality": 82,
+      "Demand History": 96,
+      "Forecast": 12,
+      "Backtest": 12,
+      "Production Plan": 12,
+      "Capacity": 6,
+      "Planning Materials": 8
+    }
+  },
+  "static_checks": {
+    "schema_documents": 76,
+    "schema_compatibility_documents": 62,
+    "tables": 21,
+    "relationships": 25,
+    "measures": 39,
+    "pages": 6,
+    "visuals": 62,
+    "desktop_refresh_render": "not validated",
+    "dax_engine": "not executed"
+  },
+  "original_pbix_unchanged": true,
+  "dax_engine": "not executed",
+  "desktop_refresh_render": "not executed by this verifier; see docs/29-phase-7-validation.md"
+}

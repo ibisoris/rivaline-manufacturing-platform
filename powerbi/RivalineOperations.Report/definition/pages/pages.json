@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "aae74f90d08cb53226af",
+    "inventory_procurement",
+    "demand_forecasting",
+    "production_capacity",
+    "quality_trust",
+    "transformation"
+  ],
+  "activePageName": "inventory_procurement"
+}

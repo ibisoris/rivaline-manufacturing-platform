@@ -1,0 +1,61 @@
+/// One recommendation in the selected reorder run
+table Reorders
+	lineageTag: 7fa050fd-86fc-4c05-b068-f947aee907e9
+
+	column id
+		dataType: int64
+		isHidden
+		lineageTag: b0a1f889-1bae-48ff-8578-444f74d5b0fb
+		summarizeBy: none
+		sourceColumn: id
+
+	column raw_material_id
+		dataType: int64
+		isHidden
+		lineageTag: 1753b673-1380-4464-b9c2-614c87383e8d
+		summarizeBy: none
+		sourceColumn: raw_material_id
+
+	column quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 19b898ad-dd13-4a0d-befa-843c7df253d1
+		summarizeBy: none
+		sourceColumn: quantity
+
+	column status
+		dataType: string
+		lineageTag: 8c8e36ac-682d-4de6-935b-1f28393961c7
+		summarizeBy: none
+		sourceColumn: status
+
+	column reason
+		dataType: string
+		lineageTag: a3c3c92c-cb60-4bfc-aa34-77c861e8159a
+		summarizeBy: none
+		sourceColumn: reason
+
+	column run_code
+		dataType: string
+		lineageTag: 60c18e66-082d-41a2-9a30-30f6b95e748e
+		summarizeBy: none
+		sourceColumn: run_code
+
+	column generated_at
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 59e2dec3-c302-4f6b-9c62-417da5428cca
+		summarizeBy: none
+		sourceColumn: generated_at
+
+	partition Reorders = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_reorder_recommendations"]}[Data],
+				    Filtered = Table.SelectRows(Source, each [run_code] = ReorderRunCode),
+				    Selected = Table.SelectColumns(Filtered, {"id", "raw_material_id", "quantity", "status", "reason", "run_code", "generated_at"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"id", Int64.Type}, {"raw_material_id", Int64.Type}, {"quantity", type number}, {"status", type text}, {"reason", type text}, {"run_code", type text}, {"generated_at", type datetime}}),
+				    Result = Typed
+				in
+				    Result

@@ -1,0 +1,78 @@
+/// Singleton all-time trusted operational summary
+table Operations
+	lineageTag: 41e51d77-4c6a-43f4-9eae-a51756f02dff
+
+	column order_count
+		dataType: int64
+		lineageTag: 799c04e9-7184-4498-b30c-18abe8303021
+		summarizeBy: none
+		sourceColumn: order_count
+
+	column shipment_count
+		dataType: int64
+		lineageTag: fc8c7011-c218-4e86-89fe-feedbe045bc6
+		summarizeBy: none
+		sourceColumn: shipment_count
+
+	column production_batch_count
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: bb3885ee-da6f-47cb-b4a6-a3478da190ac
+		summarizeBy: none
+		sourceColumn: production_batch_count
+
+	column inspected_batch_count
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 70c93f85-755f-4489-8058-074ff9481985
+		summarizeBy: none
+		sourceColumn: inspected_batch_count
+
+	column passed_batch_count
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 532ec02a-dddc-45b7-88be-3cbfcebdea07
+		summarizeBy: none
+		sourceColumn: passed_batch_count
+
+	column etl_rows_extracted
+		dataType: int64
+		lineageTag: 0b0cebeb-ef3c-49c2-be99-2bb60e87f3ce
+		summarizeBy: none
+		sourceColumn: etl_rows_extracted
+
+	column etl_rows_accepted
+		dataType: int64
+		lineageTag: 7710f714-b78b-444d-8376-6c84fa89aef5
+		summarizeBy: none
+		sourceColumn: etl_rows_accepted
+
+	column etl_rows_rejected
+		dataType: int64
+		lineageTag: ea427e73-084e-4ff4-b280-117cbd36b89c
+		summarizeBy: none
+		sourceColumn: etl_rows_rejected
+
+	column data_quality_issue_count
+		dataType: int64
+		lineageTag: 4f5a2247-6065-4696-a3a8-c337214bc270
+		summarizeBy: none
+		sourceColumn: data_quality_issue_count
+
+	column etl_successful_runs
+		dataType: int64
+		lineageTag: 6ff4af2a-7680-4591-8f66-a8c15877e73a
+		summarizeBy: none
+		sourceColumn: etl_successful_runs
+
+	partition Operations = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_operations_kpis"]}[Data],
+				    Filtered = Source,
+				    Selected = Table.SelectColumns(Filtered, {"order_count", "shipment_count", "production_batch_count", "inspected_batch_count", "passed_batch_count", "etl_rows_extracted", "etl_rows_accepted", "etl_rows_rejected", "data_quality_issue_count", "etl_successful_runs"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"order_count", Int64.Type}, {"shipment_count", Int64.Type}, {"production_batch_count", type number}, {"inspected_batch_count", type number}, {"passed_batch_count", type number}, {"etl_rows_extracted", Int64.Type}, {"etl_rows_accepted", Int64.Type}, {"etl_rows_rejected", Int64.Type}, {"data_quality_issue_count", Int64.Type}, {"etl_successful_runs", Int64.Type}}),
+				    Result = Typed
+				in
+				    Result

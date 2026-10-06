@@ -1,0 +1,90 @@
+/// One selected forecast run/product/month
+table Forecast
+	lineageTag: 42b93c4d-197c-46d6-903b-3c060c935796
+
+	column id
+		dataType: int64
+		isHidden
+		lineageTag: b2cee77d-77ac-404e-a5c8-5097bb3f598a
+		summarizeBy: none
+		sourceColumn: id
+
+	column product_id
+		dataType: int64
+		isHidden
+		lineageTag: 7909dbad-aac4-441e-ba66-eada581c5336
+		summarizeBy: none
+		sourceColumn: product_id
+
+	column period_start
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 5e90ff79-ce81-48c8-a1fa-8ff991134ea3
+		summarizeBy: none
+		sourceColumn: period_start
+
+	column period_end
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 4f544157-b808-4943-8763-813abc523986
+		summarizeBy: none
+		sourceColumn: period_end
+
+	column quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: c6a66bd1-5297-4301-bc0f-48bd97aa2385
+		summarizeBy: none
+		sourceColumn: quantity
+
+	column selected_model
+		dataType: string
+		lineageTag: d6a70d2e-6589-4b60-96e3-269594405141
+		summarizeBy: none
+		sourceColumn: selected_model
+
+	column validation_mae
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: f6295e7f-f60c-4e36-9db6-149ee2f7ca24
+		summarizeBy: none
+		sourceColumn: validation_mae
+
+	column validation_rmse
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 2c281ceb-0392-4f36-94ed-7152b728e8b8
+		summarizeBy: none
+		sourceColumn: validation_rmse
+
+	column run_code
+		dataType: string
+		lineageTag: c740b6b2-3c02-4187-be56-b326f9aa6590
+		summarizeBy: none
+		sourceColumn: run_code
+
+	column unit_of_measure
+		dataType: string
+		lineageTag: accbf416-af1b-403a-8c0a-59cf4af4ee0d
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+	column dataset_code
+		dataType: string
+		lineageTag: b52c9c5e-bf50-434a-adf9-e130ccaf7410
+		summarizeBy: none
+		sourceColumn: dataset_code
+
+	partition Forecast = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_demand_forecast"]}[Data],
+				    Filtered = Table.SelectRows(Source, each [run_code] = ForecastRunCode),
+				    Selected = Table.SelectColumns(Filtered, {"id", "product_id", "period_start", "period_end", "quantity", "selected_model", "validation_mae", "validation_rmse", "run_code", "unit_of_measure", "dataset_code"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"id", Int64.Type}, {"product_id", Int64.Type}, {"period_start", type datetime}, {"period_end", type datetime}, {"quantity", type number}, {"selected_model", type text}, {"validation_mae", type number}, {"validation_rmse", type number}, {"run_code", type text}, {"unit_of_measure", type text}, {"dataset_code", type text}}),
+				    Result = if Table.IsEmpty(Typed) then error "Selected reporting data is empty or incompatible" else Typed
+				in
+				    Result
+
+	annotation PBI_ResultType = Table

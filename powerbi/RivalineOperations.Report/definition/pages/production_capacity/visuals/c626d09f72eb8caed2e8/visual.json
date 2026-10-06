@@ -1,0 +1,179 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "c626d09f72eb8caed2e8",
+  "position": {
+    "x": 962,
+    "y": 645,
+    "z": 9,
+    "height": 275,
+    "width": 890,
+    "tabOrder": 9
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Planning Materials"
+                    }
+                  },
+                  "Property": "product_id"
+                }
+              },
+              "queryRef": "Planning Materials.product_id",
+              "nativeQueryRef": "product_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Planning Materials"
+                    }
+                  },
+                  "Property": "period_start"
+                }
+              },
+              "queryRef": "Planning Materials.period_start",
+              "nativeQueryRef": "period_start"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Material"
+                    }
+                  },
+                  "Property": "code"
+                }
+              },
+              "queryRef": "Material.code",
+              "nativeQueryRef": "code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Planning Materials"
+                    }
+                  },
+                  "Property": "available_quantity"
+                }
+              },
+              "queryRef": "Planning Materials.available_quantity",
+              "nativeQueryRef": "available_quantity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Planning Materials"
+                    }
+                  },
+                  "Property": "remaining_quantity"
+                }
+              },
+              "queryRef": "Planning Materials.remaining_quantity",
+              "nativeQueryRef": "remaining_quantity"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Material Requirement kg"
+                }
+              },
+              "queryRef": "Metrics.Material Requirement kg",
+              "nativeQueryRef": "Material Requirement kg"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Material Shortage kg"
+                }
+              },
+              "queryRef": "Metrics.Material Shortage kg",
+              "nativeQueryRef": "Material Shortage kg"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'All-resource material turns | kg, availability is not additive'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#17324D'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

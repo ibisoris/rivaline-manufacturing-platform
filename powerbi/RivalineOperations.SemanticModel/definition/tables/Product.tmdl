@@ -1,0 +1,40 @@
+/// One product
+table Product
+	lineageTag: aa877ddd-e0b9-42f2-9bcb-d30521efb820
+
+	column id
+		dataType: int64
+		isHidden
+		lineageTag: 4a583b73-3d5b-4f3a-abdf-489b305029e9
+		summarizeBy: none
+		sourceColumn: id
+
+	column code
+		dataType: string
+		lineageTag: 082b73dc-42d1-47ca-bf00-de8429e14ed8
+		summarizeBy: none
+		sourceColumn: code
+
+	column name
+		dataType: string
+		lineageTag: d2e5f6fa-ea06-4da3-a6bd-c3211eb63e69
+		summarizeBy: none
+		sourceColumn: name
+
+	column unit_of_measure
+		dataType: string
+		lineageTag: bca2b1b5-e9bf-40a3-a81e-00a542fb1b62
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+	partition Product = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="products"]}[Data],
+				    Filtered = Source,
+				    Selected = Table.SelectColumns(Filtered, {"id", "code", "name", "unit_of_measure"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"id", Int64.Type}, {"code", type text}, {"name", type text}, {"unit_of_measure", type text}}),
+				    Result = Typed
+				in
+				    Result

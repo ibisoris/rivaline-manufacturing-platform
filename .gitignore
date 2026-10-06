@@ -20,3 +20,8 @@ Thumbs.db
 
 # Local ETL evidence may contain rejected raw records.
 data/quarantine/*/
+
+# Power BI local data, credentials/settings, binary exports and safety backups.
+powerbi/**/*.pbix
+powerbi/**/.pbi/
+powerbi/.phase7-backup/

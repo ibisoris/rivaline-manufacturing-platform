@@ -1,0 +1,34 @@
+/// One supplier
+table Supplier
+	lineageTag: 3f2bc639-8c27-435a-bc5f-9136addf5a45
+
+	column id
+		dataType: int64
+		isHidden
+		lineageTag: 56da1b98-b141-41cd-83a8-2929bb2a4465
+		summarizeBy: none
+		sourceColumn: id
+
+	column code
+		dataType: string
+		lineageTag: b67e2113-3923-4200-a87b-114f56b13d76
+		summarizeBy: none
+		sourceColumn: code
+
+	column name
+		dataType: string
+		lineageTag: 29d61398-fd52-434e-9e63-4346bd289023
+		summarizeBy: none
+		sourceColumn: name
+
+	partition Supplier = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="suppliers"]}[Data],
+				    Filtered = Source,
+				    Selected = Table.SelectColumns(Filtered, {"id", "code", "name"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"id", Int64.Type}, {"code", type text}, {"name", type text}}),
+				    Result = Typed
+				in
+				    Result

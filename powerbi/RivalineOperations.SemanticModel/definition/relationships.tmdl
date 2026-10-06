@@ -1,0 +1,99 @@
+relationship 6ca37e3fa87a726ef78e3a7583fab77c
+	fromColumn: Inventory.item_id
+	toColumn: Material.id
+
+relationship 4fa818a5408c0d96a4727a4f095078c5
+	fromColumn: Reorders.raw_material_id
+	toColumn: Material.id
+
+relationship 0000eabf89a055f8cc4c902425226483
+	fromColumn: Orders.product_id
+	toColumn: Product.id
+
+relationship ed5abda8d8c8704672d4a9ae2f635ef8
+	fromColumn: Orders.customer_id
+	toColumn: Customer.id
+
+relationship ed13fa4a9cbe522637c0c27a197c0feb
+	fromColumn: Orders.order_date
+	toColumn: Calendar.Date
+
+relationship 5216d57ed093576e684bc15c05de9430
+	fromColumn: Production.product_id
+	toColumn: Product.id
+
+relationship c19370db9cbd7458d0c4f1cc82fbde53
+	fromColumn: Production.planned_start
+	toColumn: Calendar.Date
+
+relationship c2953747984828f3b78ea86e6469c73f
+	fromColumn: Quality.product_id
+	toColumn: Product.id
+
+relationship 7ab6245100ea76a4f33a31d99a6ac114
+	fromColumn: Procurement.raw_material_id
+	toColumn: Material.id
+
+relationship 9c022750d5f5c653e808b309ca8984b2
+	fromColumn: Procurement.supplier_id
+	toColumn: Supplier.id
+
+relationship 7511d55186b9a5b22dbec64979a5f07b
+	fromColumn: Procurement.order_date
+	toColumn: Calendar.Date
+
+relationship 250289d70b8eca2d5317b2cd031aa2d4
+	fromColumn: 'Demand History'.product_id
+	toColumn: Product.id
+
+relationship fddd7c82bc42481bd6cde06339ad7fd2
+	fromColumn: 'Demand History'.period_start
+	toColumn: Calendar.Date
+
+relationship 454a28fe39a7695a316d7f058fc72e20
+	fromColumn: Forecast.product_id
+	toColumn: Product.id
+
+relationship 23b2ba9aa0ece96de13d5bd1fa9879b4
+	fromColumn: Forecast.period_start
+	toColumn: Calendar.Date
+
+relationship 392dce53af68a2905aea81f3d8eb3ae2
+	fromColumn: Backtest.product_id
+	toColumn: Product.id
+
+relationship ac6e9b2f5dc367ce0d1e781cc8a2eb05
+	fromColumn: Backtest.period_start
+	toColumn: Calendar.Date
+
+relationship 8edd032730aaa64178c73e0aa64621e0
+	fromColumn: 'Production Plan'.product_id
+	toColumn: Product.id
+
+relationship 41b879ee9e7a2ee955675b3745dccac9
+	fromColumn: 'Production Plan'.resource_id
+	toColumn: Resource.id
+
+relationship aef8070587786539e27ef1226095e856
+	fromColumn: 'Production Plan'.period_start
+	toColumn: Calendar.Date
+
+relationship 5b7e6bd9bfd858c4e4bf21fff9841aba
+	fromColumn: Capacity.resource_id
+	toColumn: Resource.id
+
+relationship b9645aa6d3d502450c8fad3e68210c51
+	fromColumn: Capacity.period_start
+	toColumn: Calendar.Date
+
+relationship ceb8089bc14d1b53b2b7d73519b252c8
+	fromColumn: 'Planning Materials'.product_id
+	toColumn: Product.id
+
+relationship e551134ab7798877a04b83b51e30514a
+	fromColumn: 'Planning Materials'.raw_material_id
+	toColumn: Material.id
+
+relationship 3ce237291212ae5862c80f4bb28d8fb3
+	fromColumn: 'Planning Materials'.period_start
+	toColumn: Calendar.Date

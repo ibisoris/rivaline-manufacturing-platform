@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "RivalineOperations"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "818c845c-a4c1-4563-ac2f-c048f77337fe"
+  }
+}

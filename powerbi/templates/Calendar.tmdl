@@ -1,0 +1,29 @@
+table Calendar
+	column Date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		sourceColumn: Date
+		summarizeBy: none
+		isKey
+	column Month
+		dataType: string
+		sourceColumn: Month
+		sortByColumn: MonthIndex
+		summarizeBy: none
+	column MonthIndex
+		dataType: int64
+		sourceColumn: MonthIndex
+		summarizeBy: none
+		isHidden
+	partition Calendar = m
+		mode: import
+		source =
+			let
+			    Start = Date.From(List.Min(#"Demand History"[period_start])),
+			    End = Date.From(List.Max(Forecast[period_end])),
+			    Dates = Table.FromList(List.Dates(Start, Duration.Days(End-Start)+1, #duration(1,0,0,0)), Splitter.SplitByNothing(), {"Date"}),
+			    Typed = Table.TransformColumnTypes(Dates, {{"Date", type date}}),
+			    Months = Table.AddColumn(Typed, "Month", each Date.ToText([Date], "yyyy-MM"), type text),
+			    Result = Table.AddColumn(Months, "MonthIndex", each Date.Year([Date])*100+Date.Month([Date]), Int64.Type)
+			in
+			    Result

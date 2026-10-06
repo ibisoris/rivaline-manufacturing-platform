@@ -1,0 +1,69 @@
+/// One purchase order line; orders are not measured receipts
+table Procurement
+	lineageTag: b5a79fb8-1553-441a-a994-9fa5eda72740
+
+	column purchase_order_line_id
+		dataType: int64
+		isHidden
+		lineageTag: 9c4e584d-40ca-4113-b447-3c5ed64bc424
+		summarizeBy: none
+		sourceColumn: purchase_order_line_id
+
+	column supplier_id
+		dataType: int64
+		isHidden
+		lineageTag: f574e759-206d-4b8a-a67d-8dc98d2f4b10
+		summarizeBy: none
+		sourceColumn: supplier_id
+
+	column raw_material_id
+		dataType: int64
+		isHidden
+		lineageTag: a2c4ba4a-8947-43a6-961d-2a7e37174208
+		summarizeBy: none
+		sourceColumn: raw_material_id
+
+	column unit_of_measure
+		dataType: string
+		lineageTag: cf010f94-a386-4c13-9f43-3e5a1780986b
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+	column order_date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 5f3a4dd8-e195-470b-92a7-3aff07f8e9e1
+		summarizeBy: none
+		sourceColumn: order_date
+
+	column ordered_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: c8b0c75b-6bf1-4d0b-936e-b345d96f1eab
+		summarizeBy: none
+		sourceColumn: ordered_quantity
+
+	column consumed_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 1b1699c7-1781-412a-a944-9ec87ece49e2
+		summarizeBy: none
+		sourceColumn: consumed_quantity
+
+	column order_status
+		dataType: string
+		lineageTag: 61fb0195-c9d1-4b24-b12f-849d67d7570a
+		summarizeBy: none
+		sourceColumn: order_status
+
+	partition Procurement = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_supplier_material_flow"]}[Data],
+				    Filtered = Source,
+				    Selected = Table.SelectColumns(Filtered, {"purchase_order_line_id", "supplier_id", "raw_material_id", "unit_of_measure", "order_date", "ordered_quantity", "consumed_quantity", "order_status"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"purchase_order_line_id", Int64.Type}, {"supplier_id", Int64.Type}, {"raw_material_id", Int64.Type}, {"unit_of_measure", type text}, {"order_date", type datetime}, {"ordered_quantity", type number}, {"consumed_quantity", type number}, {"order_status", type text}}),
+				    Result = Typed
+				in
+				    Result

@@ -1,0 +1,116 @@
+/// One plan run/product/month
+table 'Production Plan'
+	lineageTag: d43501d0-6030-4180-a5c4-fdfebe0736fb
+
+	column product_id
+		dataType: int64
+		isHidden
+		lineageTag: 692ba5a7-6ea5-4842-8e7b-c0600fc5c706
+		summarizeBy: none
+		sourceColumn: product_id
+
+	column resource_id
+		dataType: int64
+		isHidden
+		lineageTag: 55399858-723e-4c19-a113-78f8d8dc73b2
+		summarizeBy: none
+		sourceColumn: resource_id
+
+	column period_start
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 7365e283-72b2-4fc0-96b9-3e6e01434fc3
+		summarizeBy: none
+		sourceColumn: period_start
+
+	column unit_of_measure
+		dataType: string
+		lineageTag: 17da7f8f-a005-4ba5-a5ea-b550097dd8e0
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+	column gross_demand
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 9d8bf827-6309-4a51-9988-d2ad5daa7711
+		summarizeBy: none
+		sourceColumn: gross_demand
+
+	column inventory_offset
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 6272b752-e8ba-4954-87ab-5764a503d222
+		summarizeBy: none
+		sourceColumn: inventory_offset
+
+	column net_requirement
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 2c17665e-02af-4b47-b4bb-a4c5b587d94a
+		summarizeBy: none
+		sourceColumn: net_requirement
+
+	column proposed_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 86084019-1c96-44b5-b21f-18e7043f1d15
+		summarizeBy: none
+		sourceColumn: proposed_quantity
+
+	column allocated_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: c43e0196-6453-4ab3-a028-e97a73569f48
+		summarizeBy: none
+		sourceColumn: allocated_quantity
+
+	column unmet_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: a01134ba-43c2-47c9-b8e1-e1d84f297e48
+		summarizeBy: none
+		sourceColumn: unmet_quantity
+
+	column batch_count
+		dataType: int64
+		lineageTag: 0b4fb977-7494-40ca-9107-a2b4614c9c8c
+		summarizeBy: none
+		sourceColumn: batch_count
+
+	column status
+		dataType: string
+		lineageTag: 4a28d0e7-c26c-448c-a4c1-ed9c0ae9a06c
+		summarizeBy: none
+		sourceColumn: status
+
+	column explanation
+		dataType: string
+		lineageTag: 90186e84-1a6b-4e4f-a6df-6c9d8dc93cfa
+		summarizeBy: none
+		sourceColumn: explanation
+
+	column plan_run_code
+		dataType: string
+		lineageTag: 854bb3eb-dded-47fd-bc06-230a17b832d9
+		summarizeBy: none
+		sourceColumn: plan_run_code
+
+	column forecast_run_code
+		dataType: string
+		lineageTag: dff06d33-e7e1-469a-8930-823fd5443152
+		summarizeBy: none
+		sourceColumn: forecast_run_code
+
+	partition 'Production Plan' = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_production_plan"]}[Data],
+				    Filtered = Table.SelectRows(Source, each [plan_run_code] = PlanRunCode and [forecast_run_code] = ForecastRunCode),
+				    Selected = Table.SelectColumns(Filtered, {"product_id", "resource_id", "period_start", "unit_of_measure", "gross_demand", "inventory_offset", "net_requirement", "proposed_quantity", "allocated_quantity", "unmet_quantity", "batch_count", "status", "explanation", "plan_run_code", "forecast_run_code"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"product_id", Int64.Type}, {"resource_id", Int64.Type}, {"period_start", type datetime}, {"unit_of_measure", type text}, {"gross_demand", type number}, {"inventory_offset", type number}, {"net_requirement", type number}, {"proposed_quantity", type number}, {"allocated_quantity", type number}, {"unmet_quantity", type number}, {"batch_count", Int64.Type}, {"status", type text}, {"explanation", type text}, {"plan_run_code", type text}, {"forecast_run_code", type text}}),
+				    Result = if Table.IsEmpty(Typed) then error "Selected reporting data is empty or incompatible" else Typed
+				in
+				    Result
+
+	annotation PBI_ResultType = Table

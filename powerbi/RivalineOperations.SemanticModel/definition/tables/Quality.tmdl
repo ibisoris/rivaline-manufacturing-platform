@@ -1,0 +1,73 @@
+/// One inspection; inspection rates differ from batch pass rate
+table Quality
+	lineageTag: e47c34c8-0eb7-42dc-b601-97ef60a50b4f
+
+	column inspection_id
+		dataType: int64
+		isHidden
+		lineageTag: 05674a27-6001-4514-a971-d26c2e95866a
+		summarizeBy: none
+		sourceColumn: inspection_id
+
+	column production_batch_id
+		dataType: int64
+		isHidden
+		lineageTag: 86409893-8374-48df-84d5-71aba1574f28
+		summarizeBy: none
+		sourceColumn: production_batch_id
+
+	column product_id
+		dataType: int64
+		isHidden
+		lineageTag: be138d60-c0ab-4679-9c5b-3098c847d24d
+		summarizeBy: none
+		sourceColumn: product_id
+
+	column test_code
+		dataType: string
+		lineageTag: e16cce23-de7c-444e-a0f8-36a0e6dcf233
+		summarizeBy: none
+		sourceColumn: test_code
+
+	column inspected_at
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 8408191a-f7c7-497b-97cd-533f7e53bc0e
+		summarizeBy: none
+		sourceColumn: inspected_at
+
+	column result
+		dataType: string
+		lineageTag: 05bd5c56-5e15-4117-9445-e5db40f8b6e6
+		summarizeBy: none
+		sourceColumn: result
+
+	column pass_indicator
+		dataType: int64
+		lineageTag: 1b9bcd98-81a5-4dae-9a0f-7ff365672bcf
+		summarizeBy: none
+		sourceColumn: pass_indicator
+
+	column fail_indicator
+		dataType: int64
+		lineageTag: 24507965-75b5-4b34-a5d6-d0db19a84199
+		summarizeBy: none
+		sourceColumn: fail_indicator
+
+	column pending_indicator
+		dataType: int64
+		lineageTag: 71e00850-e392-434f-ba9d-34f2d2fa387e
+		summarizeBy: none
+		sourceColumn: pending_indicator
+
+	partition Quality = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_quality_performance"]}[Data],
+				    Filtered = Source,
+				    Selected = Table.SelectColumns(Filtered, {"inspection_id", "production_batch_id", "product_id", "test_code", "inspected_at", "result", "pass_indicator", "fail_indicator", "pending_indicator"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"inspection_id", Int64.Type}, {"production_batch_id", Int64.Type}, {"product_id", Int64.Type}, {"test_code", type text}, {"inspected_at", type datetime}, {"result", type text}, {"pass_indicator", Int64.Type}, {"fail_indicator", Int64.Type}, {"pending_indicator", Int64.Type}}),
+				    Result = Typed
+				in
+				    Result

@@ -1,0 +1,2320 @@
+{
+  "pages": [
+    {
+      "name": "aae74f90d08cb53226af",
+      "title": "01  Executive Operations",
+      "subtitle": "Synthetic management view | Current stock, selected forecast and proposed production",
+      "visuals": [
+        {
+          "name": "7533871fa4ad0a4115c2",
+          "type": "card",
+          "title": "Orders | all-time",
+          "position": {
+            "x": 48,
+            "y": 170,
+            "z": 0,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 0
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Orders"
+                  }
+                },
+                "queryRef": "Metrics.Orders",
+                "nativeQueryRef": "Orders"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "13c84952550c099099bc",
+          "type": "card",
+          "title": "Materials at risk",
+          "position": {
+            "x": 508,
+            "y": 170,
+            "z": 1,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 1
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Materials At Risk"
+                  }
+                },
+                "queryRef": "Metrics.Materials At Risk",
+                "nativeQueryRef": "Materials At Risk"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "1c0ae5db62df5d7f5c61",
+          "type": "card",
+          "title": "Batch QC pass | all-time",
+          "position": {
+            "x": 968,
+            "y": 170,
+            "z": 2,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 2
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Batch QC Pass Rate %"
+                  }
+                },
+                "queryRef": "Metrics.Batch QC Pass Rate %",
+                "nativeQueryRef": "Batch QC Pass Rate %"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "4b9d74fd04c2d3f8a0b6",
+          "type": "card",
+          "title": "Forecast demand | kg",
+          "position": {
+            "x": 1428,
+            "y": 170,
+            "z": 3,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 3
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Forecast Demand kg"
+                  }
+                },
+                "queryRef": "Metrics.Forecast Demand kg",
+                "nativeQueryRef": "Forecast Demand kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "279eef3fae177668650e",
+          "type": "clusteredColumnChart",
+          "title": "Material position | kg",
+          "position": {
+            "x": 48,
+            "y": 340,
+            "z": 4,
+            "height": 300,
+            "width": 890,
+            "tabOrder": 4
+          },
+          "roles": {
+            "Category": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Material"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Material.code",
+                "nativeQueryRef": "code"
+              }
+            ],
+            "Y": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Material On Hand kg"
+                  }
+                },
+                "queryRef": "Metrics.Material On Hand kg",
+                "nativeQueryRef": "Material On Hand kg"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Projected Material kg"
+                  }
+                },
+                "queryRef": "Metrics.Projected Material kg",
+                "nativeQueryRef": "Projected Material kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "f4f78fd4e1389afe9738",
+          "type": "clusteredColumnChart",
+          "title": "Required vs available capacity | hours",
+          "position": {
+            "x": 962,
+            "y": 340,
+            "z": 5,
+            "height": 300,
+            "width": 890,
+            "tabOrder": 5
+          },
+          "roles": {
+            "Category": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendar"
+                      }
+                    },
+                    "Property": "Month"
+                  }
+                },
+                "queryRef": "Calendar.Month",
+                "nativeQueryRef": "Month"
+              }
+            ],
+            "Y": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Capacity Required Hours"
+                  }
+                },
+                "queryRef": "Metrics.Capacity Required Hours",
+                "nativeQueryRef": "Capacity Required Hours"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Capacity Available Hours"
+                  }
+                },
+                "queryRef": "Metrics.Capacity Available Hours",
+                "nativeQueryRef": "Capacity Available Hours"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "0fffedcb5b9d6c08fbe2",
+          "type": "tableEx",
+          "title": "Management exceptions | proposed plan",
+          "position": {
+            "x": 48,
+            "y": 668,
+            "z": 6,
+            "height": 270,
+            "width": 1350,
+            "tabOrder": 6
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Production Plan"
+                      }
+                    },
+                    "Property": "product_id"
+                  }
+                },
+                "queryRef": "Production Plan.product_id",
+                "nativeQueryRef": "product_id"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Production Plan"
+                      }
+                    },
+                    "Property": "period_start"
+                  }
+                },
+                "queryRef": "Production Plan.period_start",
+                "nativeQueryRef": "period_start"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Production Plan"
+                      }
+                    },
+                    "Property": "status"
+                  }
+                },
+                "queryRef": "Production Plan.status",
+                "nativeQueryRef": "status"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Constrained Production kg"
+                  }
+                },
+                "queryRef": "Metrics.Constrained Production kg",
+                "nativeQueryRef": "Constrained Production kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "63d32af463fd5ba44987",
+          "type": "textbox",
+          "title": "Read first",
+          "position": {
+            "x": 1420,
+            "y": 668,
+            "z": 7,
+            "height": 270,
+            "width": 432,
+            "tabOrder": 7
+          },
+          "roles": {},
+          "text": "December mixing needs 11.76 hours against 10 available. FG-002 has 844 kg unmet. These are synthetic proposed plans; no orders are released. Filters and future refreshes may change results."
+        },
+        {
+          "name": "79ce98debe6c72bfc799",
+          "type": "textbox",
+          "title": "",
+          "position": {
+            "x": 48,
+            "y": 25,
+            "z": 8,
+            "height": 115,
+            "width": 1800,
+            "tabOrder": 8
+          },
+          "roles": {},
+          "text": "01  Executive Operations\nSynthetic management view | Current stock, selected forecast and proposed production"
+        },
+        {
+          "name": "1eef665942a2e8fdbea2",
+          "type": "pageNavigator",
+          "title": "",
+          "position": {
+            "x": 48,
+            "y": 975,
+            "z": 9,
+            "height": 58,
+            "width": 1804,
+            "tabOrder": 9
+          },
+          "roles": {},
+          "text": null
+        }
+      ]
+    },
+    {
+      "name": "inventory_procurement",
+      "title": "02  Inventory & Procurement",
+      "subtitle": "Pooled raw materials | Reorder proposals are not open purchase supply",
+      "visuals": [
+        {
+          "name": "1dc82fa92a5eb94550ca",
+          "type": "card",
+          "title": "On hand | kg",
+          "position": {
+            "x": 48,
+            "y": 170,
+            "z": 0,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 0
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Material On Hand kg"
+                  }
+                },
+                "queryRef": "Metrics.Material On Hand kg",
+                "nativeQueryRef": "Material On Hand kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "563e4c8d656bcc09e7cf",
+          "type": "card",
+          "title": "Projected | kg",
+          "position": {
+            "x": 508,
+            "y": 170,
+            "z": 1,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 1
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Projected Material kg"
+                  }
+                },
+                "queryRef": "Metrics.Projected Material kg",
+                "nativeQueryRef": "Projected Material kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "7c8e5b246c33be882ca4",
+          "type": "card",
+          "title": "Materials at risk",
+          "position": {
+            "x": 968,
+            "y": 170,
+            "z": 2,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 2
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Materials At Risk"
+                  }
+                },
+                "queryRef": "Metrics.Materials At Risk",
+                "nativeQueryRef": "Materials At Risk"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "a92e59eed1ab659d7edf",
+          "type": "card",
+          "title": "Proposed reorder | kg",
+          "position": {
+            "x": 1428,
+            "y": 170,
+            "z": 3,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 3
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Recommended Reorder kg"
+                  }
+                },
+                "queryRef": "Metrics.Recommended Reorder kg",
+                "nativeQueryRef": "Recommended Reorder kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "ec42fcc33da9a02c4319",
+          "type": "slicer",
+          "title": "Material",
+          "position": {
+            "x": 48,
+            "y": 335,
+            "z": 4,
+            "height": 100,
+            "width": 420,
+            "tabOrder": 4
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Material"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Material.code",
+                "nativeQueryRef": "code"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "81b4a2db35e8a059358e",
+          "type": "slicer",
+          "title": "Supplier | procurement only",
+          "position": {
+            "x": 490,
+            "y": 335,
+            "z": 5,
+            "height": 100,
+            "width": 448,
+            "tabOrder": 5
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Supplier"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Supplier.code",
+                "nativeQueryRef": "code"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "d52678ef5cae0b6783c2",
+          "type": "clusteredColumnChart",
+          "title": "Current stock and projected balance | kg",
+          "position": {
+            "x": 48,
+            "y": 455,
+            "z": 6,
+            "height": 465,
+            "width": 890,
+            "tabOrder": 6
+          },
+          "roles": {
+            "Category": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Material"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Material.code",
+                "nativeQueryRef": "code"
+              }
+            ],
+            "Y": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Material On Hand kg"
+                  }
+                },
+                "queryRef": "Metrics.Material On Hand kg",
+                "nativeQueryRef": "Material On Hand kg"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Projected Material kg"
+                  }
+                },
+                "queryRef": "Metrics.Projected Material kg",
+                "nativeQueryRef": "Projected Material kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "ef28fe28d6b746762221",
+          "type": "tableEx",
+          "title": "Reorder proposals | selected run",
+          "position": {
+            "x": 962,
+            "y": 335,
+            "z": 7,
+            "height": 280,
+            "width": 890,
+            "tabOrder": 7
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Material"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Material.code",
+                "nativeQueryRef": "code"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Reorders"
+                      }
+                    },
+                    "Property": "status"
+                  }
+                },
+                "queryRef": "Reorders.status",
+                "nativeQueryRef": "status"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Reorders"
+                      }
+                    },
+                    "Property": "reason"
+                  }
+                },
+                "queryRef": "Reorders.reason",
+                "nativeQueryRef": "reason"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Recommended Reorder kg"
+                  }
+                },
+                "queryRef": "Metrics.Recommended Reorder kg",
+                "nativeQueryRef": "Recommended Reorder kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "0607f9894098bb09f1b4",
+          "type": "tableEx",
+          "title": "Supplier material flow | orders, not receipts",
+          "position": {
+            "x": 962,
+            "y": 645,
+            "z": 8,
+            "height": 275,
+            "width": 890,
+            "tabOrder": 8
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Supplier"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Supplier.code",
+                "nativeQueryRef": "Supplier.code"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Material"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Material.code",
+                "nativeQueryRef": "Material.code"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Procurement Ordered kg"
+                  }
+                },
+                "queryRef": "Metrics.Procurement Ordered kg",
+                "nativeQueryRef": "Procurement Ordered kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "0d0a1930b64f271beeea",
+          "type": "textbox",
+          "title": "",
+          "position": {
+            "x": 48,
+            "y": 25,
+            "z": 9,
+            "height": 115,
+            "width": 1800,
+            "tabOrder": 9
+          },
+          "roles": {},
+          "text": "02  Inventory & Procurement\nPooled raw materials | Reorder proposals are not open purchase supply"
+        },
+        {
+          "name": "f0b94a6b826f343c4a33",
+          "type": "pageNavigator",
+          "title": "",
+          "position": {
+            "x": 48,
+            "y": 975,
+            "z": 10,
+            "height": 58,
+            "width": 1804,
+            "tabOrder": 10
+          },
+          "roles": {},
+          "text": null
+        }
+      ]
+    },
+    {
+      "name": "demand_forecasting",
+      "title": "03  Demand & Forecasting",
+      "subtitle": "Archived actual demand and future forecasts are separate from operational sales",
+      "visuals": [
+        {
+          "name": "7288764ba65efe674988",
+          "type": "card",
+          "title": "Forecast | kg",
+          "position": {
+            "x": 48,
+            "y": 170,
+            "z": 0,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 0
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Forecast Demand kg"
+                  }
+                },
+                "queryRef": "Metrics.Forecast Demand kg",
+                "nativeQueryRef": "Forecast Demand kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "4b8a1f8e4cb1fadab405",
+          "type": "card",
+          "title": "Selected-policy holdout MAE | kg",
+          "position": {
+            "x": 508,
+            "y": 170,
+            "z": 1,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 1
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Selected Policy MAE kg"
+                  }
+                },
+                "queryRef": "Metrics.Selected Policy MAE kg",
+                "nativeQueryRef": "Selected Policy MAE kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "25b2c13ae9cf464abc2a",
+          "type": "card",
+          "title": "Selected-policy holdout RMSE | kg",
+          "position": {
+            "x": 968,
+            "y": 170,
+            "z": 2,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 2
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Selected Policy RMSE kg"
+                  }
+                },
+                "queryRef": "Metrics.Selected Policy RMSE kg",
+                "nativeQueryRef": "Selected Policy RMSE kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "7fc546fb76906f94f79a",
+          "type": "card",
+          "title": "Selected model",
+          "position": {
+            "x": 1428,
+            "y": 170,
+            "z": 3,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 3
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Selected Model"
+                  }
+                },
+                "queryRef": "Metrics.Selected Model",
+                "nativeQueryRef": "Selected Model"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "2796f66f452b09b725ea",
+          "type": "slicer",
+          "title": "Product",
+          "position": {
+            "x": 48,
+            "y": 335,
+            "z": 4,
+            "height": 100,
+            "width": 420,
+            "tabOrder": 4
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Product"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Product.code",
+                "nativeQueryRef": "code"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "97532edd171fa8313257",
+          "type": "lineChart",
+          "title": "Archived demand and forward forecast | kg",
+          "position": {
+            "x": 48,
+            "y": 455,
+            "z": 5,
+            "height": 465,
+            "width": 1120,
+            "tabOrder": 5
+          },
+          "roles": {
+            "Category": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendar"
+                      }
+                    },
+                    "Property": "Month"
+                  }
+                },
+                "queryRef": "Calendar.Month",
+                "nativeQueryRef": "Month"
+              }
+            ],
+            "Y": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Archived Demand kg"
+                  }
+                },
+                "queryRef": "Metrics.Archived Demand kg",
+                "nativeQueryRef": "Archived Demand kg"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Forecast Demand kg"
+                  }
+                },
+                "queryRef": "Metrics.Forecast Demand kg",
+                "nativeQueryRef": "Forecast Demand kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "e4a5bd27741dcb55af0e",
+          "type": "lineChart",
+          "title": "Holdout actual vs predicted | kg",
+          "position": {
+            "x": 1190,
+            "y": 335,
+            "z": 6,
+            "height": 280,
+            "width": 662,
+            "tabOrder": 6
+          },
+          "roles": {
+            "Category": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendar"
+                      }
+                    },
+                    "Property": "Month"
+                  }
+                },
+                "queryRef": "Calendar.Month",
+                "nativeQueryRef": "Month"
+              }
+            ],
+            "Y": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Holdout Actual kg"
+                  }
+                },
+                "queryRef": "Metrics.Holdout Actual kg",
+                "nativeQueryRef": "Holdout Actual kg"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Holdout Prediction kg"
+                  }
+                },
+                "queryRef": "Metrics.Holdout Prediction kg",
+                "nativeQueryRef": "Holdout Prediction kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "e2cd898eb367d33c621d",
+          "type": "tableEx",
+          "title": "October-December forecast | kg per product/month",
+          "position": {
+            "x": 1190,
+            "y": 645,
+            "z": 7,
+            "height": 275,
+            "width": 662,
+            "tabOrder": 7
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Product"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Product.code",
+                "nativeQueryRef": "code"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Forecast"
+                      }
+                    },
+                    "Property": "period_start"
+                  }
+                },
+                "queryRef": "Forecast.period_start",
+                "nativeQueryRef": "period_start"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Forecast"
+                      }
+                    },
+                    "Property": "selected_model"
+                  }
+                },
+                "queryRef": "Forecast.selected_model",
+                "nativeQueryRef": "selected_model"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Forecast Demand kg"
+                  }
+                },
+                "queryRef": "Metrics.Forecast Demand kg",
+                "nativeQueryRef": "Forecast Demand kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "69abc9743030c7ed0596",
+          "type": "textbox",
+          "title": "",
+          "position": {
+            "x": 48,
+            "y": 25,
+            "z": 8,
+            "height": 115,
+            "width": 1800,
+            "tabOrder": 8
+          },
+          "roles": {},
+          "text": "03  Demand & Forecasting\nArchived actual demand and future forecasts are separate from operational sales"
+        },
+        {
+          "name": "1d7206aaa11e88df5799",
+          "type": "pageNavigator",
+          "title": "",
+          "position": {
+            "x": 48,
+            "y": 975,
+            "z": 9,
+            "height": 58,
+            "width": 1804,
+            "tabOrder": 9
+          },
+          "roles": {},
+          "text": null
+        }
+      ]
+    },
+    {
+      "name": "production_capacity",
+      "title": "04  Production & Capacity",
+      "subtitle": "Proposed plan | Whole batches compete for finite materials and residual hours. Separate verified what-if: FG-001 +5,000 kg -> 3,000 kg net; 30h needed vs 10h available; 2,000 kg unmet.",
+      "visuals": [
+        {
+          "name": "e797bec5627a7b29d251",
+          "type": "card",
+          "title": "Net production | kg",
+          "position": {
+            "x": 48,
+            "y": 170,
+            "z": 0,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 0
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Production Requirement kg"
+                  }
+                },
+                "queryRef": "Metrics.Production Requirement kg",
+                "nativeQueryRef": "Production Requirement kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "cf4eb2bf8e6e0a046488",
+          "type": "card",
+          "title": "Unmet production | kg",
+          "position": {
+            "x": 508,
+            "y": 170,
+            "z": 1,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 1
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Constrained Production kg"
+                  }
+                },
+                "queryRef": "Metrics.Constrained Production kg",
+                "nativeQueryRef": "Constrained Production kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "75c626721b2eabb0c0a4",
+          "type": "card",
+          "title": "December mixing required | h",
+          "position": {
+            "x": 968,
+            "y": 170,
+            "z": 2,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 2
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "December Mixing Required Hours"
+                  }
+                },
+                "queryRef": "Metrics.December Mixing Required Hours",
+                "nativeQueryRef": "December Mixing Required Hours"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "517685f7fae36abfd776",
+          "type": "card",
+          "title": "December mixing available | h",
+          "position": {
+            "x": 1428,
+            "y": 170,
+            "z": 3,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 3
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "December Mixing Available Hours"
+                  }
+                },
+                "queryRef": "Metrics.December Mixing Available Hours",
+                "nativeQueryRef": "December Mixing Available Hours"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "2f9d27ed85ee5582ce9e",
+          "type": "slicer",
+          "title": "Month",
+          "position": {
+            "x": 48,
+            "y": 335,
+            "z": 4,
+            "height": 100,
+            "width": 400,
+            "tabOrder": 4
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendar"
+                      }
+                    },
+                    "Property": "Month"
+                  }
+                },
+                "queryRef": "Calendar.Month",
+                "nativeQueryRef": "Month"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "53fbbb0fa27cd6dc45cd",
+          "type": "slicer",
+          "title": "Resource",
+          "position": {
+            "x": 470,
+            "y": 335,
+            "z": 5,
+            "height": 100,
+            "width": 468,
+            "tabOrder": 5
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Resource"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Resource.code",
+                "nativeQueryRef": "code"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "fcb05ba21f1f2343226a",
+          "type": "clusteredColumnChart",
+          "title": "Resource capacity | hours",
+          "position": {
+            "x": 48,
+            "y": 455,
+            "z": 6,
+            "height": 220,
+            "width": 890,
+            "tabOrder": 6
+          },
+          "roles": {
+            "Category": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Resource"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Resource.code",
+                "nativeQueryRef": "code"
+              }
+            ],
+            "Y": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Capacity Required Hours"
+                  }
+                },
+                "queryRef": "Metrics.Capacity Required Hours",
+                "nativeQueryRef": "Capacity Required Hours"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Capacity Available Hours"
+                  }
+                },
+                "queryRef": "Metrics.Capacity Available Hours",
+                "nativeQueryRef": "Capacity Available Hours"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "5132e214109399b2432e",
+          "type": "tableEx",
+          "title": "Capacity detail | one resource/month",
+          "position": {
+            "x": 48,
+            "y": 700,
+            "z": 7,
+            "height": 220,
+            "width": 890,
+            "tabOrder": 7
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Resource"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Resource.code",
+                "nativeQueryRef": "code"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendar"
+                      }
+                    },
+                    "Property": "Month"
+                  }
+                },
+                "queryRef": "Calendar.Month",
+                "nativeQueryRef": "Month"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Capacity Required Hours"
+                  }
+                },
+                "queryRef": "Metrics.Capacity Required Hours",
+                "nativeQueryRef": "Capacity Required Hours"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Capacity Available Hours"
+                  }
+                },
+                "queryRef": "Metrics.Capacity Available Hours",
+                "nativeQueryRef": "Capacity Available Hours"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Capacity Utilisation %"
+                  }
+                },
+                "queryRef": "Metrics.Capacity Utilisation %",
+                "nativeQueryRef": "Capacity Utilisation %"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Capacity Shortfall Hours"
+                  }
+                },
+                "queryRef": "Metrics.Capacity Shortfall Hours",
+                "nativeQueryRef": "Capacity Shortfall Hours"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "07a9bec523e9964aa297",
+          "type": "tableEx",
+          "title": "Forecast to production | product/month",
+          "position": {
+            "x": 962,
+            "y": 335,
+            "z": 8,
+            "height": 280,
+            "width": 890,
+            "tabOrder": 8
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Product"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Product.code",
+                "nativeQueryRef": "code"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Production Plan"
+                      }
+                    },
+                    "Property": "period_start"
+                  }
+                },
+                "queryRef": "Production Plan.period_start",
+                "nativeQueryRef": "period_start"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Production Plan"
+                      }
+                    },
+                    "Property": "status"
+                  }
+                },
+                "queryRef": "Production Plan.status",
+                "nativeQueryRef": "status"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Production Requirement kg"
+                  }
+                },
+                "queryRef": "Metrics.Production Requirement kg",
+                "nativeQueryRef": "Production Requirement kg"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Allocated Production kg"
+                  }
+                },
+                "queryRef": "Metrics.Allocated Production kg",
+                "nativeQueryRef": "Allocated Production kg"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Constrained Production kg"
+                  }
+                },
+                "queryRef": "Metrics.Constrained Production kg",
+                "nativeQueryRef": "Constrained Production kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "c626d09f72eb8caed2e8",
+          "type": "tableEx",
+          "title": "All-resource material turns | kg, availability is not additive",
+          "position": {
+            "x": 962,
+            "y": 645,
+            "z": 9,
+            "height": 275,
+            "width": 890,
+            "tabOrder": 9
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Planning Materials"
+                      }
+                    },
+                    "Property": "product_id"
+                  }
+                },
+                "queryRef": "Planning Materials.product_id",
+                "nativeQueryRef": "product_id"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Planning Materials"
+                      }
+                    },
+                    "Property": "period_start"
+                  }
+                },
+                "queryRef": "Planning Materials.period_start",
+                "nativeQueryRef": "period_start"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Material"
+                      }
+                    },
+                    "Property": "code"
+                  }
+                },
+                "queryRef": "Material.code",
+                "nativeQueryRef": "code"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Planning Materials"
+                      }
+                    },
+                    "Property": "available_quantity"
+                  }
+                },
+                "queryRef": "Planning Materials.available_quantity",
+                "nativeQueryRef": "available_quantity"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Planning Materials"
+                      }
+                    },
+                    "Property": "remaining_quantity"
+                  }
+                },
+                "queryRef": "Planning Materials.remaining_quantity",
+                "nativeQueryRef": "remaining_quantity"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Material Requirement kg"
+                  }
+                },
+                "queryRef": "Metrics.Material Requirement kg",
+                "nativeQueryRef": "Material Requirement kg"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Material Shortage kg"
+                  }
+                },
+                "queryRef": "Metrics.Material Shortage kg",
+                "nativeQueryRef": "Material Shortage kg"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "5412be0adbf1a9df483c",
+          "type": "textbox",
+          "title": "",
+          "position": {
+            "x": 48,
+            "y": 25,
+            "z": 10,
+            "height": 115,
+            "width": 1800,
+            "tabOrder": 10
+          },
+          "roles": {},
+          "text": "04  Production & Capacity\nProposed plan | Whole batches compete for finite materials and residual hours. Separate verified what-if: FG-001 +5,000 kg -> 3,000 kg net; 30h needed vs 10h available; 2,000 kg unmet."
+        },
+        {
+          "name": "e672e7df5c86ca553209",
+          "type": "pageNavigator",
+          "title": "",
+          "position": {
+            "x": 48,
+            "y": 975,
+            "z": 11,
+            "height": 58,
+            "width": 1804,
+            "tabOrder": 11
+          },
+          "roles": {},
+          "text": null
+        }
+      ]
+    },
+    {
+      "name": "quality_trust",
+      "title": "05  Quality & Data Trust",
+      "subtitle": "Audited records | ETL replay counts execution events, not unique business records",
+      "visuals": [
+        {
+          "name": "28502b65e338cbb686db",
+          "type": "card",
+          "title": "Batch QC pass | all-time",
+          "position": {
+            "x": 48,
+            "y": 170,
+            "z": 0,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 0
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Batch QC Pass Rate %"
+                  }
+                },
+                "queryRef": "Metrics.Batch QC Pass Rate %",
+                "nativeQueryRef": "Batch QC Pass Rate %"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "09c5470d9d8bdd5ff663",
+          "type": "card",
+          "title": "ETL acceptance",
+          "position": {
+            "x": 508,
+            "y": 170,
+            "z": 1,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 1
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "ETL Acceptance Rate %"
+                  }
+                },
+                "queryRef": "Metrics.ETL Acceptance Rate %",
+                "nativeQueryRef": "ETL Acceptance Rate %"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "6b9f471319549cb4509d",
+          "type": "card",
+          "title": "ETL rejection",
+          "position": {
+            "x": 968,
+            "y": 170,
+            "z": 2,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 2
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "ETL Rejection Rate %"
+                  }
+                },
+                "queryRef": "Metrics.ETL Rejection Rate %",
+                "nativeQueryRef": "ETL Rejection Rate %"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "18a6daca780776409821",
+          "type": "card",
+          "title": "Data quality issues",
+          "position": {
+            "x": 1428,
+            "y": 170,
+            "z": 3,
+            "height": 140,
+            "width": 440,
+            "tabOrder": 3
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Data Quality Issues"
+                  }
+                },
+                "queryRef": "Metrics.Data Quality Issues",
+                "nativeQueryRef": "Data Quality Issues"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "dc46e8089b5ce374588c",
+          "type": "clusteredColumnChart",
+          "title": "QC results | inspection counts",
+          "position": {
+            "x": 48,
+            "y": 340,
+            "z": 4,
+            "height": 280,
+            "width": 890,
+            "tabOrder": 4
+          },
+          "roles": {
+            "Category": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Quality"
+                      }
+                    },
+                    "Property": "result"
+                  }
+                },
+                "queryRef": "Quality.result",
+                "nativeQueryRef": "result"
+              }
+            ],
+            "Y": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "QC Inspections"
+                  }
+                },
+                "queryRef": "Metrics.QC Inspections",
+                "nativeQueryRef": "QC Inspections"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "39ce46307ecce02ba2e4",
+          "type": "clusteredColumnChart",
+          "title": "Issues by source | observations",
+          "position": {
+            "x": 962,
+            "y": 340,
+            "z": 5,
+            "height": 280,
+            "width": 890,
+            "tabOrder": 5
+          },
+          "roles": {
+            "Category": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Data Quality"
+                      }
+                    },
+                    "Property": "source_system"
+                  }
+                },
+                "queryRef": "Data Quality.source_system",
+                "nativeQueryRef": "source_system"
+              }
+            ],
+            "Y": [
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Data Quality Issues"
+                  }
+                },
+                "queryRef": "Metrics.Data Quality Issues",
+                "nativeQueryRef": "Data Quality Issues"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "330279c1957d01365450",
+          "type": "tableEx",
+          "title": "Validation rules and lineage",
+          "position": {
+            "x": 48,
+            "y": 650,
+            "z": 6,
+            "height": 270,
+            "width": 1350,
+            "tabOrder": 6
+          },
+          "roles": {
+            "Values": [
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Data Quality"
+                      }
+                    },
+                    "Property": "run_code"
+                  }
+                },
+                "queryRef": "Data Quality.run_code",
+                "nativeQueryRef": "run_code"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Data Quality"
+                      }
+                    },
+                    "Property": "source_system"
+                  }
+                },
+                "queryRef": "Data Quality.source_system",
+                "nativeQueryRef": "source_system"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Data Quality"
+                      }
+                    },
+                    "Property": "rule_code"
+                  }
+                },
+                "queryRef": "Data Quality.rule_code",
+                "nativeQueryRef": "rule_code"
+              },
+              {
+                "field": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Data Quality"
+                      }
+                    },
+                    "Property": "severity"
+                  }
+                },
+                "queryRef": "Data Quality.severity",
+                "nativeQueryRef": "severity"
+              },
+              {
+                "field": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Metrics"
+                      }
+                    },
+                    "Property": "Data Quality Issues"
+                  }
+                },
+                "queryRef": "Metrics.Data Quality Issues",
+                "nativeQueryRef": "Data Quality Issues"
+              }
+            ]
+          },
+          "text": null
+        },
+        {
+          "name": "658ea05fa8f1744cb524",
+          "type": "textbox",
+          "title": "Trust boundary",
+          "position": {
+            "x": 1420,
+            "y": 650,
+            "z": 7,
+            "height": 270,
+            "width": 432,
+            "tabOrder": 7
+          },
+          "roles": {},
+          "text": "Known synthetic fixture: 416 accepted and 48 rejected source rows per run. Two audited executions retain 96 issue observations. Customer-to-supplier traceability is available through the operational API. QC pass is not a production-release approval."
+        },
+        {
+          "name": "3522abea43b4cf7724e5",
+          "type": "textbox",
+          "title": "",
+          "position": {
+            "x": 48,
+            "y": 25,
+            "z": 8,
+            "height": 115,
+            "width": 1800,
+            "tabOrder": 8
+          },
+          "roles": {},
+          "text": "05  Quality & Data Trust\nAudited records | ETL replay counts execution events, not unique business records"
+        },
+        {
+          "name": "03d977bf1c3b512abf2b",
+          "type": "pageNavigator",
+          "title": "",
+          "position": {
+            "x": 48,
+            "y": 975,
+            "z": 9,
+            "height": 58,
+            "width": 1804,
+            "tabOrder": 9
+          },
+          "roles": {},
+          "text": null
+        }
+      ]
+    },
+    {
+      "name": "transformation",
+      "title": "06  Transformation & Value",
+      "subtitle": "From fragmented records to explainable management decisions | Fictional case study",
+      "visuals": [
+        {
+          "name": "e2cd5d5d23bff2aaaa5b",
+          "type": "textbox",
+          "title": "01  Fragmented sources",
+          "position": {
+            "x": 48,
+            "y": 175,
+            "z": 0,
+            "height": 245,
+            "width": 585,
+            "tabOrder": 0
+          },
+          "roles": {},
+          "text": "SQLite sales, CSV stock and production, Excel purchasing and quality. Synthetic data with reproducible defects."
+        },
+        {
+          "name": "3d362fbd5eebdc244f36",
+          "type": "textbox",
+          "title": "02  Trusted ingestion",
+          "position": {
+            "x": 663,
+            "y": 175,
+            "z": 1,
+            "height": 245,
+            "width": 585,
+            "tabOrder": 1
+          },
+          "roles": {},
+          "text": "Python validation, explicit quarantine, source keys and ETL run lineage. Reconciliation protects quantities."
+        },
+        {
+          "name": "c58fc1b3fd12c18299c9",
+          "type": "textbox",
+          "title": "03  Integrated operations",
+          "position": {
+            "x": 1278,
+            "y": 175,
+            "z": 2,
+            "height": 245,
+            "width": 585,
+            "tabOrder": 2
+          },
+          "roles": {},
+          "text": "PostgreSQL shared records and stable reporting views. FastAPI connects orders, batches, inspections and suppliers."
+        },
+        {
+          "name": "08f535564124883b936b",
+          "type": "textbox",
+          "title": "04  Explainable decisions",
+          "position": {
+            "x": 48,
+            "y": 455,
+            "z": 3,
+            "height": 245,
+            "width": 585,
+            "tabOrder": 3
+          },
+          "roles": {},
+          "text": "Inventory rules, chronological forecast evaluation and finite-capacity production proposals. Reasons remain visible."
+        },
+        {
+          "name": "464de5580678d62d3cdf",
+          "type": "textbox",
+          "title": "05  Management intelligence",
+          "position": {
+            "x": 663,
+            "y": 455,
+            "z": 4,
+            "height": 245,
+            "width": 585,
+            "tabOrder": 4
+          },
+          "roles": {},
+          "text": "Compare demand with supply, inspect material risk, identify the December capacity bottleneck and review data trust."
+        },
+        {
+          "name": "3fdf2785b9b7f0d82bf3",
+          "type": "textbox",
+          "title": "06  Honest value proposition",
+          "position": {
+            "x": 1278,
+            "y": 455,
+            "z": 5,
+            "height": 245,
+            "width": 585,
+            "tabOrder": 5
+          },
+          "roles": {},
+          "text": "Improved visibility is demonstrated by connected evidence. No financial ROI, time saving or operational improvement is claimed without measurement."
+        },
+        {
+          "name": "87537a3b515ffe20db17",
+          "type": "textbox",
+          "title": "Demonstration route",
+          "position": {
+            "x": 48,
+            "y": 760,
+            "z": 6,
+            "height": 165,
+            "width": 1800,
+            "tabOrder": 6
+          },
+          "roles": {},
+          "text": "Start with executive exceptions. Inspect RM-002 / RM-003 reorder proposals. Review selected-policy holdout MAE. Show December mixing: 11.76 hours vs 10, with 844 kg FG-002 unmet. Finish with audited ETL and traceability. This is decision support, not autonomous execution."
+        },
+        {
+          "name": "024fc319cf284ec247ee",
+          "type": "textbox",
+          "title": "",
+          "position": {
+            "x": 48,
+            "y": 25,
+            "z": 7,
+            "height": 115,
+            "width": 1800,
+            "tabOrder": 7
+          },
+          "roles": {},
+          "text": "06  Transformation & Value\nFrom fragmented records to explainable management decisions | Fictional case study"
+        },
+        {
+          "name": "56a11ec060a98a665fa4",
+          "type": "pageNavigator",
+          "title": "",
+          "position": {
+            "x": 48,
+            "y": 975,
+            "z": 8,
+            "height": 58,
+            "width": 1804,
+            "tabOrder": 8
+          },
+          "roles": {},
+          "text": null
+        }
+      ]
+    }
+  ],
+  "desktop_validation": "required"
+}

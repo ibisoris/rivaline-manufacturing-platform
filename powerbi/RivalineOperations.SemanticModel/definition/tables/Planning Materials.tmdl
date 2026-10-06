@@ -1,0 +1,83 @@
+/// One plan run/product/month/material; availability is non-additive
+table 'Planning Materials'
+	lineageTag: 8db654d5-7652-45bf-aec2-68e02b075964
+
+	column product_id
+		dataType: int64
+		isHidden
+		lineageTag: 35df803e-0b0d-4ee8-b346-52ba38d0fbb9
+		summarizeBy: none
+		sourceColumn: product_id
+
+	column raw_material_id
+		dataType: int64
+		isHidden
+		lineageTag: 921637d0-1875-42e2-93d1-f10cc60bccce
+		summarizeBy: none
+		sourceColumn: raw_material_id
+
+	column period_start
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 03973835-712e-451e-95c1-8dd3912b4f34
+		summarizeBy: none
+		sourceColumn: period_start
+
+	column unit_of_measure
+		dataType: string
+		lineageTag: 23e2159b-c9f8-4efa-b1ae-4dcd1721109c
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+	column required_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 4d2837e4-3459-417b-9931-00c3cfd22617
+		summarizeBy: none
+		sourceColumn: required_quantity
+
+	column available_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: c8add233-d38e-46a5-b862-c4310d60976c
+		summarizeBy: none
+		sourceColumn: available_quantity
+
+	column shortage_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: e36d6972-ccb9-475d-89d4-30e784d5dbf0
+		summarizeBy: none
+		sourceColumn: shortage_quantity
+
+	column allocated_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 77246cec-a688-4bcf-bd9d-160720f8715d
+		summarizeBy: none
+		sourceColumn: allocated_quantity
+
+	column remaining_quantity
+		dataType: double
+		formatString: #,0.000000
+		lineageTag: 98a44509-a2bb-40d0-a726-88f059dd211e
+		summarizeBy: none
+		sourceColumn: remaining_quantity
+
+	column plan_run_code
+		dataType: string
+		lineageTag: 75fc77c7-5248-4bd9-b62b-0ca7b69092d9
+		summarizeBy: none
+		sourceColumn: plan_run_code
+
+	partition 'Planning Materials' = m
+		mode: import
+		source =
+				let
+				    Source = ReportingSource{[Schema="public", Item="vw_planning_materials"]}[Data],
+				    Filtered = Table.SelectRows(Source, each [plan_run_code] = PlanRunCode),
+				    Selected = Table.SelectColumns(Filtered, {"product_id", "raw_material_id", "period_start", "unit_of_measure", "required_quantity", "available_quantity", "shortage_quantity", "allocated_quantity", "remaining_quantity", "plan_run_code"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"product_id", Int64.Type}, {"raw_material_id", Int64.Type}, {"period_start", type datetime}, {"unit_of_measure", type text}, {"required_quantity", type number}, {"available_quantity", type number}, {"shortage_quantity", type number}, {"allocated_quantity", type number}, {"remaining_quantity", type number}, {"plan_run_code", type text}}),
+				    Result = if Table.IsEmpty(#"Production Plan") then error "Select a matching plan and forecast" else Typed
+				in
+				    Result

@@ -30,7 +30,10 @@ chronological evaluation, immutable forecast evidence and read-only reporting AP
 **IMPLEMENTED - Phase 6:** demand netting, batch sizing, shared material/capacity allocation,
 computational what-if APIs and reproducible proposed production snapshots.
 
-**PLANNED:** Power BI reports and authentication. No frontend, distributed
+**IMPLEMENTED - Phase 7 source assets:** Power BI import model, DAX catalogue and six PBIR report
+pages; code/PostgreSQL checks and user-confirmed Desktop refresh/render validation are complete.
+
+**PLANNED:** authentication. No frontend, distributed
 infrastructure or cloud deployment is in scope. This is a focused two-day prototype.
 
 ## Target architecture
@@ -181,7 +184,7 @@ See [data architecture](docs/06-data-architecture.md) for relationships and limi
 4. Phase 4: inventory intelligence and reorder decision support.
 5. Phase 5: monthly demand forecasting and chronological evaluation.
 6. Phase 6: monthly production proposals and capacity decision support; no automatic order release.
-7. Phase 7 Power BI requires separate approval.
+7. Phase 7: management reporting assets; Desktop refresh/render validation passed.
 
 ## Phase 2 demo
 
@@ -328,3 +331,13 @@ Priority allocates FG-001's whole batch first; FG-002's batch remains capacity-c
 See [planning contract](docs/26-production-planning.md) and [validation report](docs/27-phase-6-validation.md)
 for assumptions, scenarios, preservation evidence and measured synthetic KPIs. No Phase 7 dashboard
 or automatic purchasing/production release has been implemented.
+
+## Phase 7 Power BI
+
+Open [RivalineOperations.pbip](powerbi/RivalineOperations.pbip) in Power BI Desktop. Enter local
+PostgreSQL credentials through Desktop's authentication dialog and refresh; credentials are not
+stored in project definitions. The retained original PBIX is ignored and is not the Phase 7 report.
+
+Code/schema checks and PostgreSQL reconciliation are separate from Desktop validation. Follow the
+[Power BI runbook](powerbi/README.md), [architecture/demo guide](docs/28-powerbi-management-intelligence.md)
+and [Phase 7 evidence](docs/29-phase-7-validation.md). No commit, push or later-phase work is automatic.
