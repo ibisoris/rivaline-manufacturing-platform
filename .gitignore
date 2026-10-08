@@ -28,3 +28,6 @@ powerbi/.phase7-backup/
 
 # Raw portfolio captures; only curated docs/images/powerbi assets are versioned.
 /screenshots-temp/
+
+# Local personal learning and practice material; never publish.
+/interview-private/

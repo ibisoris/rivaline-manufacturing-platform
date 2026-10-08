@@ -194,7 +194,7 @@ but is not arbitrary-precision Decimal. Native displayed results require the man
    separate Phase 6 what-if reference explains 5,000kg FG-001 demand; the report submits no requests.
 5. Quality & Data Trust: batch QC, inspection counts, weighted ETL rates and issue/source/rule lineage.
 6. Transformation & Value: six-step journey from fragmented files to management decisions, supported
-   project evidence and a concise interview/demo route without financial ROI claims.
+   project evidence and a concise technical demo route without financial ROI claims.
 
 The user confirmed all six pages and the corrected procurement table render successfully. Static reference narratives
 are labelled synthetic/verified examples and must be reviewed when changing snapshot parameters.

@@ -8,7 +8,7 @@ Status: **verified by code and against PostgreSQL; manual Desktop refresh/render
 There are six PBIR report pages, 62 generated visuals, 21 model tables, 25 single-direction
 relationships and 39 measures. No new PostgreSQL views or migrations were needed.
 
-- [Connection, architecture, refresh and interview walkthrough](../docs/28-powerbi-management-intelligence.md)
+- [Connection, architecture, refresh and technical walkthrough](../docs/28-powerbi-management-intelligence.md)
 - [Phase 7 validation report](../docs/29-phase-7-validation.md)
 - [Entity grains, relationships and full DAX catalogue](model-and-measures.md)
 - [Exact page/visual bindings and manual build/acceptance checklist](page-build-specification.md)

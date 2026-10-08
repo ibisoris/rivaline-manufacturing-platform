@@ -119,7 +119,7 @@ calibrated forecast intervals or automatic production/purchasing measures. Capac
 conditional on Phase 6 assumptions; current stock and historical snapshots can diverge after
 future data changes. Static narrative text describes the verified demo, not a live calculation.
 
-## Interview/demo walkthrough
+## Technical demonstration walkthrough
 
 1. Executive: explain synthetic orders, material risk, QC and future demand. Highlight the
    December exception; do not confuse high all-time QC with an approved production schedule.

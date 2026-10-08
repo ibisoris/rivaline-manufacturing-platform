@@ -1,0 +1,2047 @@
+{
+  "validated_at_utc": "2026-10-08T23:20:35.163917+00:00",
+  "database": {
+    "snapshot": {
+      "counts": {
+        "products": 4,
+        "suppliers": 3,
+        "raw_materials": 4,
+        "customers": 3,
+        "warehouses": 2,
+        "inventory": 32,
+        "inventory_transactions": 0,
+        "bills_of_material": 4,
+        "bill_of_material_lines": 16,
+        "sales_orders": 48,
+        "sales_order_lines": 48,
+        "purchase_orders": 192,
+        "purchase_order_lines": 192,
+        "production_orders": 48,
+        "production_batches": 48,
+        "batch_material_consumption": 192,
+        "quality_inspections": 48,
+        "shipments": 48,
+        "shipment_lines": 48,
+        "demand_forecasts": 12,
+        "reorder_recommendations": 2,
+        "etl_runs": 2,
+        "data_quality_issues": 96,
+        "planning_policies": 4,
+        "planning_runs": 1,
+        "demand_observations": 192,
+        "forecast_runs": 1,
+        "forecast_metrics": 30,
+        "forecast_backtests": 144,
+        "production_resources": 2,
+        "production_policies": 4,
+        "production_plan_runs": 1,
+        "production_plan_lines": 12,
+        "production_capacity_results": 6,
+        "production_material_results": 8
+      },
+      "sha256": "328225ecb90dcbe82555c132c7a366068d424be834a2cc8691a168ebc6c0367c"
+    },
+    "server": "17.11",
+    "migration": "0006_production",
+    "reporting_views": 20,
+    "etl": [
+      {
+        "source_totals_kg": {
+          "shipment_lines.quantity": "9200",
+          "inventory.quantity": "16000",
+          "production_orders.planned_quantity": "9200",
+          "production_batches.actual_quantity": "9200",
+          "batch_material_consumption.quantity": "9200",
+          "purchase_order_lines.quantity": "9200",
+          "sales_order_lines.quantity": "9200"
+        },
+        "source_files_verified": true,
+        "ok": true,
+        "run": "ETL-0640e67c8f5d467db1e80fbe6022e1b0",
+        "extracted": 464,
+        "accepted": 416,
+        "rejected": 48,
+        "target_receipts": 944,
+        "failures": [],
+        "expected_totals_kg": {
+          "sales_order_lines.quantity": "9200",
+          "purchase_order_lines.quantity": "9200",
+          "inventory.quantity": "16000",
+          "production_orders.planned_quantity": "9200",
+          "production_batches.actual_quantity": "9200",
+          "batch_material_consumption.quantity": "9200",
+          "shipment_lines.quantity": "9200"
+        },
+        "actual_totals_kg": {
+          "sales_order_lines.quantity": "9200",
+          "purchase_order_lines.quantity": "9200",
+          "inventory.quantity": "16000",
+          "production_orders.planned_quantity": "9200",
+          "production_batches.actual_quantity": "9200",
+          "batch_material_consumption.quantity": "9200",
+          "shipment_lines.quantity": "9200"
+        },
+        "inserted_targets": 944
+      },
+      {
+        "source_totals_kg": {
+          "shipment_lines.quantity": "9200",
+          "inventory.quantity": "16000",
+          "production_orders.planned_quantity": "9200",
+          "production_batches.actual_quantity": "9200",
+          "batch_material_consumption.quantity": "9200",
+          "purchase_order_lines.quantity": "9200",
+          "sales_order_lines.quantity": "9200"
+        },
+        "source_files_verified": true,
+        "ok": true,
+        "run": "ETL-ad53da1581b844048ad063d3dfe23e57",
+        "extracted": 464,
+        "accepted": 416,
+        "rejected": 48,
+        "target_receipts": 944,
+        "failures": [],
+        "expected_totals_kg": {
+          "sales_order_lines.quantity": "9200",
+          "purchase_order_lines.quantity": "9200",
+          "inventory.quantity": "16000",
+          "production_orders.planned_quantity": "9200",
+          "production_batches.actual_quantity": "9200",
+          "batch_material_consumption.quantity": "9200",
+          "shipment_lines.quantity": "9200"
+        },
+        "actual_totals_kg": {
+          "sales_order_lines.quantity": "9200",
+          "purchase_order_lines.quantity": "9200",
+          "inventory.quantity": "16000",
+          "production_orders.planned_quantity": "9200",
+          "production_batches.actual_quantity": "9200",
+          "batch_material_consumption.quantity": "9200",
+          "shipment_lines.quantity": "9200"
+        },
+        "inserted_targets": 0
+      }
+    ],
+    "rejected_example": {
+      "rule": "DUPLICATE_RECORD",
+      "message": "Repeated source record in this snapshot",
+      "source": "sales",
+      "raw": {
+        "record_id": "SALE-0001",
+        "business_key": "SO-0001",
+        "customer": "SYN-CUS-001",
+        "product": "SYN-FG-001",
+        "quantity": "100",
+        "unit": " KG ",
+        "unit_price": "12.50",
+        "order_date": "2026-01-02",
+        "due_date": "2026-01-09",
+        "status": " Confirmed "
+      }
+    },
+    "reporting": {
+      "reorders": {
+        "SYN-RM-002": "1000.000000",
+        "SYN-RM-003": "1500.000000"
+      },
+      "forecasts": {
+        "SYN-FG-001": [
+          "777.333333",
+          "777.333333",
+          "777.333333"
+        ],
+        "SYN-FG-002": [
+          "948.000000",
+          "948.000000",
+          "948.000000"
+        ],
+        "SYN-FG-003": [
+          "466.000000",
+          "466.000000",
+          "466.000000"
+        ],
+        "SYN-FG-004": [
+          "653.666667",
+          "653.666667",
+          "653.666667"
+        ]
+      },
+      "selected_holdout_mae_kg": "18.416667",
+      "selected_holdout_rmse_kg": "23.973944",
+      "holdout_observations": 12,
+      "net_production_kg": "1175.999999",
+      "december_mixing_required_hours": "11.760000",
+      "december_mixing_available_hours": "10.000000",
+      "constrained_fg002_kg": "844.000000",
+      "december_mixing_utilisation_pct": "117.60",
+      "operations": [
+        {
+          "order_count": 48,
+          "shipment_count": 48,
+          "production_batch_count": "48",
+          "inspected_batch_count": "48",
+          "passed_batch_count": "48",
+          "etl_rows_extracted": 928,
+          "etl_rows_accepted": 832,
+          "etl_rows_rejected": 96,
+          "data_quality_issue_count": 96,
+          "etl_successful_runs": 2
+        }
+      ],
+      "imported_row_counts": {
+        "Product": 4,
+        "Material": 4,
+        "Supplier": 3,
+        "Customer": 3,
+        "Resource": 2,
+        "Operations": 1,
+        "Inventory": 4,
+        "Reorders": 2,
+        "Orders": 48,
+        "Production": 48,
+        "Quality": 48,
+        "Procurement": 192,
+        "Data Quality": 82,
+        "Demand History": 96,
+        "Forecast": 12,
+        "Backtest": 12,
+        "Production Plan": 12,
+        "Capacity": 6,
+        "Planning Materials": 8
+      }
+    }
+  },
+  "after_snapshot": {
+    "counts": {
+      "products": 4,
+      "suppliers": 3,
+      "raw_materials": 4,
+      "customers": 3,
+      "warehouses": 2,
+      "inventory": 32,
+      "inventory_transactions": 0,
+      "bills_of_material": 4,
+      "bill_of_material_lines": 16,
+      "sales_orders": 48,
+      "sales_order_lines": 48,
+      "purchase_orders": 192,
+      "purchase_order_lines": 192,
+      "production_orders": 48,
+      "production_batches": 48,
+      "batch_material_consumption": 192,
+      "quality_inspections": 48,
+      "shipments": 48,
+      "shipment_lines": 48,
+      "demand_forecasts": 12,
+      "reorder_recommendations": 2,
+      "etl_runs": 2,
+      "data_quality_issues": 96,
+      "planning_policies": 4,
+      "planning_runs": 1,
+      "demand_observations": 192,
+      "forecast_runs": 1,
+      "forecast_metrics": 30,
+      "forecast_backtests": 144,
+      "production_resources": 2,
+      "production_policies": 4,
+      "production_plan_runs": 1,
+      "production_plan_lines": 12,
+      "production_capacity_results": 6,
+      "production_material_results": 8
+    },
+    "sha256": "328225ecb90dcbe82555c132c7a366068d424be834a2cc8691a168ebc6c0367c"
+  },
+  "fixtures": {
+    "sales": {
+      "rows": 56,
+      "sha256": "7f1969b7170319a649c628a5d95cbaa2347177f3e0b813e93c90e381c3767e75"
+    },
+    "purchasing": {
+      "rows": 200,
+      "sha256": "ce8c5aecfe0e8c0e7a82c8c60dac7bd20d8210087679612aa1420526ee64d20a"
+    },
+    "inventory": {
+      "rows": 40,
+      "sha256": "2732b8138fe7997c7bad25bc264f6cc246c0d2b5d28760232f665b70d4d2b811"
+    },
+    "production": {
+      "rows": 56,
+      "sha256": "8413dffd448fb3bd79f51def38db1bf90110a686e4d87523f31ba9fdb22e857c"
+    },
+    "quality": {
+      "rows": 56,
+      "sha256": "d5f9486315a33e712607586cd8b8fabc12bfb34bca3075c172614585b22ef9ef"
+    },
+    "dispatch": {
+      "rows": 56,
+      "sha256": "522a6e73c4399ae2ce36b48c2c1111ee512b4dafb68ea12efed60b7cad6a3da0"
+    }
+  },
+  "accepted_example": {
+    "record_id": "SALE-0001",
+    "business_key": "SO-0001",
+    "customer": "SYN-CUS-001",
+    "product": "SYN-FG-001",
+    "quantity": "100",
+    "unit": " KG ",
+    "unit_price": "12.50",
+    "order_date": "2026-01-02",
+    "due_date": "2026-01-09",
+    "status": " Confirmed "
+  },
+  "http": {
+    "/health": {
+      "status": 200,
+      "body": {
+        "application": "Rivaline Manufacturing Integrated Operations Platform",
+        "environment": "development",
+        "status": "ok",
+        "database": "up"
+      }
+    },
+    "/docs": {
+      "status": 200,
+      "body": null
+    },
+    "/openapi.json": {
+      "status": 200,
+      "body": {
+        "paths": 31
+      }
+    },
+    "/api/v1/sales-orders?limit=5": {
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "id": 1,
+            "code": "SO-0001",
+            "customer_id": 1,
+            "order_date": "2026-01-02",
+            "required_date": "2026-01-09",
+            "status": "confirmed"
+          },
+          {
+            "id": 2,
+            "code": "SO-0002",
+            "customer_id": 2,
+            "order_date": "2026-01-03",
+            "required_date": "2026-01-10",
+            "status": "confirmed"
+          },
+          {
+            "id": 3,
+            "code": "SO-0003",
+            "customer_id": 3,
+            "order_date": "2026-01-04",
+            "required_date": "2026-01-11",
+            "status": "confirmed"
+          },
+          {
+            "id": 4,
+            "code": "SO-0004",
+            "customer_id": 1,
+            "order_date": "2026-01-05",
+            "required_date": "2026-01-12",
+            "status": "confirmed"
+          },
+          {
+            "id": 5,
+            "code": "SO-0005",
+            "customer_id": 2,
+            "order_date": "2026-01-06",
+            "required_date": "2026-01-13",
+            "status": "confirmed"
+          }
+        ],
+        "total": 48,
+        "limit": 5,
+        "offset": 0
+      }
+    },
+    "/api/v1/kpis/operations": {
+      "status": 200,
+      "body": {
+        "order_count": 48,
+        "shipment_count": 48,
+        "production_batch_count": 48,
+        "inspected_batch_count": 48,
+        "passed_batch_count": 48,
+        "batch_qc_pass_rate_pct": "100.000000",
+        "etl_successful_runs": 2,
+        "etl_failed_runs": 0,
+        "etl_rows_extracted": 928,
+        "etl_rows_accepted": 832,
+        "etl_rows_rejected": 96,
+        "etl_acceptance_rate_pct": "89.655172",
+        "etl_rejection_rate_pct": "10.344828",
+        "data_quality_issue_count": 96,
+        "quantities": [
+          {
+            "metric": "inventory_available",
+            "item_type": "product",
+            "unit_of_measure": "kg",
+            "quantity": "8000.000000"
+          },
+          {
+            "metric": "inventory_available",
+            "item_type": "raw_material",
+            "unit_of_measure": "kg",
+            "quantity": "8000.000000"
+          },
+          {
+            "metric": "inventory_on_hand",
+            "item_type": "product",
+            "unit_of_measure": "kg",
+            "quantity": "8000.000000"
+          },
+          {
+            "metric": "inventory_on_hand",
+            "item_type": "raw_material",
+            "unit_of_measure": "kg",
+            "quantity": "8000.000000"
+          },
+          {
+            "metric": "material_consumed",
+            "item_type": "raw_material",
+            "unit_of_measure": "kg",
+            "quantity": "9200.000000"
+          },
+          {
+            "metric": "procurement_ordered",
+            "item_type": "raw_material",
+            "unit_of_measure": "kg",
+            "quantity": "9200.000000"
+          },
+          {
+            "metric": "production_actual",
+            "item_type": "product",
+            "unit_of_measure": "kg",
+            "quantity": "9200.000000"
+          },
+          {
+            "metric": "production_planned",
+            "item_type": "product",
+            "unit_of_measure": "kg",
+            "quantity": "9200.000000"
+          },
+          {
+            "metric": "sales_ordered",
+            "item_type": "product",
+            "unit_of_measure": "kg",
+            "quantity": "9200.000000"
+          },
+          {
+            "metric": "sales_shipped",
+            "item_type": "product",
+            "unit_of_measure": "kg",
+            "quantity": "9200.000000"
+          }
+        ]
+      }
+    },
+    "/api/v1/inventory/positions": {
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "item_type": "product",
+            "item_id": 1,
+            "item_code": "SYN-FG-001",
+            "unit_of_measure": "kg",
+            "on_hand_quantity": "2000.000000",
+            "reserved_quantity": "0.000000",
+            "available_quantity": "2000.000000",
+            "required_quantity": "0",
+            "incoming_quantity": "0",
+            "projected_quantity": "2000.000000",
+            "shortage_quantity": "0",
+            "incomplete_bom_count": 0,
+            "policy_id": null,
+            "destination_warehouse_id": null,
+            "safety_stock": null,
+            "reorder_point": null,
+            "target_stock": null,
+            "minimum_order_quantity": null,
+            "recommended_quantity": null,
+            "risk_status": "no_policy",
+            "explanation": "SYN-FG-001: projected stock 2000.000000 kg = on hand 2000.000000 - reserved 0.000000 + assumed confirmed incoming 0 - requirements 0. No material reorder policy; no purchasing recommendation calculated."
+          },
+          {
+            "item_type": "product",
+            "item_id": 2,
+            "item_code": "SYN-FG-002",
+            "unit_of_measure": "kg",
+            "on_hand_quantity": "2000.000000",
+            "reserved_quantity": "0.000000",
+            "available_quantity": "2000.000000",
+            "required_quantity": "0",
+            "incoming_quantity": "0",
+            "projected_quantity": "2000.000000",
+            "shortage_quantity": "0",
+            "incomplete_bom_count": 0,
+            "policy_id": null,
+            "destination_warehouse_id": null,
+            "safety_stock": null,
+            "reorder_point": null,
+            "target_stock": null,
+            "minimum_order_quantity": null,
+            "recommended_quantity": null,
+            "risk_status": "no_policy",
+            "explanation": "SYN-FG-002: projected stock 2000.000000 kg = on hand 2000.000000 - reserved 0.000000 + assumed confirmed incoming 0 - requirements 0. No material reorder policy; no purchasing recommendation calculated."
+          },
+          {
+            "item_type": "product",
+            "item_id": 3,
+            "item_code": "SYN-FG-003",
+            "unit_of_measure": "kg",
+            "on_hand_quantity": "2000.000000",
+            "reserved_quantity": "0.000000",
+            "available_quantity": "2000.000000",
+            "required_quantity": "0",
+            "incoming_quantity": "0",
+            "projected_quantity": "2000.000000",
+            "shortage_quantity": "0",
+            "incomplete_bom_count": 0,
+            "policy_id": null,
+            "destination_warehouse_id": null,
+            "safety_stock": null,
+            "reorder_point": null,
+            "target_stock": null,
+            "minimum_order_quantity": null,
+            "recommended_quantity": null,
+            "risk_status": "no_policy",
+            "explanation": "SYN-FG-003: projected stock 2000.000000 kg = on hand 2000.000000 - reserved 0.000000 + assumed confirmed incoming 0 - requirements 0. No material reorder policy; no purchasing recommendation calculated."
+          },
+          {
+            "item_type": "product",
+            "item_id": 4,
+            "item_code": "SYN-FG-004",
+            "unit_of_measure": "kg",
+            "on_hand_quantity": "2000.000000",
+            "reserved_quantity": "0.000000",
+            "available_quantity": "2000.000000",
+            "required_quantity": "0",
+            "incoming_quantity": "0",
+            "projected_quantity": "2000.000000",
+            "shortage_quantity": "0",
+            "incomplete_bom_count": 0,
+            "policy_id": null,
+            "destination_warehouse_id": null,
+            "safety_stock": null,
+            "reorder_point": null,
+            "target_stock": null,
+            "minimum_order_quantity": null,
+            "recommended_quantity": null,
+            "risk_status": "no_policy",
+            "explanation": "SYN-FG-004: projected stock 2000.000000 kg = on hand 2000.000000 - reserved 0.000000 + assumed confirmed incoming 0 - requirements 0. No material reorder policy; no purchasing recommendation calculated."
+          },
+          {
+            "item_type": "raw_material",
+            "item_id": 1,
+            "item_code": "SYN-RM-001",
+            "unit_of_measure": "kg",
+            "on_hand_quantity": "2000.000000",
+            "reserved_quantity": "0.000000",
+            "available_quantity": "2000.000000",
+            "required_quantity": "0",
+            "incoming_quantity": "0",
+            "projected_quantity": "2000.000000",
+            "shortage_quantity": "0",
+            "incomplete_bom_count": 0,
+            "policy_id": 1,
+            "destination_warehouse_id": 1,
+            "safety_stock": "300.000000",
+            "reorder_point": "500.000000",
+            "target_stock": "1000.000000",
+            "minimum_order_quantity": "100.000000",
+            "recommended_quantity": "0",
+            "risk_status": "healthy",
+            "explanation": "SYN-RM-001: projected stock 2000.000000 kg = on hand 2000.000000 - reserved 0.000000 + assumed confirmed incoming 0 - requirements 0. At or above reorder point 500.000000; no order proposed."
+          },
+          {
+            "item_type": "raw_material",
+            "item_id": 2,
+            "item_code": "SYN-RM-002",
+            "unit_of_measure": "kg",
+            "on_hand_quantity": "2000.000000",
+            "reserved_quantity": "0.000000",
+            "available_quantity": "2000.000000",
+            "required_quantity": "0",
+            "incoming_quantity": "0",
+            "projected_quantity": "2000.000000",
+            "shortage_quantity": "0",
+            "incomplete_bom_count": 0,
+            "policy_id": 2,
+            "destination_warehouse_id": 1,
+            "safety_stock": "500.000000",
+            "reorder_point": "2500.000000",
+            "target_stock": "3000.000000",
+            "minimum_order_quantity": "100.000000",
+            "recommended_quantity": "1000.000000",
+            "risk_status": "below_reorder",
+            "explanation": "SYN-RM-002: projected stock 2000.000000 kg = on hand 2000.000000 - reserved 0.000000 + assumed confirmed incoming 0 - requirements 0. Below reorder point 2500.000000 (safety 500.000000); propose 1000.000000 to restore target 3000.000000, respecting minimum order 100.000000."
+          },
+          {
+            "item_type": "raw_material",
+            "item_id": 3,
+            "item_code": "SYN-RM-003",
+            "unit_of_measure": "kg",
+            "on_hand_quantity": "2000.000000",
+            "reserved_quantity": "0.000000",
+            "available_quantity": "2000.000000",
+            "required_quantity": "0",
+            "incoming_quantity": "0",
+            "projected_quantity": "2000.000000",
+            "shortage_quantity": "0",
+            "incomplete_bom_count": 0,
+            "policy_id": 3,
+            "destination_warehouse_id": 1,
+            "safety_stock": "2200.000000",
+            "reorder_point": "2400.000000",
+            "target_stock": "3000.000000",
+            "minimum_order_quantity": "1500.000000",
+            "recommended_quantity": "1500.000000",
+            "risk_status": "below_safety",
+            "explanation": "SYN-RM-003: projected stock 2000.000000 kg = on hand 2000.000000 - reserved 0.000000 + assumed confirmed incoming 0 - requirements 0. Below reorder point 2400.000000 (safety 2200.000000); propose 1500.000000 to restore target 3000.000000, respecting minimum order 1500.000000."
+          },
+          {
+            "item_type": "raw_material",
+            "item_id": 4,
+            "item_code": "SYN-RM-004",
+            "unit_of_measure": "kg",
+            "on_hand_quantity": "2000.000000",
+            "reserved_quantity": "0.000000",
+            "available_quantity": "2000.000000",
+            "required_quantity": "0",
+            "incoming_quantity": "0",
+            "projected_quantity": "2000.000000",
+            "shortage_quantity": "0",
+            "incomplete_bom_count": 0,
+            "policy_id": 4,
+            "destination_warehouse_id": 1,
+            "safety_stock": "500.000000",
+            "reorder_point": "2000.000000",
+            "target_stock": "3000.000000",
+            "minimum_order_quantity": "100.000000",
+            "recommended_quantity": "0",
+            "risk_status": "at_reorder",
+            "explanation": "SYN-RM-004: projected stock 2000.000000 kg = on hand 2000.000000 - reserved 0.000000 + assumed confirmed incoming 0 - requirements 0. At or above reorder point 2000.000000; no order proposed."
+          }
+        ],
+        "total": 8,
+        "limit": 50,
+        "offset": 0
+      }
+    },
+    "/api/v1/reorder-recommendations?status=proposed": {
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "id": 1,
+            "raw_material_id": 2,
+            "warehouse_id": 1,
+            "quantity": "1000.000000",
+            "reason": "SYN-RM-002: projected stock 2000.000000 kg = on hand 2000.000000 - reserved 0.000000 + assumed confirmed incoming 0 - requirements 0. Below reorder point 2500.000000 (safety 500.000000); propose 1000.000000 to restore target 3000.000000, respecting minimum order 100.000000.",
+            "generated_at": "2026-10-04T16:35:02.681299Z",
+            "status": "proposed",
+            "run_code": "1c3d3c88cf4748221f07242d42a5599b4638fc96dad4ad223c37551f1de71e65",
+            "algorithm_version": "pooled-conservative-v1",
+            "input_position": {
+              "item_type": "raw_material",
+              "item_id": 2,
+              "item_code": "SYN-RM-002",
+              "unit_of_measure": "kg",
+              "on_hand_quantity": "2000.000000",
+              "reserved_quantity": "0.000000",
+              "available_quantity": "2000.000000",
+              "required_quantity": "0",
+              "incoming_quantity": "0",
+              "projected_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "incomplete_bom_count": 0,
+              "policy_id": 2,
+              "destination_warehouse_id": 1,
+              "safety_stock": "500.000000",
+              "reorder_point": "2500.000000",
+              "target_stock": "3000.000000",
+              "minimum_order_quantity": "100.000000",
+              "recommended_quantity": "1000.000000",
+              "risk_status": "below_reorder",
+              "explanation": "SYN-RM-002: projected stock 2000.000000 kg = on hand 2000.000000 - reserved 0.000000 + assumed confirmed incoming 0 - requirements 0. Below reorder point 2500.000000 (safety 500.000000); propose 1000.000000 to restore target 3000.000000, respecting minimum order 100.000000."
+            },
+            "affected_requirements": []
+          },
+          {
+            "id": 2,
+            "raw_material_id": 3,
+            "warehouse_id": 1,
+            "quantity": "1500.000000",
+            "reason": "SYN-RM-003: projected stock 2000.000000 kg = on hand 2000.000000 - reserved 0.000000 + assumed confirmed incoming 0 - requirements 0. Below reorder point 2400.000000 (safety 2200.000000); propose 1500.000000 to restore target 3000.000000, respecting minimum order 1500.000000.",
+            "generated_at": "2026-10-04T16:35:02.681299Z",
+            "status": "proposed",
+            "run_code": "1c3d3c88cf4748221f07242d42a5599b4638fc96dad4ad223c37551f1de71e65",
+            "algorithm_version": "pooled-conservative-v1",
+            "input_position": {
+              "item_type": "raw_material",
+              "item_id": 3,
+              "item_code": "SYN-RM-003",
+              "unit_of_measure": "kg",
+              "on_hand_quantity": "2000.000000",
+              "reserved_quantity": "0.000000",
+              "available_quantity": "2000.000000",
+              "required_quantity": "0",
+              "incoming_quantity": "0",
+              "projected_quantity": "2000.000000",
+              "shortage_quantity": "0",
+              "incomplete_bom_count": 0,
+              "policy_id": 3,
+              "destination_warehouse_id": 1,
+              "safety_stock": "2200.000000",
+              "reorder_point": "2400.000000",
+              "target_stock": "3000.000000",
+              "minimum_order_quantity": "1500.000000",
+              "recommended_quantity": "1500.000000",
+              "risk_status": "below_safety",
+              "explanation": "SYN-RM-003: projected stock 2000.000000 kg = on hand 2000.000000 - reserved 0.000000 + assumed confirmed incoming 0 - requirements 0. Below reorder point 2400.000000 (safety 2200.000000); propose 1500.000000 to restore target 3000.000000, respecting minimum order 1500.000000."
+            },
+            "affected_requirements": []
+          }
+        ],
+        "total": 2,
+        "limit": 50,
+        "offset": 0
+      }
+    },
+    "/api/v1/forecasts": {
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 1,
+            "product_id": 1,
+            "product_code": "SYN-FG-001",
+            "period_start": "2026-10-01",
+            "period_end": "2026-10-31",
+            "quantity": "777.333333",
+            "unit_of_measure": "kg",
+            "model_version": "forecast-v1:moving_average",
+            "selected_model": "moving_average",
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "horizon": 3,
+            "validation_mae": "47.962963",
+            "validation_rmse": "61.246618",
+            "uncertainty_method": "Historical validation error scale; no prediction interval or coverage guarantee"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 2,
+            "product_id": 1,
+            "product_code": "SYN-FG-001",
+            "period_start": "2026-11-01",
+            "period_end": "2026-11-30",
+            "quantity": "777.333333",
+            "unit_of_measure": "kg",
+            "model_version": "forecast-v1:moving_average",
+            "selected_model": "moving_average",
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "horizon": 3,
+            "validation_mae": "47.962963",
+            "validation_rmse": "61.246618",
+            "uncertainty_method": "Historical validation error scale; no prediction interval or coverage guarantee"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 3,
+            "product_id": 1,
+            "product_code": "SYN-FG-001",
+            "period_start": "2026-12-01",
+            "period_end": "2026-12-31",
+            "quantity": "777.333333",
+            "unit_of_measure": "kg",
+            "model_version": "forecast-v1:moving_average",
+            "selected_model": "moving_average",
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "horizon": 3,
+            "validation_mae": "47.962963",
+            "validation_rmse": "61.246618",
+            "uncertainty_method": "Historical validation error scale; no prediction interval or coverage guarantee"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 4,
+            "product_id": 2,
+            "product_code": "SYN-FG-002",
+            "period_start": "2026-10-01",
+            "period_end": "2026-10-31",
+            "quantity": "948.000000",
+            "unit_of_measure": "kg",
+            "model_version": "forecast-v1:naive",
+            "selected_model": "naive",
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "horizon": 3,
+            "validation_mae": "41.888889",
+            "validation_rmse": "63.582842",
+            "uncertainty_method": "Historical validation error scale; no prediction interval or coverage guarantee"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 5,
+            "product_id": 2,
+            "product_code": "SYN-FG-002",
+            "period_start": "2026-11-01",
+            "period_end": "2026-11-30",
+            "quantity": "948.000000",
+            "unit_of_measure": "kg",
+            "model_version": "forecast-v1:naive",
+            "selected_model": "naive",
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "horizon": 3,
+            "validation_mae": "41.888889",
+            "validation_rmse": "63.582842",
+            "uncertainty_method": "Historical validation error scale; no prediction interval or coverage guarantee"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 6,
+            "product_id": 2,
+            "product_code": "SYN-FG-002",
+            "period_start": "2026-12-01",
+            "period_end": "2026-12-31",
+            "quantity": "948.000000",
+            "unit_of_measure": "kg",
+            "model_version": "forecast-v1:naive",
+            "selected_model": "naive",
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "horizon": 3,
+            "validation_mae": "41.888889",
+            "validation_rmse": "63.582842",
+            "uncertainty_method": "Historical validation error scale; no prediction interval or coverage guarantee"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 7,
+            "product_id": 3,
+            "product_code": "SYN-FG-003",
+            "period_start": "2026-10-01",
+            "period_end": "2026-10-31",
+            "quantity": "466.000000",
+            "unit_of_measure": "kg",
+            "model_version": "forecast-v1:naive",
+            "selected_model": "naive",
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "horizon": 3,
+            "validation_mae": "20.666667",
+            "validation_rmse": "22.370616",
+            "uncertainty_method": "Historical validation error scale; no prediction interval or coverage guarantee"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 8,
+            "product_id": 3,
+            "product_code": "SYN-FG-003",
+            "period_start": "2026-11-01",
+            "period_end": "2026-11-30",
+            "quantity": "466.000000",
+            "unit_of_measure": "kg",
+            "model_version": "forecast-v1:naive",
+            "selected_model": "naive",
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "horizon": 3,
+            "validation_mae": "20.666667",
+            "validation_rmse": "22.370616",
+            "uncertainty_method": "Historical validation error scale; no prediction interval or coverage guarantee"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 9,
+            "product_id": 3,
+            "product_code": "SYN-FG-003",
+            "period_start": "2026-12-01",
+            "period_end": "2026-12-31",
+            "quantity": "466.000000",
+            "unit_of_measure": "kg",
+            "model_version": "forecast-v1:naive",
+            "selected_model": "naive",
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "horizon": 3,
+            "validation_mae": "20.666667",
+            "validation_rmse": "22.370616",
+            "uncertainty_method": "Historical validation error scale; no prediction interval or coverage guarantee"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 10,
+            "product_id": 4,
+            "product_code": "SYN-FG-004",
+            "period_start": "2026-10-01",
+            "period_end": "2026-10-31",
+            "quantity": "653.666667",
+            "unit_of_measure": "kg",
+            "model_version": "forecast-v1:moving_average",
+            "selected_model": "moving_average",
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "horizon": 3,
+            "validation_mae": "18.851852",
+            "validation_rmse": "24.964419",
+            "uncertainty_method": "Historical validation error scale; no prediction interval or coverage guarantee"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 11,
+            "product_id": 4,
+            "product_code": "SYN-FG-004",
+            "period_start": "2026-11-01",
+            "period_end": "2026-11-30",
+            "quantity": "653.666667",
+            "unit_of_measure": "kg",
+            "model_version": "forecast-v1:moving_average",
+            "selected_model": "moving_average",
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "horizon": 3,
+            "validation_mae": "18.851852",
+            "validation_rmse": "24.964419",
+            "uncertainty_method": "Historical validation error scale; no prediction interval or coverage guarantee"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 12,
+            "product_id": 4,
+            "product_code": "SYN-FG-004",
+            "period_start": "2026-12-01",
+            "period_end": "2026-12-31",
+            "quantity": "653.666667",
+            "unit_of_measure": "kg",
+            "model_version": "forecast-v1:moving_average",
+            "selected_model": "moving_average",
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "horizon": 3,
+            "validation_mae": "18.851852",
+            "validation_rmse": "24.964419",
+            "uncertainty_method": "Historical validation error scale; no prediction interval or coverage guarantee"
+          }
+        ],
+        "total": 12,
+        "limit": 50,
+        "offset": 0
+      }
+    },
+    "/api/v1/forecasts/evaluation?scope=overall&evaluation_split=test": {
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 28,
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "algorithm_version": "forecast-v1",
+            "product_id": null,
+            "scope_key": "overall:kg",
+            "unit_of_measure": "kg",
+            "model_name": "naive",
+            "evaluation_split": "test",
+            "observations": 12,
+            "mae": "21.166667",
+            "rmse": "22.996377",
+            "wape_pct": "2.970065"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 29,
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "algorithm_version": "forecast-v1",
+            "product_id": null,
+            "scope_key": "overall:kg",
+            "unit_of_measure": "kg",
+            "model_name": "moving_average",
+            "evaluation_split": "test",
+            "observations": 12,
+            "mae": "32.444445",
+            "rmse": "42.172925",
+            "wape_pct": "4.552541"
+          },
+          {
+            "generated_at": "2026-10-04T21:20:24.265090Z",
+            "id": 30,
+            "run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+            "dataset_code": "SYN-DEMAND-24M-V1",
+            "training_cutoff": "2026-09-30",
+            "algorithm_version": "forecast-v1",
+            "product_id": null,
+            "scope_key": "overall:kg",
+            "unit_of_measure": "kg",
+            "model_name": "linear_trend",
+            "evaluation_split": "test",
+            "observations": 12,
+            "mae": "30.068182",
+            "rmse": "35.475307",
+            "wape_pct": "4.219109"
+          }
+        ],
+        "total": 3,
+        "limit": 50,
+        "offset": 0
+      }
+    },
+    "/api/v1/etl-runs": {
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "id": 1,
+            "code": "ETL-0640e67c8f5d467db1e80fbe6022e1b0",
+            "started_at": "2026-10-03T21:46:35.651566+01:00",
+            "finished_at": "2026-10-03T21:46:39.630131+01:00",
+            "status": "succeeded",
+            "rows_read": 464,
+            "rows_loaded": 416,
+            "rows_rejected": 48
+          },
+          {
+            "id": 2,
+            "code": "ETL-ad53da1581b844048ad063d3dfe23e57",
+            "started_at": "2026-10-03T21:46:45.115256+01:00",
+            "finished_at": "2026-10-03T21:46:47.195457+01:00",
+            "status": "succeeded",
+            "rows_read": 464,
+            "rows_loaded": 416,
+            "rows_rejected": 48
+          }
+        ],
+        "total": 2,
+        "limit": 50,
+        "offset": 0
+      }
+    },
+    "/api/v1/data-quality-issues?limit=5": {
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "id": 1,
+            "etl_run_id": 1,
+            "entity_name": "sales",
+            "rule_code": "DUPLICATE_RECORD",
+            "severity": "error",
+            "message": "Repeated source record in this snapshot",
+            "status": "open",
+            "source_system": "legacy_sales",
+            "created_at": "2026-10-03T21:46:35.894504+01:00"
+          },
+          {
+            "id": 2,
+            "etl_run_id": 1,
+            "entity_name": "sales",
+            "rule_code": "DUPLICATE_BUSINESS_KEY",
+            "severity": "error",
+            "message": "Repeated business key in this snapshot",
+            "status": "open",
+            "source_system": "legacy_sales",
+            "created_at": "2026-10-03T21:46:35.894504+01:00"
+          },
+          {
+            "id": 3,
+            "etl_run_id": 1,
+            "entity_name": "sales",
+            "rule_code": "MISSING_FIELD",
+            "severity": "error",
+            "message": "record_id is required",
+            "status": "open",
+            "source_system": "legacy_sales",
+            "created_at": "2026-10-03T21:46:35.894504+01:00"
+          },
+          {
+            "id": 4,
+            "etl_run_id": 1,
+            "entity_name": "sales",
+            "rule_code": "MISSING_FIELD",
+            "severity": "error",
+            "message": "identifier is required",
+            "status": "open",
+            "source_system": "legacy_sales",
+            "created_at": "2026-10-03T21:46:35.894504+01:00"
+          },
+          {
+            "id": 5,
+            "etl_run_id": 1,
+            "entity_name": "sales",
+            "rule_code": "INVALID_REFERENCE",
+            "severity": "error",
+            "message": "Unknown products reference",
+            "status": "open",
+            "source_system": "legacy_sales",
+            "created_at": "2026-10-03T21:46:35.894504+01:00"
+          }
+        ],
+        "total": 96,
+        "limit": 5,
+        "offset": 0
+      }
+    },
+    "/api/v1/traceability/order/1": {
+      "status": 200,
+      "body": {
+        "id": 1,
+        "code": "SO-0001",
+        "customer_id": 1,
+        "order_date": "2026-01-02",
+        "required_date": "2026-01-09",
+        "status": "confirmed",
+        "customer": {
+          "id": 1,
+          "code": "SYN-CUS-001",
+          "name": "Synthetic Customer 1",
+          "active": true
+        },
+        "lines": [
+          {
+            "id": 1,
+            "line_number": 1,
+            "product_id": 1,
+            "quantity": "100.000000",
+            "unit_price_gbp": "12.50",
+            "product": {
+              "id": 1,
+              "code": "SYN-FG-001",
+              "name": "Industrial Primer",
+              "active": true,
+              "unit_of_measure": "kg"
+            },
+            "production_orders": [
+              {
+                "id": 1,
+                "code": "BATCH-0001",
+                "product_id": 1,
+                "bom_id": 1,
+                "sales_order_line_id": 1,
+                "planned_quantity": "100.000000",
+                "planned_start": "2026-01-03",
+                "planned_end": "2026-01-04",
+                "status": "completed",
+                "batches": [
+                  {
+                    "id": 1,
+                    "code": "BATCH-0001",
+                    "production_order_id": 1,
+                    "product_id": 1,
+                    "actual_quantity": "100.000000",
+                    "status": "released",
+                    "inspections": [
+                      {
+                        "id": 1,
+                        "production_batch_id": 1,
+                        "inspected_at": "2026-01-05T00:00:00Z",
+                        "test_code": "QC-0001",
+                        "measured_value": "69.000000",
+                        "unit_of_measure": "score",
+                        "result": "pass"
+                      }
+                    ],
+                    "materials": [
+                      {
+                        "id": 1,
+                        "raw_material_id": 1,
+                        "material_code": "SYN-RM-001",
+                        "unit_of_measure": "kg",
+                        "quantity": "25.000000",
+                        "supplier_lot_code": "SYN-LOT-0001-1",
+                        "purchase_order_line_id": 1,
+                        "purchase_order_id": 1,
+                        "purchase_order_code": "PO-0001-1",
+                        "supplier_id": 1,
+                        "supplier_code": "SYN-SUP-001",
+                        "source_system": "legacy_production",
+                        "source_record_id": "PROD-0001/1"
+                      },
+                      {
+                        "id": 2,
+                        "raw_material_id": 2,
+                        "material_code": "SYN-RM-002",
+                        "unit_of_measure": "kg",
+                        "quantity": "25.000000",
+                        "supplier_lot_code": "SYN-LOT-0001-2",
+                        "purchase_order_line_id": 2,
+                        "purchase_order_id": 2,
+                        "purchase_order_code": "PO-0001-2",
+                        "supplier_id": 2,
+                        "supplier_code": "SYN-SUP-002",
+                        "source_system": "legacy_production",
+                        "source_record_id": "PROD-0001/2"
+                      },
+                      {
+                        "id": 3,
+                        "raw_material_id": 3,
+                        "material_code": "SYN-RM-003",
+                        "unit_of_measure": "kg",
+                        "quantity": "25.000000",
+                        "supplier_lot_code": "SYN-LOT-0001-3",
+                        "purchase_order_line_id": 3,
+                        "purchase_order_id": 3,
+                        "purchase_order_code": "PO-0001-3",
+                        "supplier_id": 3,
+                        "supplier_code": "SYN-SUP-003",
+                        "source_system": "legacy_production",
+                        "source_record_id": "PROD-0001/3"
+                      },
+                      {
+                        "id": 4,
+                        "raw_material_id": 4,
+                        "material_code": "SYN-RM-004",
+                        "unit_of_measure": "kg",
+                        "quantity": "25.000000",
+                        "supplier_lot_code": "SYN-LOT-0001-4",
+                        "purchase_order_line_id": 4,
+                        "purchase_order_id": 4,
+                        "purchase_order_code": "PO-0001-4",
+                        "supplier_id": 1,
+                        "supplier_code": "SYN-SUP-001",
+                        "source_system": "legacy_production",
+                        "source_record_id": "PROD-0001/4"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "shipments": [
+              {
+                "id": 1,
+                "code": "SHIP-0001",
+                "warehouse_id": 2,
+                "shipped_at": "2026-01-06T00:00:00Z",
+                "status": "delivered",
+                "tracking_reference": "SHIP-0001",
+                "shipment_line_id": 1,
+                "production_batch_id": 1,
+                "quantity": "100.000000"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/planning/production-plan?forecast_run_code=1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e": {
+      "status": 200,
+      "body": {
+        "calculation_code": "3ecf5b0a02aec4c3b39893468a2177d0730566849d67dfae82ec784fcee5828c",
+        "algorithm_version": "production-plan-v1",
+        "demand_mode": "forecast",
+        "forecast_run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+        "items": [
+          {
+            "product_id": 1,
+            "product_code": "SYN-FG-001",
+            "period_start": "2026-10-01",
+            "unit_of_measure": "kg",
+            "resource_id": 1,
+            "resource_code": "SYN-MIX",
+            "priority": 1,
+            "allocation_rank": 1,
+            "bom_id": null,
+            "gross_demand": "777.333333",
+            "inventory_offset": "777.333333",
+            "surplus_offset": "0.000000",
+            "net_requirement": "0.000000",
+            "proposed_quantity": "0",
+            "allocated_quantity": "0",
+            "unmet_quantity": "0.000000",
+            "batch_count": 0,
+            "batches": [],
+            "materials": [],
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "status": "FEASIBLE",
+            "explanation": "2026-10 SYN-FG-001: gross 777.333333, stock offset 777.333333, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+          },
+          {
+            "product_id": 2,
+            "product_code": "SYN-FG-002",
+            "period_start": "2026-10-01",
+            "unit_of_measure": "kg",
+            "resource_id": 1,
+            "resource_code": "SYN-MIX",
+            "priority": 2,
+            "allocation_rank": 2,
+            "bom_id": null,
+            "gross_demand": "948.000000",
+            "inventory_offset": "948.000000",
+            "surplus_offset": "0.000000",
+            "net_requirement": "0.000000",
+            "proposed_quantity": "0",
+            "allocated_quantity": "0",
+            "unmet_quantity": "0.000000",
+            "batch_count": 0,
+            "batches": [],
+            "materials": [],
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "status": "FEASIBLE",
+            "explanation": "2026-10 SYN-FG-002: gross 948.000000, stock offset 948.000000, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 2 (period, priority 2, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+          },
+          {
+            "product_id": 3,
+            "product_code": "SYN-FG-003",
+            "period_start": "2026-10-01",
+            "unit_of_measure": "kg",
+            "resource_id": 2,
+            "resource_code": "SYN-FILL",
+            "priority": 3,
+            "allocation_rank": 3,
+            "bom_id": null,
+            "gross_demand": "466.000000",
+            "inventory_offset": "466.000000",
+            "surplus_offset": "0.000000",
+            "net_requirement": "0.000000",
+            "proposed_quantity": "0",
+            "allocated_quantity": "0",
+            "unmet_quantity": "0.000000",
+            "batch_count": 0,
+            "batches": [],
+            "materials": [],
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "status": "FEASIBLE",
+            "explanation": "2026-10 SYN-FG-003: gross 466.000000, stock offset 466.000000, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 3 (period, priority 3, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+          },
+          {
+            "product_id": 4,
+            "product_code": "SYN-FG-004",
+            "period_start": "2026-10-01",
+            "unit_of_measure": "kg",
+            "resource_id": 2,
+            "resource_code": "SYN-FILL",
+            "priority": 4,
+            "allocation_rank": 4,
+            "bom_id": null,
+            "gross_demand": "653.666667",
+            "inventory_offset": "653.666667",
+            "surplus_offset": "0.000000",
+            "net_requirement": "0.000000",
+            "proposed_quantity": "0",
+            "allocated_quantity": "0",
+            "unmet_quantity": "0.000000",
+            "batch_count": 0,
+            "batches": [],
+            "materials": [],
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "status": "FEASIBLE",
+            "explanation": "2026-10 SYN-FG-004: gross 653.666667, stock offset 653.666667, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 4 (period, priority 4, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+          },
+          {
+            "product_id": 1,
+            "product_code": "SYN-FG-001",
+            "period_start": "2026-11-01",
+            "unit_of_measure": "kg",
+            "resource_id": 1,
+            "resource_code": "SYN-MIX",
+            "priority": 1,
+            "allocation_rank": 5,
+            "bom_id": null,
+            "gross_demand": "777.333333",
+            "inventory_offset": "777.333333",
+            "surplus_offset": "0.000000",
+            "net_requirement": "0.000000",
+            "proposed_quantity": "0",
+            "allocated_quantity": "0",
+            "unmet_quantity": "0.000000",
+            "batch_count": 0,
+            "batches": [],
+            "materials": [],
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "status": "FEASIBLE",
+            "explanation": "2026-11 SYN-FG-001: gross 777.333333, stock offset 777.333333, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 5 (period, priority 1, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+          },
+          {
+            "product_id": 2,
+            "product_code": "SYN-FG-002",
+            "period_start": "2026-11-01",
+            "unit_of_measure": "kg",
+            "resource_id": 1,
+            "resource_code": "SYN-MIX",
+            "priority": 2,
+            "allocation_rank": 6,
+            "bom_id": null,
+            "gross_demand": "948.000000",
+            "inventory_offset": "948.000000",
+            "surplus_offset": "0.000000",
+            "net_requirement": "0.000000",
+            "proposed_quantity": "0",
+            "allocated_quantity": "0",
+            "unmet_quantity": "0.000000",
+            "batch_count": 0,
+            "batches": [],
+            "materials": [],
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "status": "FEASIBLE",
+            "explanation": "2026-11 SYN-FG-002: gross 948.000000, stock offset 948.000000, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 6 (period, priority 2, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+          },
+          {
+            "product_id": 3,
+            "product_code": "SYN-FG-003",
+            "period_start": "2026-11-01",
+            "unit_of_measure": "kg",
+            "resource_id": 2,
+            "resource_code": "SYN-FILL",
+            "priority": 3,
+            "allocation_rank": 7,
+            "bom_id": null,
+            "gross_demand": "466.000000",
+            "inventory_offset": "466.000000",
+            "surplus_offset": "0.000000",
+            "net_requirement": "0.000000",
+            "proposed_quantity": "0",
+            "allocated_quantity": "0",
+            "unmet_quantity": "0.000000",
+            "batch_count": 0,
+            "batches": [],
+            "materials": [],
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "status": "FEASIBLE",
+            "explanation": "2026-11 SYN-FG-003: gross 466.000000, stock offset 466.000000, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 7 (period, priority 3, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+          },
+          {
+            "product_id": 4,
+            "product_code": "SYN-FG-004",
+            "period_start": "2026-11-01",
+            "unit_of_measure": "kg",
+            "resource_id": 2,
+            "resource_code": "SYN-FILL",
+            "priority": 4,
+            "allocation_rank": 8,
+            "bom_id": null,
+            "gross_demand": "653.666667",
+            "inventory_offset": "653.666667",
+            "surplus_offset": "0.000000",
+            "net_requirement": "0.000000",
+            "proposed_quantity": "0",
+            "allocated_quantity": "0",
+            "unmet_quantity": "0.000000",
+            "batch_count": 0,
+            "batches": [],
+            "materials": [],
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "status": "FEASIBLE",
+            "explanation": "2026-11 SYN-FG-004: gross 653.666667, stock offset 653.666667, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 8 (period, priority 4, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+          },
+          {
+            "product_id": 1,
+            "product_code": "SYN-FG-001",
+            "period_start": "2026-12-01",
+            "unit_of_measure": "kg",
+            "resource_id": 1,
+            "resource_code": "SYN-MIX",
+            "priority": 1,
+            "allocation_rank": 9,
+            "bom_id": 1,
+            "gross_demand": "777.333333",
+            "inventory_offset": "445.333334",
+            "surplus_offset": "0.000000",
+            "net_requirement": "331.999999",
+            "proposed_quantity": "331.999999",
+            "allocated_quantity": "331.999999",
+            "unmet_quantity": "0.000000",
+            "batch_count": 1,
+            "batches": [
+              {
+                "sequence": 1,
+                "quantity": "331.999999",
+                "hours": "3.320000",
+                "allocated": true,
+                "explanation": "Allocated whole batch"
+              }
+            ],
+            "materials": [
+              {
+                "raw_material_id": 1,
+                "material_code": "SYN-RM-001",
+                "unit_of_measure": "kg",
+                "required_quantity": "83.000000",
+                "available_quantity": "2000.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "83.000000",
+                "remaining_quantity": "1917.000000"
+              },
+              {
+                "raw_material_id": 2,
+                "material_code": "SYN-RM-002",
+                "unit_of_measure": "kg",
+                "required_quantity": "83.000000",
+                "available_quantity": "2000.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "83.000000",
+                "remaining_quantity": "1917.000000"
+              },
+              {
+                "raw_material_id": 3,
+                "material_code": "SYN-RM-003",
+                "unit_of_measure": "kg",
+                "required_quantity": "83.000000",
+                "available_quantity": "2000.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "83.000000",
+                "remaining_quantity": "1917.000000"
+              },
+              {
+                "raw_material_id": 4,
+                "material_code": "SYN-RM-004",
+                "unit_of_measure": "kg",
+                "required_quantity": "83.000000",
+                "available_quantity": "2000.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "83.000000",
+                "remaining_quantity": "1917.000000"
+              }
+            ],
+            "required_hours": "3.320000",
+            "available_hours": "10.000000",
+            "allocated_hours": "3.320000",
+            "overload_hours": "0",
+            "utilisation_pct": "33.20",
+            "status": "FEASIBLE",
+            "explanation": "2026-12 SYN-FG-001: gross 777.333333, stock offset 445.333334, carried surplus 0.000000, net 331.999999 kg; 1 proposed batches, 3.320000 hours, 10.000000 hours remaining at rank 9 (period, priority 1, product code). Allocated 331.999999; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+          },
+          {
+            "product_id": 2,
+            "product_code": "SYN-FG-002",
+            "period_start": "2026-12-01",
+            "unit_of_measure": "kg",
+            "resource_id": 1,
+            "resource_code": "SYN-MIX",
+            "priority": 2,
+            "allocation_rank": 10,
+            "bom_id": 2,
+            "gross_demand": "948.000000",
+            "inventory_offset": "104.000000",
+            "surplus_offset": "0.000000",
+            "net_requirement": "844.000000",
+            "proposed_quantity": "844.000000",
+            "allocated_quantity": "0",
+            "unmet_quantity": "844.000000",
+            "batch_count": 1,
+            "batches": [
+              {
+                "sequence": 1,
+                "quantity": "844.000000",
+                "hours": "8.440000",
+                "allocated": false,
+                "explanation": "Unallocated: insufficient residual capacity"
+              }
+            ],
+            "materials": [
+              {
+                "raw_material_id": 1,
+                "material_code": "SYN-RM-001",
+                "unit_of_measure": "kg",
+                "required_quantity": "211.000000",
+                "available_quantity": "1917.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "0",
+                "remaining_quantity": "1917.000000"
+              },
+              {
+                "raw_material_id": 2,
+                "material_code": "SYN-RM-002",
+                "unit_of_measure": "kg",
+                "required_quantity": "211.000000",
+                "available_quantity": "1917.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "0",
+                "remaining_quantity": "1917.000000"
+              },
+              {
+                "raw_material_id": 3,
+                "material_code": "SYN-RM-003",
+                "unit_of_measure": "kg",
+                "required_quantity": "211.000000",
+                "available_quantity": "1917.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "0",
+                "remaining_quantity": "1917.000000"
+              },
+              {
+                "raw_material_id": 4,
+                "material_code": "SYN-RM-004",
+                "unit_of_measure": "kg",
+                "required_quantity": "211.000000",
+                "available_quantity": "1917.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "0",
+                "remaining_quantity": "1917.000000"
+              }
+            ],
+            "required_hours": "8.440000",
+            "available_hours": "6.680000",
+            "allocated_hours": "0",
+            "overload_hours": "1.760000",
+            "utilisation_pct": "126.35",
+            "status": "CAPACITY_CONSTRAINED",
+            "explanation": "2026-12 SYN-FG-002: gross 948.000000, stock offset 104.000000, carried surplus 0.000000, net 844.000000 kg; 1 proposed batches, 8.440000 hours, 6.680000 hours remaining at rank 10 (period, priority 2, product code). Allocated 0; unmet 844.000000. CAPACITY_CONSTRAINED. Materials sufficient. Capacity short 1.760000 hours."
+          },
+          {
+            "product_id": 3,
+            "product_code": "SYN-FG-003",
+            "period_start": "2026-12-01",
+            "unit_of_measure": "kg",
+            "resource_id": 2,
+            "resource_code": "SYN-FILL",
+            "priority": 3,
+            "allocation_rank": 11,
+            "bom_id": null,
+            "gross_demand": "466.000000",
+            "inventory_offset": "466.000000",
+            "surplus_offset": "0.000000",
+            "net_requirement": "0.000000",
+            "proposed_quantity": "0",
+            "allocated_quantity": "0",
+            "unmet_quantity": "0.000000",
+            "batch_count": 0,
+            "batches": [],
+            "materials": [],
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "status": "FEASIBLE",
+            "explanation": "2026-12 SYN-FG-003: gross 466.000000, stock offset 466.000000, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 11 (period, priority 3, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+          },
+          {
+            "product_id": 4,
+            "product_code": "SYN-FG-004",
+            "period_start": "2026-12-01",
+            "unit_of_measure": "kg",
+            "resource_id": 2,
+            "resource_code": "SYN-FILL",
+            "priority": 4,
+            "allocation_rank": 12,
+            "bom_id": null,
+            "gross_demand": "653.666667",
+            "inventory_offset": "653.666667",
+            "surplus_offset": "0.000000",
+            "net_requirement": "0.000000",
+            "proposed_quantity": "0",
+            "allocated_quantity": "0",
+            "unmet_quantity": "0.000000",
+            "batch_count": 0,
+            "batches": [],
+            "materials": [],
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "status": "FEASIBLE",
+            "explanation": "2026-12 SYN-FG-004: gross 653.666667, stock offset 653.666667, carried surplus 0.000000, net 0.000000 kg; 0 proposed batches, 0 hours, 10.000000 hours remaining at rank 12 (period, priority 4, product code). Allocated 0; unmet 0.000000. FEASIBLE. Materials sufficient. Capacity sufficient."
+          }
+        ],
+        "total": 12,
+        "limit": 50,
+        "offset": 0,
+        "explanations": [
+          "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+          "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+          "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+          "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+          "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+          "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+        ]
+      }
+    },
+    "/api/v1/planning/capacity?forecast_run_code=1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e": {
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "resource_id": 1,
+            "resource_code": "SYN-MIX",
+            "period_start": "2026-10-01",
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "feasible": true
+          },
+          {
+            "resource_id": 2,
+            "resource_code": "SYN-FILL",
+            "period_start": "2026-10-01",
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "feasible": true
+          },
+          {
+            "resource_id": 1,
+            "resource_code": "SYN-MIX",
+            "period_start": "2026-11-01",
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "feasible": true
+          },
+          {
+            "resource_id": 2,
+            "resource_code": "SYN-FILL",
+            "period_start": "2026-11-01",
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "feasible": true
+          },
+          {
+            "resource_id": 1,
+            "resource_code": "SYN-MIX",
+            "period_start": "2026-12-01",
+            "required_hours": "11.760000",
+            "available_hours": "10.000000",
+            "allocated_hours": "3.320000",
+            "overload_hours": "1.760000",
+            "utilisation_pct": "117.60",
+            "feasible": false
+          },
+          {
+            "resource_id": 2,
+            "resource_code": "SYN-FILL",
+            "period_start": "2026-12-01",
+            "required_hours": "0",
+            "available_hours": "10.000000",
+            "allocated_hours": "0",
+            "overload_hours": "0",
+            "utilisation_pct": "0.00",
+            "feasible": true
+          }
+        ],
+        "total": 6,
+        "limit": 50,
+        "offset": 0
+      }
+    },
+    "/api/v1/planning/constraints?forecast_run_code=1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e": {
+      "status": 200,
+      "body": {
+        "calculation_code": "3ecf5b0a02aec4c3b39893468a2177d0730566849d67dfae82ec784fcee5828c",
+        "algorithm_version": "production-plan-v1",
+        "demand_mode": "forecast",
+        "forecast_run_code": "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e",
+        "items": [
+          {
+            "product_id": 2,
+            "product_code": "SYN-FG-002",
+            "period_start": "2026-12-01",
+            "unit_of_measure": "kg",
+            "resource_id": 1,
+            "resource_code": "SYN-MIX",
+            "priority": 2,
+            "allocation_rank": 10,
+            "bom_id": 2,
+            "gross_demand": "948.000000",
+            "inventory_offset": "104.000000",
+            "surplus_offset": "0.000000",
+            "net_requirement": "844.000000",
+            "proposed_quantity": "844.000000",
+            "allocated_quantity": "0",
+            "unmet_quantity": "844.000000",
+            "batch_count": 1,
+            "batches": [
+              {
+                "sequence": 1,
+                "quantity": "844.000000",
+                "hours": "8.440000",
+                "allocated": false,
+                "explanation": "Unallocated: insufficient residual capacity"
+              }
+            ],
+            "materials": [
+              {
+                "raw_material_id": 1,
+                "material_code": "SYN-RM-001",
+                "unit_of_measure": "kg",
+                "required_quantity": "211.000000",
+                "available_quantity": "1917.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "0",
+                "remaining_quantity": "1917.000000"
+              },
+              {
+                "raw_material_id": 2,
+                "material_code": "SYN-RM-002",
+                "unit_of_measure": "kg",
+                "required_quantity": "211.000000",
+                "available_quantity": "1917.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "0",
+                "remaining_quantity": "1917.000000"
+              },
+              {
+                "raw_material_id": 3,
+                "material_code": "SYN-RM-003",
+                "unit_of_measure": "kg",
+                "required_quantity": "211.000000",
+                "available_quantity": "1917.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "0",
+                "remaining_quantity": "1917.000000"
+              },
+              {
+                "raw_material_id": 4,
+                "material_code": "SYN-RM-004",
+                "unit_of_measure": "kg",
+                "required_quantity": "211.000000",
+                "available_quantity": "1917.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "0",
+                "remaining_quantity": "1917.000000"
+              }
+            ],
+            "required_hours": "8.440000",
+            "available_hours": "6.680000",
+            "allocated_hours": "0",
+            "overload_hours": "1.760000",
+            "utilisation_pct": "126.35",
+            "status": "CAPACITY_CONSTRAINED",
+            "explanation": "2026-12 SYN-FG-002: gross 948.000000, stock offset 104.000000, carried surplus 0.000000, net 844.000000 kg; 1 proposed batches, 8.440000 hours, 6.680000 hours remaining at rank 10 (period, priority 2, product code). Allocated 0; unmet 844.000000. CAPACITY_CONSTRAINED. Materials sufficient. Capacity short 1.760000 hours."
+          }
+        ],
+        "total": 1,
+        "limit": 50,
+        "offset": 0,
+        "explanations": [
+          "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+          "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+          "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+          "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+          "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+          "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+        ]
+      }
+    },
+    "/api/v1/planning/production-plan/what-if": {
+      "status": 200,
+      "body": {
+        "calculation_code": "60b3615286e3be81e4c086246de5b876f0011c508dfdf11e1295bc5995a7eed3",
+        "algorithm_version": "production-plan-v1",
+        "demand_mode": "manual",
+        "forecast_run_code": null,
+        "persisted": false,
+        "lines": [
+          {
+            "product_id": 1,
+            "product_code": "SYN-FG-001",
+            "period_start": "2026-11-01",
+            "unit_of_measure": "kg",
+            "resource_id": 1,
+            "resource_code": "SYN-MIX",
+            "priority": 1,
+            "allocation_rank": 1,
+            "bom_id": 1,
+            "gross_demand": "5000",
+            "inventory_offset": "2000.000000",
+            "surplus_offset": "0",
+            "net_requirement": "3000.000000",
+            "proposed_quantity": "3000.000000",
+            "allocated_quantity": "1000.000000",
+            "unmet_quantity": "2000.000000",
+            "batch_count": 3,
+            "batches": [
+              {
+                "sequence": 1,
+                "quantity": "1000.000000",
+                "hours": "10.000000",
+                "allocated": true,
+                "explanation": "Allocated whole batch"
+              },
+              {
+                "sequence": 2,
+                "quantity": "1000.000000",
+                "hours": "10.000000",
+                "allocated": false,
+                "explanation": "Unallocated: insufficient residual capacity"
+              },
+              {
+                "sequence": 3,
+                "quantity": "1000.000000",
+                "hours": "10.000000",
+                "allocated": false,
+                "explanation": "Unallocated: insufficient residual capacity"
+              }
+            ],
+            "materials": [
+              {
+                "raw_material_id": 1,
+                "material_code": "SYN-RM-001",
+                "unit_of_measure": "kg",
+                "required_quantity": "750.000000",
+                "available_quantity": "2000.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "250.000000",
+                "remaining_quantity": "1750.000000"
+              },
+              {
+                "raw_material_id": 2,
+                "material_code": "SYN-RM-002",
+                "unit_of_measure": "kg",
+                "required_quantity": "750.000000",
+                "available_quantity": "2000.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "250.000000",
+                "remaining_quantity": "1750.000000"
+              },
+              {
+                "raw_material_id": 3,
+                "material_code": "SYN-RM-003",
+                "unit_of_measure": "kg",
+                "required_quantity": "750.000000",
+                "available_quantity": "2000.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "250.000000",
+                "remaining_quantity": "1750.000000"
+              },
+              {
+                "raw_material_id": 4,
+                "material_code": "SYN-RM-004",
+                "unit_of_measure": "kg",
+                "required_quantity": "750.000000",
+                "available_quantity": "2000.000000",
+                "shortage_quantity": "0",
+                "allocated_quantity": "250.000000",
+                "remaining_quantity": "1750.000000"
+              }
+            ],
+            "required_hours": "30.000000",
+            "available_hours": "10.000000",
+            "allocated_hours": "10.000000",
+            "overload_hours": "20.000000",
+            "utilisation_pct": "300.00",
+            "status": "CAPACITY_CONSTRAINED",
+            "explanation": "2026-11 SYN-FG-001: gross 5000, stock offset 2000.000000, carried surplus 0, net 3000.000000 kg; 3 proposed batches, 30.000000 hours, 10.000000 hours remaining at rank 1 (period, priority 1, product code). Allocated 1000.000000; unmet 2000.000000. CAPACITY_CONSTRAINED. Materials sufficient. Capacity short 20.000000 hours."
+          }
+        ],
+        "capacity": [
+          {
+            "resource_id": 1,
+            "resource_code": "SYN-MIX",
+            "period_start": "2026-11-01",
+            "required_hours": "30.000000",
+            "available_hours": "10.000000",
+            "allocated_hours": "10.000000",
+            "overload_hours": "20.000000",
+            "utilisation_pct": "300.00",
+            "feasible": false
+          }
+        ],
+        "explanations": [
+          "Synthetic proposed plan, not an approved production schedule. No execution records changed.",
+          "Forecast and manual demand are separate alternative scenarios, never added together. Historical orders are not forecast demand. Unfulfilled confirmed sales are protected in the Phase 4 stock baseline; this model does not generate another plan for those orders.",
+          "Finished stock is pooled available less existing confirmed requirements, floored at zero. Reservations and requirements remain conservatively additive. No unposted production supply.",
+          "Materials reuse Phase 4 projected stock, including assumed wholly outstanding confirmed purchases and existing production requirements. All assumed incoming is available at start; receipt dates, expiry and QC release are not guaranteed.",
+          "Earlier month, then ascending product priority, then product code. Whole batches allocate only when both materials and residual monthly capacity suffice. Unmet demand is explicit, not silently rolled into another month. Allocated minimum-batch surplus carries forward.",
+          "Monthly resource hours are residual capacity after external commitments, repeated each month. One compatible resource per product; no routing, setup, downtime or shop-floor scheduling."
+        ]
+      }
+    },
+    "/api/v1/sales-orders?limit=0": {
+      "status": 422,
+      "body": {
+        "detail": [
+          {
+            "type": "greater_than_equal",
+            "loc": [
+              "query",
+              "limit"
+            ],
+            "msg": "Input should be greater than or equal to 1",
+            "input": "0",
+            "ctx": {
+              "ge": 1
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/traceability/order/999999": {
+      "status": 404,
+      "body": {
+        "detail": "Sales order not found"
+      }
+    }
+  },
+  "powerbi": {
+    "schema_documents": 76,
+    "schema_compatibility_documents": 62,
+    "tables": 21,
+    "relationships": 25,
+    "measures": 39,
+    "pages": 6,
+    "visuals": 62,
+    "desktop_refresh_render": "not validated",
+    "dax_engine": "not executed"
+  },
+  "manual_desktop": "User-confirmed Phase 7 evidence; not rerun by this verifier",
+  "safety": "READ ONLY database sessions; GET and computational POST; generator only in temp"
+}

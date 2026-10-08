@@ -1,4 +1,4 @@
-# Phase 2 demo
+# Phase 2 demo (historical workflow)
 
 1. State that the organisation, sources, formulations and records are entirely synthetic.
 2. Follow README configuration. Adopt the existing schema with `scripts.migrate_db`; seed masters.
@@ -10,7 +10,8 @@
    should match while a new audit run and new issues show that execution occurred.
 8. Run `scripts.run_etl trace --order SO-0001`; follow customer, product, batch, QC, actual
    material consumption, purchase orders and synthetic suppliers.
-9. Run tests and show actual validation evidence. Explain that no forecasts or dashboard exist.
+9. Run tests and show actual Phase 2 validation evidence. Forecasting and dashboards were added
+   in later phases; see [current technical runbook](32-demo-runbook.md) for the complete platform.
 
 For a correction demo use a copied fixture directory and the runbook; do not overwrite trusted
 history. Fixture regeneration resets only the owned input files, not the database or quarantine.

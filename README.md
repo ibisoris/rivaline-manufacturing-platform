@@ -9,6 +9,34 @@ spreadsheets, legacy exports and manual handoffs obscure demand, stock, purchasi
 production, quality and fulfilment. This case study aims to connect those records into
 an explainable operational view with forecasting, inventory intelligence and capacity decision support.
 
+## Contents
+
+- [Manufacturing decisions, backed by traceable data](#manufacturing-decisions-backed-by-traceable-data)
+- [Power BI showcase](#power-bi-showcase)
+- [Technical demonstration](#technical-demonstration)
+- [Current scope](#current-scope)
+- [Target architecture](#target-architecture)
+- [Manufacturing business problem](#manufacturing-business-problem)
+- [Technology choices](#technology-choices)
+- [Database design and traceability](#database-design-and-traceability)
+- [Legacy integration and data quality](#legacy-integration-and-data-quality)
+- [FastAPI and operational analytics](#fastapi-and-operational-analytics)
+- [Inventory and procurement decision support](#inventory-and-procurement-decision-support)
+- [Demand forecasting and evaluation](#demand-forecasting-and-evaluation)
+- [Production and capacity decision support](#production-and-capacity-decision-support)
+- [Repository](#repository)
+- [Setup (PowerShell)](#setup-powershell)
+- [Checks](#checks)
+- [Data contracts and roadmap](#data-contracts-and-roadmap)
+- [Phase 2 demo](#phase-2-demo)
+- [Phase 3 demo](#phase-3-demo)
+- [Phase 4 demo](#phase-4-demo)
+- [Phase 5 demo](#phase-5-demo)
+- [Phase 6 demo](#phase-6-demo)
+- [Phase 7 Power BI](#phase-7-power-bi)
+- [Validation evidence and limitations](#validation-evidence-and-limitations)
+- [Documentation index](#documentation-index)
+
 ## Manufacturing decisions, backed by traceable data
 
 An independent, fictional **manufacturing digital transformation case study** for a general
@@ -28,7 +56,7 @@ All business scenarios and results are synthetic; no real-world deployment or pr
 
 **Fictional business-case objective: improve production efficiency by 20%. This is a proposed target,
 not a measured achievement.** A real pilot would first agree a baseline such as quality-accepted
-kg per production labour-hour, then compare equivalent product mixes and shifts after implementation.
+kg per scheduled production labour-hour, then compare equivalent product mixes and shifts after implementation.
 A 20% relative improvement would mean `(pilot efficiency / baseline efficiency - 1) * 100 = 20%`.
 Quality, rework, service levels and overtime would need to be monitored alongside throughput.
 This prototype demonstrates decision support; it does not establish a causal productivity gain,
@@ -92,37 +120,12 @@ All six pages passed user-confirmed Desktop open, authentication, refresh and re
 including the repaired supplier/material visual. See [validation evidence](docs/29-phase-7-validation.md).
 Import refresh is manual; no gateway, scheduled refresh or cloud deployment is configured.
 
-## Eight-minute interview demonstration
+## Technical demonstration
 
-Prepare the verified database and open the PBIP before the interview; refresh and clear slicer
-selections. Use the screenshots as a static fallback. Do not rerun ETL or create new forecast/plan
-snapshots during the demonstration.
-
-| Time | Show | Explain |
-|---|---|---|
-| 0:00-1:00 | Business case and architecture below | Fragmented records, the proposed 20% target and how success would be measured |
-| 1:00-2:00 | Executive Operations | Orders, material risk and the December exception |
-| 2:00-3:00 | Inventory & Procurement | RM-002 / RM-003 proposals; orders versus receipts |
-| 3:00-4:00 | Demand & Forecasting | Separate archive universe, chronological holdout and visible error metrics |
-| 4:00-5:30 | Production & Capacity | December / SYN-MIX: 11.76h required, 10h available, 844kg unmet |
-| 5:30-6:30 | Quality & Data Trust, then trace command below | 89.66% ETL acceptance, 10.34% rejection, 96 issue events; source-to-order lineage |
-| 6:30-8:00 | Transformation & Value | Engineering tradeoffs, evidence boundaries and a realistic pilot evaluation |
-
-For a five-minute version, combine inventory and forecasting and omit the live trace command.
-For ten minutes, add OpenAPI and the read-only scenario described in the Phase 6 demo.
-
-```powershell
-# Read-only inspection of an already prepared database:
-.\.venv\Scripts\python.exe -m scripts.run_etl summary
-.\.venv\Scripts\python.exe -m scripts.run_etl trace --order SO-0001
-.\.venv\Scripts\python.exe -m scripts.run_planning positions
-```
-
-Be ready to discuss why a modular monolith fits the scope; how lineage and quarantine establish
-trust; why simple forecasting baselines are appropriate; and how whole-batch planning differs
-from an optimised production schedule. Authentication, deployment hardening, richer operational
-constraints and a measured pilot remain future work. [Phase 8 evidence](docs/30-portfolio-readiness.md)
-records command checks, image provenance and remaining manual checks.
+Use the [10-minute technical demonstration runbook](docs/32-demo-runbook.md) for a prepared
+Power BI, Swagger UI and ETL walkthrough. It includes parameter discovery, exact commands,
+expected results, troubleshooting and a screenshot fallback. No database rebuild is needed
+while demonstrating.
 
 ## Current scope
 
@@ -155,18 +158,225 @@ infrastructure or cloud deployment is in scope. This is a local synthetic-data p
 
 ```mermaid
 flowchart TD
-    A[Legacy CSV / Excel / SQLite] --> B[Python ETL: validate and clean]
-    B --> C[PostgreSQL operational model]
-    C --> D[FastAPI REST]
-    C --> E[Analytics views]
-    D --> F[Forecasting / inventory / production decision support]
-    E --> G[Power BI]
+    L[Legacy CSV / Excel / SQLite] --> X[Python extraction and mapping]
+    X --> V[Validation: units, keys, dates, references]
+    V -->|accepted rows| DB[(PostgreSQL operational records)]
+    V -->|rejected rows| Q[Audit issues and local quarantine]
+    Q --> DB
+    DB --> I[Inventory intelligence and BOM requirements]
+    H[Separate synthetic monthly demand archive] --> F[Forecast evaluation and selection]
+    DB --> F
+    F -->|explicit saved evidence| DB
+    I -->|explicit reorder snapshots| DB
+    DB --> P[Production and capacity planning]
+    P -->|explicit proposed-plan snapshots| DB
+    DB --> S[SQL reporting views]
+    DB --> API[FastAPI read-only use cases]
+    S --> API
+    API --> U[Swagger UI / REST consumers]
+    S --> M[Power Query PostgreSQL import]
+    DB -->|master dimensions| M
+    M --> BI[Power BI semantic model and six report pages]
 ```
+
+Arrows describe actual dependencies, not a mandatory sequence of HTTP calls. Python services
+read PostgreSQL; explicit CLI commands save decision-support evidence. API planning calls compute
+results without persisting them. Power BI reads views and master dimensions directly, not through
+FastAPI. Row issues are recorded in PostgreSQL, while raw quarantine exports remain local. An
+ETL rejection does not create a valid operational row. Forecasting uses a separately labelled archive,
+not the short operational sales history. Refresh does not recalculate or release production orders.
+
 
 Python 3.12, PostgreSQL (native 17.11 or Compose 16), SQLAlchemy 2, FastAPI, Pydantic 2,
 pandas, scikit-learn,
 pytest and Docker Compose form the stack. Pandas and scikit-learn remain available dependencies; the small Phase 5
 forecasting models use transparent Decimal arithmetic. Phase 2 additionally uses openpyxl and Alembic.
+
+## Manufacturing business problem
+
+| Fragmented process | Resulting risk | Implemented response |
+|---|---|---|
+| CSV/Excel exports and a legacy SQLite sales store | Different keys, formats and units | Explicit source contracts, normalization and canonical kg quantities |
+| Separate sales and purchasing records | Weak customer-to-supplier traceability | Foreign-key relationships, batch consumption and order trace APIs |
+| Poor stock visibility | Material shortages or misleading availability | Pooled on-hand, reservations, incoming assumptions and BOM requirements |
+| Inconsistent data and manual reconciliation | Errors hidden in totals | Quarantine, run audit, immutable source identities and source-to-target checks |
+| Uncertain demand | Production decisions based on intuition alone | Three explainable forecasting candidates with chronological evaluation |
+| Finite manufacturing capacity | Demand exceeds feasible whole batches | Resource/month capacity, priorities and explicit unmet demand |
+| Fragmented reporting | Managers cannot see the same exceptions | Trusted reporting views and a six-page Power BI model |
+
+The platform demonstrates integration and decision support on synthetic records. It does not
+claim to replace a manufacturing execution system, certify formulations or improve real plant output.
+
+## Technology choices
+
+| Technology | Actual role and rationale |
+|---|---|
+| Python 3.12 | Small, inspectable ETL and decision-support modules plus explicit command-line workflows |
+| PostgreSQL | Authoritative relational store, transactional integrity, constraints and SQL reporting views |
+| SQLite | Synthetic legacy sales source and fast isolated tests; not the deployed operational database |
+| CSV / Excel | Representative departmental source formats; read with the standard library and openpyxl |
+| pandas / scikit-learn | Installed dependencies from the original stack; not used in implemented extraction or forecasting algorithms |
+| SQLAlchemy 2 | Typed model mappings, bound SQL expressions, sessions and controlled transactions |
+| Alembic | Versioned schema/view migrations rather than schema changes at application startup |
+| FastAPI / Pydantic 2 | Typed HTTP routes, validation, JSON response schemas and generated OpenAPI/Swagger UI |
+| REST / SQL views | Readable operational resource contracts and stable reporting grains |
+| Decimal forecasting | Naive, three-month moving average and linear trend with explicit evaluation and rounding |
+| Power BI / Power Query / DAX | Import PostgreSQL data, model relationships, compute named measures and present management pages |
+| pytest / Ruff | Behavioral, relational and integration evidence; linting and consistent Python formatting |
+| Git / GitHub | Reviewable source checkpoints and public documentation; secrets and cached report data excluded |
+| Docker Compose | Optional local PostgreSQL 16 alternative; verified native Windows server is PostgreSQL 17.11 |
+
+The project is a modular monolith. Modules share one authoritative schema while keeping HTTP,
+ETL and planning responsibilities separate. No frontend framework, message broker or cloud service
+is required. See [architecture](docs/05-system-architecture.md) and [ADR 001](docs/adr/001-prototype-architecture.md).
+
+## Database design and traceability
+
+The verified model contains **35 application tables**, plus Alembic's revision table. The preserved
+demo has **1,497 application records**; this count includes audit and decision-support evidence,
+not just operational transactions. Every table has a primary key. Business codes/source identities,
+foreign keys, unique constraints and checks provide complementary integrity guarantees.
+
+| Entity group | Role and relationships |
+|---|---|
+| Products, raw materials, suppliers, customers, warehouses | Canonical synthetic identities and units |
+| Inventory | One item/warehouse/lot position; distinguishes finished products from raw materials |
+| Bills of material and component lines | A product/version/output basis linked to required raw-material quantities |
+| Sales orders / lines | Customer demand for products; lines connect to production and shipments |
+| Purchase orders / lines | Supplier/material commitments; consumption records link purchases to actual batches |
+| Production orders / batches | Intended work and recorded batch output, linked to sales lines and BOMs |
+| Quality inspections / material consumption | Batch evidence, pass/fail results and supplier-lot consumption |
+| Shipments / shipment lines | Dispatch quantities linked to order lines and production batches |
+| ETL runs / data-quality issues | Execution counters, source keys and rejected-record evidence |
+| Planning policies / runs / recommendations | Reproducible inventory decisions, not purchase orders |
+| Demand observations / forecast runs / metrics / backtests / forecasts | Archive lineage, chronological evaluation and immutable forecast evidence |
+| Resources / production policies / plan runs / lines / capacity / material results | Proposed allocations with shared constraints and explanations |
+
+A trace follows customer -> sales order line -> production order -> batch -> quality/consumption ->
+purchase order line -> material/supplier, with shipment links back to the customer line and batch.
+This is recorded lineage; a BOM alone does not prove which supplier lot was consumed.
+Quantities and money use PostgreSQL NUMERIC and Python Decimal. External SQL writers must maintain
+`updated_at`; no traceability cascade-delete workflow is provided. See [data architecture](docs/06-data-architecture.md).
+
+## Legacy integration and data quality
+
+Six deterministic synthetic inputs model sales, purchasing, inventory, production, quality and
+dispatch. Extraction enforces exact headers. Transformation normalizes identifiers/statuses,
+parses dates and Decimal quantities, converts supported gram inputs to kg, and checks references,
+units and domain rules. No operational quantity is silently filled in.
+
+The loader uses source identities and business keys. An unchanged replay is accepted without
+inserting another operational record; a conflicting edit to accepted history is rejected.
+One accepted source row may create several related targets, so accepted rows and inserted rows
+are different counts. Each rejected row gets a rule and source context; raw exports stay under
+ignored `data/quarantine/<run>/`. Run-level audit survives fatal failures.
+
+| Verified example | Outcome |
+|---|---|
+| `SALE-0001` / `SO-0001`, customer SYN-CUS-001, product SYN-FG-001, 100 kg at 12.50 | Accepted; sales header and line linked to canonical master IDs |
+| Repeated `SALE-0001` in the sales source (`DUPLICATE_RECORD`), plus unknown-reference/date/quantity defects | Rejected with rule-coded evidence; no invented quantity or reference |
+| One complete execution | 464 extracted = 416 accepted + 48 rejected; first load inserts 944 operational target rows |
+| Exact replay | 416 accepted again; zero new operational target rows; a new run and 48 new issue events |
+| Two preserved executions | 928 extraction events, 832 acceptance events and 96 rejection/issue events |
+
+A rejected source record is an expected row-level validation outcome. A fatal missing/malformed
+file causes a failed pipeline execution and rolls back that attempt's operational transaction.
+An export failure after database commit is explicitly recorded separately. Reconciliation checks
+source hashes, audit totals, quarantine identities, accepted target receipts and independent kg totals.
+The **89.66% acceptance / 10.34% rejection** rates describe the intentionally dirty fixture, not
+production data-quality performance. See [ETL runbook](docs/18-etl-runbook.md) and [data-quality rules](docs/08-data-quality.md).
+
+## FastAPI and operational analytics
+
+`api/main.py` wires routers, schemas and services. Request-scoped PostgreSQL sessions use repeatable,
+read-only transactions. Pydantic rejects invalid query/body shapes; SQLAlchemy uses bound values.
+`/docs` provides Swagger UI and `/openapi.json` the machine-readable contract.
+
+| Route group | Examples | Behavior |
+|---|---|---|
+| Health / masters | `/health`, `/api/v1/products`, `/api/v1/raw-materials` | Connectivity and canonical identities |
+| Operations | `/api/v1/sales-orders`, `/api/v1/inventory`, `/api/v1/production-batches` | Filtered lists and operational detail |
+| Traceability | `/api/v1/traceability/order/{order_id}` | Nested customer, batch, quality, material and dispatch chain |
+| Audit / KPIs | `/api/v1/etl-runs`, `/api/v1/data-quality-issues`, `/api/v1/kpis/operations` | Run evidence and shared SQL-view measures |
+| Inventory planning | `/api/v1/inventory/positions`, `/api/v1/reorder-recommendations` | Explained risk and stored proposals |
+| Forecasting | `/api/v1/forecasts`, `/api/v1/forecasts/evaluation`, `/api/v1/forecasts/history` | Saved forecast and archive evidence |
+| Production planning | `/api/v1/planning/production-plan`, `/api/v1/planning/capacity` | Read-only calculations for a selected forecast run |
+| Scenario calculation | `POST /api/v1/planning/production-plan/what-if` | JSON input; computational only, no database writes |
+
+List responses normally contain `items`, `total`, `limit` and `offset`; defaults are 50/0 and the
+maximum limit is 200. Additional planning metadata can accompany a page. Decimal quantities
+serialize as JSON strings. Read the full schemas rather than assuming every endpoint has identical fields.
+HTTP 200 means success, 404 a missing resource, 422 invalid request data, 409 a planning conflict
+and 503 unavailable operational data. There is no production-grade authentication/authorisation.
+
+```powershell
+curl.exe "http://127.0.0.1:8000/api/v1/sales-orders?limit=5"
+curl.exe "http://127.0.0.1:8000/api/v1/kpis/operations"
+```
+
+The preserved fixture returns a sales page with `total: 48`, `limit: 5`, `offset: 0`; KPI fields
+include `order_count: 48`, `production_batch_count: 48` and `data_quality_issue_count: 96`.
+These are response excerpts, not substitutes for the complete schema. Use the returned order ID
+for traceability. See [API catalogue](docs/19-api-and-analytics.md) and [KPI dictionary](docs/20-kpi-dictionary.md).
+
+## Inventory and procurement decision support
+
+`projected = on hand - reserved + assumed confirmed incoming - requirements`.
+Stock is pooled across warehouses. Requirements come from open work and BOM relationships;
+confirmed incoming is assumed wholly outstanding because the prototype has no receipt-balance model.
+A proposed reorder is not incoming stock. Reorder triggers use strict `<`, so equality does not trigger.
+
+| Material | Projected kg | Reorder point kg | Target kg | Minimum order kg | Proposed kg |
+|---|---:|---:|---:|---:|---:|
+| SYN-RM-002 | 2,000 | 2,500 | 3,000 | 100 | 1,000 |
+| SYN-RM-003 | 2,000 | 2,400 | 3,000 | 1,500 | 1,500 |
+
+The rule is `max(target - projected, minimum order)` when below the reorder point: total **2,500 kg**.
+Safety stock classifies risk; it is not the target quantity. A 100 kg abstract BOM containing 25 kg
+of each of four materials requires 250 kg of each for a 1,000 kg batch. These are synthetic relationship
+examples, not usable formulations. Recommendations never automatically create purchase orders.
+See [inventory contract](docs/22-inventory-and-reorder.md).
+
+## Demand forecasting and evaluation
+
+A separate 24-month archive (October 2024-September 2026) provides 192 observations aggregated to
+96 product-months. It does not extend or overwrite the two-month operational sales history.
+Each of four products is evaluated using naive (last value), moving average (last three values)
+and least-squares linear trend models. All implemented model arithmetic uses Decimal.
+
+Validation trains on the first 12, 15 and 18 months, predicting three months after each origin.
+The lowest validation MAE selects a model per product; ties favor the simpler candidate order.
+The final holdout trains on 21 months and tests the final three. Selection never uses holdout
+errors. The selected model is refit to all 24 months for October-December 2026: 12 forecasts,
+**8,535 kg** total (up to six-decimal rounding).
+
+`MAE = mean(abs(actual - predicted))`; `RMSE = sqrt(mean((actual - predicted)^2))`.
+The selected-policy holdout metrics are **18.416667 kg MAE** and **23.973944 kg RMSE**, pooled over
+12 selected product/month predictions. They differ from candidate-wide evaluation rows.
+These synthetic historical errors do not guarantee real-world accuracy; no calibrated prediction
+intervals or seasonal model is implemented. See [forecast contract](docs/24-demand-forecasting.md).
+
+## Production and capacity decision support
+
+Forecast-to-production planning consumes finished stock once across the horizon, sizes batches,
+explodes BOM requirements and allocates whole batches in month/priority/product-code order.
+Minimum batch is 200 kg, preferred 1,000 kg, maximum 1,200 kg in the synthetic policy; each product
+uses one resource at 100 kg/h. Capacity is residual monthly capacity, not a full shift calendar.
+
+For SYN-FG-002, October and November each consume 948 kg from its initial 2,000 kg stock.
+December therefore has **948 kg gross demand - 104 kg inventory offset = 844 kg net requirement**.
+That product needs **8.44 hours**. Higher-priority SYN-FG-001 needs 331.999999 kg, rounded up to
+**3.32 processing hours**. Together SYN-MIX needs **11.76h against 10h**, a **1.76h shortfall**.
+After allocating FG-001, only 6.68h remain, so the entire FG-002 844kg batch stays unmet.
+Product-specific hours must not be confused with the overall resource/month total.
+
+The horizon's net requirement is approximately **1,176 kg**, with **844 kg unmet**. Materials
+are sufficient in this example; spare finishing capacity cannot substitute for the mixing resource.
+The separate manual 5,000kg FG-001 scenario nets 2,000kg stock, proposes three 1,000kg batches,
+needs 30h against 10h, allocates one batch and leaves 2,000kg unmet. It is an alternative scenario,
+not extra demand added to the forecast. Outputs are proposals, not approved schedules or releases.
+Setup/changeovers, expiry, workforce scheduling and optimal sequencing are outside scope.
+See [planning contract](docs/26-production-planning.md).
 
 ## Repository
 
@@ -275,7 +485,35 @@ The second ETL run demonstrates replay and is needed to match the captured 96 is
 Use the emitted forecast, reorder and plan run codes in Power BI's `ForecastRunCode`,
 `ReorderRunCode` and `PlanRunCode` parameters; confirm `DatasetCode`, `Server` and `Database` too.
 Do not assume copied snapshot codes match a different database. Open the checked-in PBIP directly;
-`build_powerbi` is optional and overwrites generated files, so it is not part of interview setup.
+`build_powerbi` is optional and overwrites generated files, so it is not part of demonstration setup.
+
+### Sequential fresh-database preparation
+
+Run this only against a new disposable demonstration database after migrations and master seeding
+above. Every ingestion/calculation save below is intentional preparation, not a read-only demo.
+Check each command succeeds before continuing. Reusing a populated database can add audit runs.
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.generate_legacy
+.\.venv\Scripts\python.exe -m scripts.run_etl run
+.\.venv\Scripts\python.exe -m scripts.run_etl run
+.\.venv\Scripts\python.exe -m scripts.run_etl reconcile
+.\.venv\Scripts\python.exe -m scripts.run_planning seed-policies
+$reorder = .\.venv\Scripts\python.exe -m scripts.run_planning calculate | ConvertFrom-Json
+.\.venv\Scripts\python.exe -m scripts.run_forecasting generate-history
+.\.venv\Scripts\python.exe -m scripts.run_forecasting ingest-history
+$forecast = .\.venv\Scripts\python.exe -m scripts.run_forecasting forecast --cutoff 2026-09-30 | ConvertFrom-Json
+.\.venv\Scripts\python.exe -m scripts.run_production seed-policies
+$plan = .\.venv\Scripts\python.exe -m scripts.run_production save-forecast --forecast-run-code $forecast.run_code | ConvertFrom-Json
+$reorder.run_code
+$forecast.run_code
+$plan.plan_run_code
+```
+
+Use those three emitted values for the corresponding Power Query parameters. Keep
+`DatasetCode=SYN-DEMAND-24M-V1` for this fixture. These commands were checked against actual CLI
+entry points; this phase did not execute this write sequence on the preserved database. Generator,
+ingestion, migration and replay behaviors are exercised by isolated automated tests.
 
 ## Checks
 
@@ -324,7 +562,8 @@ See [data architecture](docs/06-data-architecture.md) for relationships and limi
 5. Phase 5: monthly demand forecasting and chronological evaluation.
 6. Phase 6: monthly production proposals and capacity decision support; no automatic order release.
 7. Phase 7: management reporting assets; Desktop refresh/render validation passed.
-8. Phase 8: portfolio showcase, command verification and interview readiness.
+8. Phase 8: portfolio showcase, command verification and demonstration readiness.
+9. Phase 9: end-to-end validation, comprehensive documentation and technical demonstration readiness.
 
 ## Phase 2 demo
 
@@ -449,7 +688,7 @@ snapshots only. What-if and all HTTP routes create no records.
 ```powershell
 .venv\Scripts\python.exe -m scripts.migrate_db
 .venv\Scripts\python.exe -m scripts.run_production seed-policies
-$forecastRun = "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e"
+$forecastRun = "REPLACE_WITH_RETURNED_FORECAST_RUN_CODE"
 .venv\Scripts\python.exe -m scripts.run_production forecast --forecast-run-code $forecastRun
 .venv\Scripts\python.exe -m scripts.run_production save-forecast --forecast-run-code $forecastRun
 .venv\Scripts\python.exe -m scripts.run_production what-if --product-id 1 --period 2026-11-01 --quantity 5000 --unit kg
@@ -459,7 +698,7 @@ $forecastRun = "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e
 In another terminal, use the same forecast run code:
 
 ```powershell
-$forecastRun = "1e8d547d27460bb77d408e542c17682cd11ea6b745bd4dd898ec6d34b135464e"
+$forecastRun = "REPLACE_WITH_RETURNED_FORECAST_RUN_CODE"
 curl.exe "http://127.0.0.1:8000/api/v1/planning/production-plan?forecast_run_code=$forecastRun"
 curl.exe "http://127.0.0.1:8000/api/v1/planning/capacity?forecast_run_code=$forecastRun"
 $scenario = @{demands=@(@{product_id=1; period_start="2026-11-01"; quantity="5000"; unit_of_measure="kg"})} | ConvertTo-Json -Depth 3
@@ -481,3 +720,48 @@ stored in project definitions. The retained original PBIX is ignored and is not 
 Code/schema checks and PostgreSQL reconciliation are separate from Desktop validation. Follow the
 [Power BI runbook](powerbi/README.md), [architecture/demo guide](docs/28-powerbi-management-intelligence.md)
 and [Phase 7 evidence](docs/29-phase-7-validation.md). No commit, push or later-phase work is automatic.
+
+
+## Validation evidence and limitations
+
+The [final end-to-end report](docs/31-end-to-end-validation.md) records fresh commands/results,
+read-only database checks, live HTTP validation, ETL reconciliation and before/after fingerprints.
+Default tests are service-independent (including SQLite/DDL checks); native PostgreSQL variants
+use isolated temporary schemas with rollback. Existing tests cover fixture determinism, replay,
+failed-row/fatal-run handling, relational constraints, API filters/errors, forecasting chronology,
+planning edge cases and Power BI bindings. Manual Desktop evidence is user-reported and separate.
+
+A reproducible read-only check of the **preserved demo snapshot** is:
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.verify_phase9
+```
+
+It checks the saved baseline, reads local quarantine evidence, generates fixtures only in a
+temporary directory, starts/stops its own loopback API process and writes a local JSON evidence
+report. It intentionally fails on a differently rebuilt database: new audit IDs/timestamps can be
+valid without matching the preserved snapshot hash. Use semantic checks and ordinary tests for
+fresh deployments. Do not run earlier phase verifiers blindly: some generate saved snapshots.
+
+This remains synthetic data with no real deployment or measured efficiency/financial benefit.
+There is no production authentication, automatic purchasing or production release, cloud service,
+gateway or scheduled BI refresh. Pooled stock, assumed incoming supply and monthly whole-batch
+capacity are simplifications. Future work would require governed source integrations, access
+control, backups, monitoring, concurrency/load testing, richer constraints and a measured pilot.
+Power BI binary floating point does not replace authoritative PostgreSQL Decimal quantities.
+
+## Documentation index
+
+| Topic | Detailed source |
+|---|---|
+| Business case / process | [Business case](docs/01-business-case.md), [as-is](docs/03-as-is-process.md), [to-be](docs/04-to-be-process.md) |
+| Architecture / schema | [Architecture](docs/05-system-architecture.md), [data model](docs/06-data-architecture.md), [ADRs](docs/adr/001-prototype-architecture.md) |
+| Integration / trust | [Mappings](docs/07-integration-design.md), [quality](docs/08-data-quality.md), [ETL runbook](docs/18-etl-runbook.md) |
+| API / metrics | [API and views](docs/19-api-and-analytics.md), [KPI definitions](docs/20-kpi-dictionary.md) |
+| Decision support | [Inventory](docs/22-inventory-and-reorder.md), [forecasting](docs/24-demand-forecasting.md), [production](docs/26-production-planning.md) |
+| Power BI | [Project guide](powerbi/README.md), [model and DAX](powerbi/model-and-measures.md), [Desktop evidence](docs/29-phase-7-validation.md) |
+| Final validation / demo | [End-to-end validation](docs/31-end-to-end-validation.md), [technical demonstration](docs/32-demo-runbook.md) |
+
+Phase-numbered reports preserve the scope verified at the time; statements that a later capability
+was not yet implemented describe that historical phase, not current scope. The final report and
+this README describe the current platform.

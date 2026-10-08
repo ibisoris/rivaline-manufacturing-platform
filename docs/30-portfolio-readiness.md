@@ -1,4 +1,4 @@
-# Phase 8: portfolio and interview readiness
+# Phase 8: portfolio and demonstration readiness
 
 Prepared 2026-10-08 as an independent, fictional manufacturing digital transformation case
 study for a general professional portfolio. Rivaline connects process-manufacturing data to
@@ -40,7 +40,7 @@ without rerunning them against the verified business database. Their write behav
 Forecast code placeholders use valid PowerShell variable syntax. Docker remains an alternative
 not executed on this machine; initial installation and provisioning are not claimed retested.
 
-Read-only interview commands, API route contracts, local Markdown links, PowerShell code-block
+Read-only demonstration commands, API route contracts, local Markdown links, PowerShell code-block
 syntax and crop reproduction are checked separately from application regression tests.
 Native PostgreSQL Power BI tests are separate from service-independent/SQLite default tests.
 The exact Desktop visual schema 2.13 remains unavailable; the existing explicit 2.12 structural
@@ -71,7 +71,7 @@ The user subsequently authorised the final local Phase 8 checkpoint; pushing rem
 | Ruff lint and formatting | Passed |
 | Screenshot reproduction | Four PNGs readable; full decoded-pixel equality after lossless crop/re-encode |
 | README command modules / CLI help | 10 modules resolved; 4 argument-parser help checks passed |
-| Read-only interview commands | ETL summary, SO-0001 trace and inventory positions executed successfully |
+| Read-only demonstration commands | ETL summary, SO-0001 trace and inventory positions executed successfully |
 | API contract references | All 18 README URL occurrences match actual API routes or docs endpoints |
 | PowerShell syntax | All 17 README PowerShell blocks parsed successfully |
 | Local documentation links | 35 relative links resolved across README and related guides |
