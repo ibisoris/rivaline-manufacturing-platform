@@ -25,3 +25,6 @@ data/quarantine/*/
 powerbi/**/*.pbix
 powerbi/**/.pbi/
 powerbi/.phase7-backup/
+
+# Raw portfolio captures; only curated docs/images/powerbi assets are versioned.
+/screenshots-temp/

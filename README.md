@@ -7,7 +7,122 @@ products, formulations and transactions used by the platform are synthetic.
 Rivaline represents a UK batch/process manufacturer of industrial coatings. Fragmented
 spreadsheets, legacy exports and manual handoffs obscure demand, stock, purchasing,
 production, quality and fulfilment. This case study aims to connect those records into
-an explainable operational view and, in later phases, decision support.
+an explainable operational view with forecasting, inventory intelligence and capacity decision support.
+
+## Manufacturing decisions, backed by traceable data
+
+An independent, fictional **manufacturing digital transformation case study** for a general
+professional portfolio. Rivaline demonstrates how software engineering and applied analysis can
+connect process-manufacturing records into operational intelligence and explainable decision support.
+All business scenarios and results are synthetic; no real-world deployment or productivity gain is claimed.
+
+| Capability | Evidence in this project | Business purpose |
+|---|---|---|
+| Data integration | CSV, Excel and SQLite records mapped into PostgreSQL | Replace disconnected operational views with consistent records |
+| ETL and data quality | Validation, quarantine, source keys, run lineage and idempotent replay | Make rejected data visible and prevent duplicate operational loads |
+| Traceability | Sales order, batch, material, supplier, quality and shipment relationships | Investigate an exception from customer demand back to source records |
+| Forecasting | Chronological evaluation and retained model/run evidence | Make demand assumptions and prediction error inspectable |
+| Inventory intelligence | BOM requirements and explainable reorder proposals | Identify material risk without automatically creating purchases |
+| Capacity planning | Stock netting, whole-batch allocation and shared resource constraints | Expose feasible production and unmet demand before release |
+| Management reporting | Six validated Power BI pages over PostgreSQL views | Connect business questions to reproducible calculations |
+
+**Fictional business-case objective: improve production efficiency by 20%. This is a proposed target,
+not a measured achievement.** A real pilot would first agree a baseline such as quality-accepted
+kg per production labour-hour, then compare equivalent product mixes and shifts after implementation.
+A 20% relative improvement would mean `(pilot efficiency / baseline efficiency - 1) * 100 = 20%`.
+Quality, rework, service levels and overtime would need to be monitored alongside throughput.
+This prototype demonstrates decision support; it does not establish a causal productivity gain,
+financial return or OEE improvement.
+
+## Power BI showcase
+
+These are user-captured screenshots of the validated synthetic dashboard. Only external Desktop
+interface strips have been cropped; report figures, labels and visible table content are preserved.
+Click an image to inspect it at its saved resolution. Scrollable tables show the captured viewport;
+the PBIP provides the interactive report.
+
+### Executive operations
+
+A management overview of 48 orders, two materials at risk, 100% batch QC pass and 8.535K kg forecast
+demand. The exception panel highlights 844 kg of capacity-constrained production for follow-up.
+
+[![Executive operations dashboard showing order, material risk, QC and forecast KPIs](docs/images/powerbi/executive.png)](docs/images/powerbi/executive.png)
+
+### Inventory and procurement
+
+Compare current/projected material positions with 2,500 kg of proposed replenishment. Supplier/material
+order detail supports procurement investigation; ordered quantity is explicitly not evidence of receipt.
+
+[![Inventory dashboard showing stock, reorder proposals and supplier material orders](docs/images/powerbi/inventory.png)](docs/images/powerbi/inventory.png)
+
+### Demand and forecasting
+
+Compare archived demand, future forecasts and holdout predictions. Selected-policy holdout MAE of
+18.416667 kg and RMSE of 23.973944 kg communicate uncertainty alongside the 8.535K kg forecast.
+
+[![Forecasting dashboard with demand history, forward forecast and holdout error metrics](docs/images/powerbi/forecasting.png)](docs/images/powerbi/forecasting.png)
+
+### Production and capacity
+
+Translate forecast demand into roughly 1,176 kg of net production requirement. December mixing
+requires 11.76 hours against 10 available, leaving 844 kg unmet under the whole-batch priority policy.
+The broad resource chart aggregates the horizon; the December mixing cards show the specific bottleneck.
+
+[![Production dashboard showing net demand, unmet production and December mixing constraints](docs/images/powerbi/production.png)](docs/images/powerbi/production.png)
+
+### Six pages, one reporting model
+
+| Page | Management question |
+|---|---|
+| 01 Executive Operations | Which operational exceptions need attention? |
+| 02 Inventory & Procurement | Which materials need replenishment and which suppliers have orders? |
+| 03 Demand & Forecasting | What demand is expected, and how did the selected models perform? |
+| 04 Production & Capacity | What can be produced within material and resource constraints? |
+| 05 Quality & Data Trust | Are batch results and integrated source records trustworthy? |
+| 06 Transformation & Value | How do the technical changes support better business decisions? |
+
+Power BI uses **Import mode**, connecting directly to PostgreSQL through Power Query's
+`PostgreSQL.Database` connector. Nineteen imported entities (five dimensions and fourteen reporting
+entities) feed a 21-table model, with 25 single-direction relationships and 39 DAX measures.
+Trusted SQL reporting views expose ETL/operational results and saved planning snapshots; Power BI
+does not call FastAPI to refresh. Server, database and selected run codes are explicit parameters.
+Credentials belong in Desktop's local credential store, never in the PBIP or Git.
+
+All six pages passed user-confirmed Desktop open, authentication, refresh and rendering validation,
+including the repaired supplier/material visual. See [validation evidence](docs/29-phase-7-validation.md).
+Import refresh is manual; no gateway, scheduled refresh or cloud deployment is configured.
+
+## Eight-minute interview demonstration
+
+Prepare the verified database and open the PBIP before the interview; refresh and clear slicer
+selections. Use the screenshots as a static fallback. Do not rerun ETL or create new forecast/plan
+snapshots during the demonstration.
+
+| Time | Show | Explain |
+|---|---|---|
+| 0:00-1:00 | Business case and architecture below | Fragmented records, the proposed 20% target and how success would be measured |
+| 1:00-2:00 | Executive Operations | Orders, material risk and the December exception |
+| 2:00-3:00 | Inventory & Procurement | RM-002 / RM-003 proposals; orders versus receipts |
+| 3:00-4:00 | Demand & Forecasting | Separate archive universe, chronological holdout and visible error metrics |
+| 4:00-5:30 | Production & Capacity | December / SYN-MIX: 11.76h required, 10h available, 844kg unmet |
+| 5:30-6:30 | Quality & Data Trust, then trace command below | 89.66% ETL acceptance, 10.34% rejection, 96 issue events; source-to-order lineage |
+| 6:30-8:00 | Transformation & Value | Engineering tradeoffs, evidence boundaries and a realistic pilot evaluation |
+
+For a five-minute version, combine inventory and forecasting and omit the live trace command.
+For ten minutes, add OpenAPI and the read-only scenario described in the Phase 6 demo.
+
+```powershell
+# Read-only inspection of an already prepared database:
+.\.venv\Scripts\python.exe -m scripts.run_etl summary
+.\.venv\Scripts\python.exe -m scripts.run_etl trace --order SO-0001
+.\.venv\Scripts\python.exe -m scripts.run_planning positions
+```
+
+Be ready to discuss why a modular monolith fits the scope; how lineage and quarantine establish
+trust; why simple forecasting baselines are appropriate; and how whole-batch planning differs
+from an optimised production schedule. Authentication, deployment hardening, richer operational
+constraints and a measured pilot remain future work. [Phase 8 evidence](docs/30-portfolio-readiness.md)
+records command checks, image provenance and remaining manual checks.
 
 ## Current scope
 
@@ -30,11 +145,11 @@ chronological evaluation, immutable forecast evidence and read-only reporting AP
 **IMPLEMENTED - Phase 6:** demand netting, batch sizing, shared material/capacity allocation,
 computational what-if APIs and reproducible proposed production snapshots.
 
-**IMPLEMENTED - Phase 7 source assets:** Power BI import model, DAX catalogue and six PBIR report
+**IMPLEMENTED - Phase 7:** Power BI import model, DAX catalogue and six PBIR report
 pages; code/PostgreSQL checks and user-confirmed Desktop refresh/render validation are complete.
 
 **PLANNED:** authentication. No frontend, distributed
-infrastructure or cloud deployment is in scope. This is a focused two-day prototype.
+infrastructure or cloud deployment is in scope. This is a local synthetic-data portfolio prototype.
 
 ## Target architecture
 
@@ -63,7 +178,7 @@ forecasting models use transparent Decimal arithmetic. Phase 2 additionally uses
 | `etl/` | Extraction, validation, loading, audit and reconciliation |
 | `analytics/` | Shared reporting-view KPI queries |
 | `planning/` | Inventory, forecasting, production planning and auditable decision-support snapshots |
-| `powerbi/` | Future reporting assets |
+| `powerbi/` | Validated PBIP/PBIR/TMDL report, model and reproducibility assets |
 | `scripts/` | Schema creation, seeding and API entry points |
 | `tests/` | Fast service-independent validation |
 | `docs/` | Business case, contracts, ADR and delivery outlines |
@@ -149,6 +264,19 @@ The stop command applies only to the Compose option and preserves its named Post
 Changing `.env` credentials does not change
 credentials in an already-initialized PostgreSQL volume; update the database role explicitly.
 
+### Preparing the full dashboard on a fresh database
+
+Master seeding alone does not populate the dashboard. On a **new disposable demonstration database**,
+follow the Phase 2, 4, 5 and 6 workflows below in order: ingest the synthetic legacy sources, seed
+inventory policies and calculate recommendations, ingest archive demand and generate forecasts,
+then seed production policies and save the forecast plan. These preparation commands write data.
+The second ETL run demonstrates replay and is needed to match the captured 96 issue events.
+
+Use the emitted forecast, reorder and plan run codes in Power BI's `ForecastRunCode`,
+`ReorderRunCode` and `PlanRunCode` parameters; confirm `DatasetCode`, `Server` and `Database` too.
+Do not assume copied snapshot codes match a different database. Open the checked-in PBIP directly;
+`build_powerbi` is optional and overwrites generated files, so it is not part of interview setup.
+
 ## Checks
 
 ```powershell
@@ -169,6 +297,17 @@ No PostgreSQL connection is required for default tests. `scripts.verify_db` is r
 checks public-schema contracts and seed values; its fingerprint supports repeat-run comparisons.
 See [validation](docs/16-phase-1-validation.md) for actual commands and results.
 
+Power BI source checks and read-only integration checks for the prepared demonstration dataset:
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.validate_powerbi
+.\.venv\Scripts\python.exe -m pytest -q tests/test_powerbi.py --postgres
+```
+
+The BI PostgreSQL tests expect the documented synthetic dataset and selected snapshots. Schema
+checks include explicit 2.12 structural compatibility validation for Desktop-saved 2.13 visuals;
+the exact 2.13 schema URL was unavailable. Automated checks do not replace manual Desktop rendering.
+
 ## Data contracts and roadmap
 
 Seed contains 4 products, 4 materials, 3 suppliers, 3 customers, 2 warehouses, 4 BOM versions
@@ -185,6 +324,7 @@ See [data architecture](docs/06-data-architecture.md) for relationships and limi
 5. Phase 5: monthly demand forecasting and chronological evaluation.
 6. Phase 6: monthly production proposals and capacity decision support; no automatic order release.
 7. Phase 7: management reporting assets; Desktop refresh/render validation passed.
+8. Phase 8: portfolio showcase, command verification and interview readiness.
 
 ## Phase 2 demo
 
@@ -234,7 +374,7 @@ list pages contain items/total/limit/offset. Decimal quantities are strings. No 
 implemented; this remains a local synthetic-data prototype.
 
 See [API/view catalogue](docs/19-api-and-analytics.md), [KPI dictionary](docs/20-kpi-dictionary.md),
-[Phase 3 validation](docs/21-phase-3-validation.md) and the [future Power BI plan](powerbi/README.md).
+[Phase 3 validation](docs/21-phase-3-validation.md) and the [Power BI project](powerbi/README.md).
 
 
 ## Phase 4 demo
@@ -286,7 +426,8 @@ The forecast command returns a run_code, all candidate metrics and 12 product-mo
 Replay adds no rows. To inspect an incremental material scenario, use the returned code:
 
 ```powershell
-.\.venv\Scripts\python.exe -m scripts.run_forecasting demo-bom --run-code <returned-run-code> --product-id 1
+$forecastRun = "REPLACE_WITH_RETURNED_RUN_CODE"
+.\.venv\Scripts\python.exe -m scripts.run_forecasting demo-bom --run-code $forecastRun --product-id 1
 curl.exe http://127.0.0.1:8000/api/v1/forecasts
 curl.exe http://127.0.0.1:8000/api/v1/forecasts/1
 curl.exe "http://127.0.0.1:8000/api/v1/forecasts/evaluation?scope=overall&evaluation_split=test"
@@ -329,8 +470,7 @@ The synthetic October-December plan nets existing stock once across the horizon.
 331.999999 kg of FG-001 and 844 kg of FG-002; together they require 11.76 mixing hours against 10.
 Priority allocates FG-001's whole batch first; FG-002's batch remains capacity-constrained.
 See [planning contract](docs/26-production-planning.md) and [validation report](docs/27-phase-6-validation.md)
-for assumptions, scenarios, preservation evidence and measured synthetic KPIs. No Phase 7 dashboard
-or automatic purchasing/production release has been implemented.
+for assumptions, scenarios, preservation evidence and measured synthetic KPIs. The Phase 7 dashboard presents these results; automatic purchasing/production release is not implemented.
 
 ## Phase 7 Power BI
 

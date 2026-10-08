@@ -1,0 +1,90 @@
+﻿[
+    {
+        "image":  "executive.png",
+        "source_dimensions":  [
+                                  1335,
+                                  748
+                              ],
+        "crop_box_left_top_right_bottom":  [
+                                               0,
+                                               8,
+                                               1335,
+                                               748
+                                           ],
+        "output_dimensions":  [
+                                  1335,
+                                  740
+                              ],
+        "source_sha256":  "3f10651e70fa9aa4e86afcd7fafbe16b74974f8f1951cf15d92ddf04025fd95f",
+        "output_sha256":  "30ca7105b566609ed5abc9f014cb2029a17646b44a511e32e4b2f286bf1d5962",
+        "source_bytes":  79846,
+        "output_bytes":  56296,
+        "cropped_pixels_preserved":  true
+    },
+    {
+        "image":  "inventory.png",
+        "source_dimensions":  [
+                                  1306,
+                                  783
+                              ],
+        "crop_box_left_top_right_bottom":  [
+                                               0,
+                                               5,
+                                               1306,
+                                               749
+                                           ],
+        "output_dimensions":  [
+                                  1306,
+                                  744
+                              ],
+        "source_sha256":  "cd49a9b55cc8555cc2b30d9bd2ee18a0ade858b2de4a76e770d648788f47634e",
+        "output_sha256":  "772acad90ebe53aade3f23eaf6b61c9a5da86414fbca1b3b0761156e8b7c6141",
+        "source_bytes":  98537,
+        "output_bytes":  60293,
+        "cropped_pixels_preserved":  true
+    },
+    {
+        "image":  "forecasting.png",
+        "source_dimensions":  [
+                                  1305,
+                                  793
+                              ],
+        "crop_box_left_top_right_bottom":  [
+                                               0,
+                                               3,
+                                               1305,
+                                               745
+                                           ],
+        "output_dimensions":  [
+                                  1305,
+                                  742
+                              ],
+        "source_sha256":  "9fdc9beb7a21f348116c27b1c4fbfbca476abe759ea29a4d17bb5332b007a90a",
+        "output_sha256":  "5a19f2c2a973174b30396caf3555b190d5781195179fc39dd74638cd5f4b7a5d",
+        "source_bytes":  111587,
+        "output_bytes":  71671,
+        "cropped_pixels_preserved":  true
+    },
+    {
+        "image":  "production.png",
+        "source_dimensions":  [
+                                  1298,
+                                  787
+                              ],
+        "crop_box_left_top_right_bottom":  [
+                                               0,
+                                               0,
+                                               1298,
+                                               737
+                                           ],
+        "output_dimensions":  [
+                                  1298,
+                                  737
+                              ],
+        "source_sha256":  "ac91dbf2e78e909e4902a675b85c6ef7445c82fdc327dc7e34528f3dd5c321c0",
+        "output_sha256":  "d049368274b037c00cd0b1a9a7a6a8074af97d48c7ab524b15aa8079670d2f51",
+        "source_bytes":  105779,
+        "output_bytes":  72219,
+        "cropped_pixels_preserved":  true
+    }
+]
